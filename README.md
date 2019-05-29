@@ -39,4 +39,4 @@ In the log files, pointer analyses use the following naming convention:
 * benchamrk.true.dsa -- TeaDsa
 * benchamrk.true.sparse -- SVF Sparse
 * benchamrk.false.wave-diff -- SVF Wave Diff
-* benchamrk.false.wave-diff -- SVF Wave Diff (Type-aware)
+* benchamrk.true.wave-diff -- SVF Wave Diff (Type-aware)
