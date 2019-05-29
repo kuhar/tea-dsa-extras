@@ -25,3 +25,17 @@ The field overflow checker can be found at: https://github.com/seahorn/seahorn/b
   to run all the benchmarks.
 * The `results` directory contains logs from execution of each benchmark.
   Additionally, all the results are summarized in the `results_*.csv` file.
+
+The log output files (`results/*.out`) contain the field overflow checker report
+(starts with the `Start of Simple Memory Checker Stats` line),
+and machine-readable statistics in lines starting with `BRUNCH_STAT`.
+The SeaHorn program invocations, including all command line parameters,
+can be found at the beginning of each log file.
+
+In the log files, pointer analyses use the following naming convention:
+* benchamrk.false.dsa.true -- SeaDsa
+* benchamrk.false.dsa -- PFS-SeaDsa
+* benchamrk.true.dsa -- TeaDsa
+* benchamrk.true.sparse -- SVF Sparse
+* benchamrk.false.wave-diff -- SVF Wave Diff
+* benchamrk.false.wave-diff -- SVF Wave Diff (Type-aware)
