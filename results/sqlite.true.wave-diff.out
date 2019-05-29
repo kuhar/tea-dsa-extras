@@ -1,0 +1,301 @@
+sqlite3.bc true wave-diff
+BITCODE:sqlite3.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/sqlite
+PTA=wave-diff
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt sqlite3.bc -O1 -o ./temps/sqlite3.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/sqlite3.n.bc -o ./temps/sqlite3.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/sqlite3.n.pp.bc -o ./temps/sqlite3.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (52898 MiB free)
+  memory of node 1: 64486 MiB (54233 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/sqlite3.n.pp.bc -o ./temps/sqlite3.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing wall clock limit (soft limit, will send SIGTERM then SIGKILL): 3600 seconds
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 65536000 KiB
+Linux 4.15.0-43-generic
+Current StackSize limit: 8192 KiB
+
+solver pid=40525, runsolver pid=40524
+Sea Allocators:
+	Znaj
+	ZnajRKSt9nothrow_t
+	Znam
+	ZnamRKSt9nothrow_t
+	Znwj
+	ZnwjRKSt9nothrow_t
+	Znwm
+	ZnwmRKSt9nothrow_t
+	calloc
+	dotlockIoFinderImpl.stub
+	malloc
+	nolockIoFinderImpl.stub
+	noopMutexAlloc.stub
+	pcache1Create.stub
+	pcache1Fetch.stub
+	posixIoFinderImpl.stub
+	pthreadMutexAlloc.stub
+	realloc
+	sqlite3MemMalloc.stub
+	sqlite3MemRealloc.stub
+	sqlite3_aggregate_context.stub
+	sqlite3_backup_init.stub
+	sqlite3_bind_parameter_name.stub
+	sqlite3_column_blob.stub
+	sqlite3_column_decltype.stub
+	sqlite3_column_decltype16.stub
+	sqlite3_column_name.stub
+	sqlite3_column_name16.stub
+	sqlite3_column_text.stub
+	sqlite3_column_text16.stub
+	sqlite3_column_value.stub
+	sqlite3_commit_hook.stub
+	sqlite3_compileoption_get.stub
+	sqlite3_context_db_handle.stub
+	sqlite3_db_filename.stub
+	sqlite3_db_handle.stub
+	sqlite3_db_mutex.stub
+	sqlite3_errmsg.stub
+	sqlite3_errmsg16.stub
+	sqlite3_errstr.stub
+	sqlite3_expanded_sql.stub
+	sqlite3_get_auxdata.stub
+	sqlite3_libversion.stub
+	sqlite3_malloc.stub
+	sqlite3_malloc64.stub
+	sqlite3_mprintf
+	sqlite3_mutex_alloc.stub
+	sqlite3_next_stmt.stub
+	sqlite3_profile.stub
+	sqlite3_realloc.stub
+	sqlite3_realloc64.stub
+	sqlite3_rollback_hook.stub
+	sqlite3_snprintf
+	sqlite3_sourceid.stub
+	sqlite3_sql.stub
+	sqlite3_trace.stub
+	sqlite3_update_hook.stub
+	sqlite3_uri_parameter.stub
+	sqlite3_user_data.stub
+	sqlite3_value_blob.stub
+	sqlite3_value_dup.stub
+	sqlite3_value_pointer.stub
+	sqlite3_value_text.stub
+	sqlite3_value_text16.stub
+	sqlite3_value_text16be.stub
+	sqlite3_value_text16le.stub
+	sqlite3_vfs_find.stub
+	sqlite3_vmprintf.stub
+	sqlite3_vsnprintf.stub
+	sqlite3_wal_hook.stub
+	unixDlOpen.stub
+	unixDlSym.stub
+	unixGetSystemCall.stub
+	unixNextSystemCall.stub
+	verifier.nondet.5
+	verifier.nondet.7
+Warning: Running SVF PTA!
+BRUNCH_STAT PTA_KIND SVF_Andersen_Diff_Wave_Type
+
+[startup+0.100063 s]*
+/proc/loadavg: 0.98 1.03 1.05 2/903 40526
+/proc/meminfo: memFree=109663992/131989204 swapFree=244096144/244398076
+[pid=40525] ppid=40524 vsize=85468 memory=54556 CPUtime=0.11 cores=10
+/proc/40525/stat : 40525 (seapp) R 40524 40525 20134 34834 25294 4194304 10691 0 0 0 7 4 0 0 20 0 1 0 374255630 87519232 13639 18446744073709551615 4194304 21443392 140720487005216 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 33210368 140720487006901 140720487007259 140720487007259 140720487010236 0
+/proc/40525/statm: 21367 13639 3343 4212 0 10344 0
+Current children cumulated CPU time: 0.11 s
+Current children cumulated vsize: 85468 KiB
+Current children cumulated memory: 54556 KiB
+
+[startup+0.222062 s]*
+/proc/loadavg: 0.98 1.03 1.05 2/903 40536
+/proc/meminfo: memFree=109663252/131989204 swapFree=244096144/244398076
+[pid=40525] ppid=40524 vsize=99232 memory=68336 CPUtime=0.23 cores=10
+/proc/40525/stat : 40525 (seapp) R 40524 40525 20134 34834 25294 4194304 14241 0 0 0 16 7 0 0 20 0 1 0 374255630 101613568 17084 18446744073709551615 4194304 21443392 140720487005216 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 33210368 140720487006901 140720487007259 140720487007259 140720487010236 0
+/proc/40525/statm: 24808 17084 3343 4212 0 13785 0
+Current children cumulated CPU time: 0.23 s
+Current children cumulated vsize: 99232 KiB
+Current children cumulated memory: 68336 KiB
+
+****CallGraph SCC Stat****
+################ (program : temps/sqlite3)###############
+-------------------------------------------------------
+CalRetPairInCycle   334
+MaxNodeInCycle      125
+NodeInCycle         125
+TotalCycle          1
+TotalEdge           678
+TotalNode           587
+#######################################################
+
+****Andersen Pointer Analysis Statistics****
+################ (program : temps/sqlite3)###############
+TotalObjects        656
+TotalFieldObjects   529
+TotalPointers       7954
+HeapObjs            7
+FunctionObjs        587
+GlobalObjs          49
+StackObjs           11
+IndCallSites        0
+TotalPAGEdges       22270
+LocalVarInRecur     7
+BitCastNumber       104
+CopysNum            412
+AddrsNum            770
+GepsNum             1509
+ReturnsNum          70
+CallsNum            520
+StoresNum           865
+LoadsNum            309
+FSObjNum            623
+FIObjNum            31
+ConstArrayObj       7
+VarArrayObj         3
+ConstStructObj      20
+VarStructObj        14
+NonPtrObj           600
+MaxStructSize       222
+TotalCallSite       678
+BBWith3Succ         10
+BBWith2Succ         424
+-------------------------------------------------------
+AvgPtsSetSize       2.15808
+AvgTopLvlPtsSize    5.94608
+SCCDetectTime       0.065
+CopyGepTime         0.077
+TotalTime           0.192
+CollapseTime        0
+LoadStoreTime       0.009
+SCCMergeTime        0.012
+UpdateCGTime        0
+TotalStoreInst      578
+TotalLoadInst       558
+NumOfSCCDetect      8
+MemObjects          656
+TotalObjects        1185
+DYFieldPtrs         442
+TotalPointers       7954
+Pointers            7512
+Iterations          8
+DYFieldObjs         529
+IndCallSites        0
+NodesInCycles       261
+TotalPAGEdges       4068
+PointsToConstPtr    0
+PointsToBlkPtr      126
+NullPointer         123
+CopysNum            1425
+AddrsNum            760
+GepsNum             1471
+StoresNum           865
+LoadsNum            307
+TotalCycleNum       28
+TotalPWCCycleNum    5
+CGNodeNum           9457
+MaxPtsSetSize       84
+IndEdgeSolved       0
+CopyProcessed       1659
+AddrProcessed       770
+GepProcessed        3131
+StoreProcessed      1251
+LoadProcessed       990
+MaxNodesInSCC       141
+#######################################################
+BRUNCH_STAT SEA_TIME_PTA_MS 170
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+BRUNCH_STAT SEA_TIME_SMC_ANALYSIS_MS 2
+
+=========== Start of Simple Memory Check Stats ===========
+Format:	All instructions (Heap/Stack/Global)
+
+Discovered memory instructions	1136
+Discovered allocation sites	31	(4/8/19)
+Interesting allocation sites	6	(0/0/6)
+Other allocation sites		8	(2/3/3)
+Total Simple AS to instrument	808
+Interesting <Barrier, AllocSite> pairs	200
+Total <Barrier, AllocSite> pairs	477
+BRUNCH_STAT SMC_ALL_AS 31
+BRUNCH_STAT SMC_AS_BARRIER_INTERESTING 200
+BRUNCH_STAT SMC_AS_BARRIER_CHECKS 477
+BRUNCH_STAT SMC_AS_BARRIER_TOTAL 893
+
+
+Warning: SMC: exiting without instrumenting (--smc-analyze-only)
+BRUNCH_STAT PTA_RSS_KB 106624
+
+[startup+0.288547 s]
+# the end of solver process 40525 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=0.20044 s, system=0.088193 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+Child status: 0
+Real time (s): 0.288584
+CPU time (s): 0.288633
+CPU user time (s): 0.20044
+CPU system time (s): 0.088193
+CPU usage (%): 100.017
+Max. virtual memory (cumulated for all children) (KiB): 99232
+Max. memory (cumulated for all children) (KiB): 68336
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 0.20044
+system time used= 0.088193
+maximum resident set size= 106624
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 23731
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 296
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 1
+involuntary context switches= 3
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 40525
+#   total CPU time (s): 0.288633
+#   total CPU user time (s): 0.20044
+#   total CPU system time (s): 0.088193
+
+??? end of timestamper thread
+runsolver used 0.045616 second user time and 0.038014 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 377
+BRUNCH_STAT ORIGINAL_BITCODE_NAME sqlite3.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 2284
+BRUNCH_STAT FINAL_BITCODE_NAME sqlite3.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 140
+BRUNCH_STAT EXPERIMENT_TIME 19/02/21-23:04:08

@@ -1,0 +1,343 @@
+h264ref.bc true wave-diff
+BITCODE:h264ref.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/spec2k6
+PTA=wave-diff
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt h264ref.bc -O1 -o ./temps/h264ref.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/h264ref.n.bc -o ./temps/h264ref.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/h264ref.n.pp.bc -o ./temps/h264ref.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (52898 MiB free)
+  memory of node 1: 64486 MiB (54234 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/h264ref.n.pp.bc -o ./temps/h264ref.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing wall clock limit (soft limit, will send SIGTERM then SIGKILL): 3600 seconds
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 65536000 KiB
+Linux 4.15.0-43-generic
+Current StackSize limit: 8192 KiB
+
+solver pid=40369, runsolver pid=40368
+
+[startup+0.10007 s]*
+/proc/loadavg: 0.97 1.03 1.05 2/903 40370
+/proc/meminfo: memFree=109670600/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=87068 memory=53364 CPUtime=0.11 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 12593 0 0 0 10 1 0 0 20 0 1 0 374254618 89157632 13341 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 21767 13341 3352 4212 0 10127 0
+Current children cumulated CPU time: 0.11 s
+Current children cumulated vsize: 87068 KiB
+Current children cumulated memory: 53364 KiB
+Sea Allocators:
+	_fopen
+	FastLine16Y_11.stub
+	FastLineX.stub
+	UMVLine16Y_11.stub
+	UMVLineX.stub
+	Znaj
+	ZnajRKSt9nothrow_t
+	Znam
+	ZnamRKSt9nothrow_t
+	Znwj
+	ZnwjRKSt9nothrow_t
+	Znwm
+	ZnwmRKSt9nothrow_t
+	__memcpy_chk
+	__memset_chk
+	__strncat_chk
+	__strncpy_chk
+	calloc
+	localtime
+	malloc
+	verifier.nondet.10
+	verifier.nondet.12
+	verifier.nondet.5
+Warning: Running SVF PTA!
+BRUNCH_STAT PTA_KIND SVF_Andersen_Diff_Wave_Type
+
+[startup+0.221675 s]*
+/proc/loadavg: 0.97 1.03 1.05 2/903 40381
+/proc/meminfo: memFree=109637996/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=137976 memory=107020 CPUtime=0.23 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 26061 0 0 0 20 3 0 0 20 0 1 0 374254618 141287424 26755 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 34527 26755 3297 4212 0 23504 0
+Current children cumulated CPU time: 0.23 s
+Current children cumulated vsize: 137976 KiB
+Current children cumulated memory: 107020 KiB
+
+[startup+0.321992 s]*
+/proc/loadavg: 0.97 1.03 1.05 2/903 40381
+/proc/meminfo: memFree=109501416/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=275804 memory=244564 CPUtime=0.33 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 60491 0 0 0 25 8 0 0 20 0 1 0 374254618 282423296 61141 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 68951 61141 3297 4212 0 57928 0
+Current children cumulated CPU time: 0.33 s
+Current children cumulated vsize: 275804 KiB
+Current children cumulated memory: 244564 KiB
+
+[startup+0.700234 s]
+/proc/loadavg: 0.97 1.03 1.05 2/903 40381
+/proc/meminfo: memFree=109278944/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=487804 memory=456820 CPUtime=0.69 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 113514 0 0 0 53 16 0 0 20 0 1 0 374254618 499511296 114205 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 121951 114205 3297 4212 0 110928 0
+Current children cumulated CPU time: 0.69 s
+Current children cumulated vsize: 487804 KiB
+Current children cumulated memory: 456820 KiB
+
+[startup+1.50032 s]
+/proc/loadavg: 0.97 1.03 1.05 2/903 40381
+/proc/meminfo: memFree=109251776/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=653624 memory=622852 CPUtime=1.49 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 154975 0 0 0 122 27 0 0 20 0 1 0 374254618 669310976 155713 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 163406 155713 3361 4212 0 152383 0
+Current children cumulated CPU time: 1.49 s
+Current children cumulated vsize: 653624 KiB
+Current children cumulated memory: 622852 KiB
+
+[startup+3.12093 s]
+/proc/loadavg: 0.97 1.03 1.05 2/903 40403
+/proc/meminfo: memFree=109052152/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=699168 memory=668260 CPUtime=3.11 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 166348 0 0 0 263 48 0 0 20 0 1 0 374254618 715948032 167065 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 174792 167065 3361 4212 0 163769 0
+Current children cumulated CPU time: 3.11 s
+Current children cumulated vsize: 699168 KiB
+Current children cumulated memory: 668260 KiB
+
+[startup+6.30024 s]
+/proc/loadavg: 0.98 1.03 1.05 2/903 40443
+/proc/meminfo: memFree=109047960/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=700896 memory=669844 CPUtime=6.3 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 166765 0 0 0 536 94 0 0 20 0 1 0 374254618 717717504 167461 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 175224 167461 3361 4212 0 164201 0
+Current children cumulated CPU time: 6.3 s
+Current children cumulated vsize: 700896 KiB
+Current children cumulated memory: 669844 KiB
+
+****CallGraph SCC Stat****
+################ (program : temps/h264ref)###############
+-------------------------------------------------------
+CalRetPairInCycle   91
+MaxNodeInCycle      27
+NodeInCycle         28
+TotalCycle          2
+TotalEdge           5330
+TotalNode           511
+#######################################################
+
+****Andersen Pointer Analysis Statistics****
+################ (program : temps/h264ref)###############
+TotalObjects        1463
+TotalFieldObjects   1376
+TotalPointers       174533
+HeapObjs            340
+FunctionObjs        511
+GlobalObjs          406
+StackObjs           204
+IndCallSites        0
+TotalPAGEdges       197472
+LocalVarInRecur     0
+BitCastNumber       3194
+CopysNum            5214
+AddrsNum            2153
+GepsNum             42963
+ReturnsNum          43
+CallsNum            3501
+StoresNum           1466
+LoadsNum            11108
+FSObjNum            1317
+FIObjNum            144
+ConstArrayObj       6
+VarArrayObj         201
+ConstStructObj      0
+VarStructObj        64
+NonPtrObj           997
+MaxStructSize       176
+TotalCallSite       5330
+BBWith3Succ         202
+BBWith2Succ         7658
+-------------------------------------------------------
+AvgPtsSetSize       0.318144
+AvgTopLvlPtsSize    0.926775
+SCCDetectTime       2.351
+CopyGepTime         1.926
+TotalTime           5.154
+CollapseTime        0
+LoadStoreTime       0.054
+SCCMergeTime        0.35
+UpdateCGTime        0
+TotalStoreInst      15361
+TotalLoadInst       33151
+NumOfSCCDetect      7
+MemObjects          1463
+TotalObjects        2839
+DYFieldPtrs         597
+TotalPointers       174533
+Pointers            173936
+Iterations          7
+DYFieldObjs         1376
+IndCallSites        0
+NodesInCycles       248
+TotalPAGEdges       70813
+PointsToConstPtr    0
+PointsToBlkPtr      16
+NullPointer         4887
+CopysNum            15365
+AddrsNum            2139
+GepsNum             42878
+StoresNum           1464
+LoadsNum            11106
+TotalCycleNum       57
+TotalPWCCycleNum    6
+CGNodeNum           178009
+MaxPtsSetSize       42
+IndEdgeSolved       0
+CopyProcessed       11711
+AddrProcessed       2153
+GepProcessed        31078
+StoreProcessed      1475
+LoadProcessed       8905
+MaxNodesInSCC       55
+#######################################################
+BRUNCH_STAT SEA_TIME_PTA_MS 5444
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+BRUNCH_STAT SEA_TIME_SMC_ANALYSIS_MS 36
+
+=========== Start of Simple Memory Check Stats ===========
+Format:	All instructions (Heap/Stack/Global)
+
+Discovered memory instructions	48512
+Discovered allocation sites	537	(161/187/189)
+Interesting allocation sites	0	(0/0/0)
+Other allocation sites		0	(0/0/0)
+Total Simple AS to instrument	0
+Interesting <Barrier, AllocSite> pairs	0
+Total <Barrier, AllocSite> pairs	0
+BRUNCH_STAT SMC_ALL_AS 537
+BRUNCH_STAT SMC_AS_BARRIER_INTERESTING 0
+BRUNCH_STAT SMC_AS_BARRIER_CHECKS 0
+BRUNCH_STAT SMC_AS_BARRIER_TOTAL 22194
+
+
+Warning: found 326 possible reads of undefined values
+BRUNCH_STAT PTA_RSS_KB 1651924
+
+[startup+7.57313 s]
+# the end of solver process 40369 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=6.14271 s, system=1.37971 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+[startup+6.40029 s]
+/proc/loadavg: 0.98 1.03 1.05 2/903 40443
+/proc/meminfo: memFree=109047960/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=718424 memory=687496 CPUtime=6.39 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 173077 0 0 0 543 96 0 0 20 0 1 0 374254618 735666176 171874 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 179606 171874 3361 4212 0 168583 0
+Current children cumulated CPU time: 6.39 s
+Current children cumulated vsize: 718424 KiB
+Current children cumulated memory: 687496 KiB
+
+[startup+7.20027 s]
+/proc/loadavg: 0.98 1.03 1.05 2/903 40453
+/proc/meminfo: memFree=108078248/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=1659008 memory=1628784 CPUtime=7.18 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 416257 0 0 0 587 131 0 0 20 0 1 0 374254618 1698824192 407196 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 414752 407196 3505 4212 0 403729 0
+Current children cumulated CPU time: 7.18 s
+Current children cumulated vsize: 1659008 KiB
+Current children cumulated memory: 1628784 KiB
+
+[startup+7.40025 s]
+/proc/loadavg: 0.98 1.03 1.05 2/903 40453
+/proc/meminfo: memFree=108078248/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=1659008 memory=1628784 CPUtime=7.39 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 416257 0 0 0 607 132 0 0 20 0 1 0 374254618 1698824192 407196 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 414752 407196 3505 4212 0 403729 0
+Current children cumulated CPU time: 7.39 s
+Current children cumulated vsize: 1659008 KiB
+Current children cumulated memory: 1628784 KiB
+
+[startup+7.50031 s]
+/proc/loadavg: 0.98 1.03 1.05 2/903 40453
+/proc/meminfo: memFree=108078248/131989204 swapFree=244096144/244398076
+[pid=40369] ppid=40368 vsize=1659008 memory=1628784 CPUtime=7.44 cores=10
+/proc/40369/stat : 40369 (seapp) R 40368 40369 20134 34834 25294 4194304 416257 0 0 0 612 132 0 0 20 0 1 0 374254618 1698824192 407196 18446744073709551615 4194304 21443392 140729865388800 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38735872 140729865396913 140729865397271 140729865397271 140729865400252 0
+/proc/40369/statm: 414752 407196 3505 4212 0 403729 0
+Current children cumulated CPU time: 7.44 s
+Current children cumulated vsize: 1659008 KiB
+Current children cumulated memory: 1628784 KiB
+
+Child status: 0
+Real time (s): 7.57319
+CPU time (s): 7.52242
+CPU user time (s): 6.14271
+CPU system time (s): 1.37971
+CPU usage (%): 99.3296
+Max. virtual memory (cumulated for all children) (KiB): 1668132
+Max. memory (cumulated for all children) (KiB): 1637776
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 6.14271
+system time used= 1.37971
+maximum resident set size= 1651924
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 416264
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 5000
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 3
+involuntary context switches= 15
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 40369
+#   total CPU time (s): 7.52242
+#   total CPU user time (s): 6.14271
+#   total CPU system time (s): 1.37971
+
+??? end of timestamper thread
+runsolver used 0.106483 second user time and 0.200188 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 7655
+BRUNCH_STAT ORIGINAL_BITCODE_NAME h264ref.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 1816
+BRUNCH_STAT FINAL_BITCODE_NAME h264ref.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 2468
+BRUNCH_STAT EXPERIMENT_TIME 19/02/21-23:03:58

@@ -1,0 +1,1950 @@
+rippled.bc false dsa
+BITCODE:rippled.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/ripple
+PTA=dsa
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt rippled.bc -O1 -o ./temps/rippled.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/rippled.n.bc -o ./temps/rippled.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 80000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/rippled.n.pp.bc -o ./temps/rippled.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=dsa --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (40940 MiB free)
+  memory of node 1: 64486 MiB (48660 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 80000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/rippled.n.pp.bc -o ./temps/rippled.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=dsa --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 81920000 KiB
+Linux 4.15.0-47-generic
+solver pid=13072, runsolver pid=13071
+Current StackSize limit: 8192 KiB
+
+
+[startup+0.100086 s]*
+/proc/loadavg: 1.12 1.08 1.31 2/855 13073
+/proc/meminfo: memFree=91720380/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=241876 memory=58340 CPUtime=0.11 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 10919 0 0 0 10 1 0 0 20 0 1 0 6800985 247681024 14585 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 60469 14585 5273 4198 0 10009 0
+Current children cumulated CPU time: 0.11 s
+Current children cumulated vsize: 241876 KiB
+Current children cumulated memory: 58340 KiB
+
+[startup+0.218401 s]*
+/proc/loadavg: 1.12 1.08 1.31 2/855 13073
+/proc/meminfo: memFree=91654260/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=307968 memory=175596 CPUtime=0.22 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 31615 0 0 0 17 5 0 0 20 0 1 0 6800985 315359232 43899 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 76992 43899 17721 4198 0 26532 0
+Current children cumulated CPU time: 0.22 s
+Current children cumulated vsize: 307968 KiB
+Current children cumulated memory: 175596 KiB
+
+[startup+0.317394 s]*
+/proc/loadavg: 1.12 1.08 1.31 2/855 13073
+/proc/meminfo: memFree=91609520/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=349736 memory=240660 CPUtime=0.32 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 42684 0 0 0 25 7 0 0 20 0 1 0 6800985 358129664 60165 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 87434 60165 23849 4198 0 36974 0
+Current children cumulated CPU time: 0.32 s
+Current children cumulated vsize: 349736 KiB
+Current children cumulated memory: 240660 KiB
+
+[startup+0.700213 s]
+/proc/loadavg: 1.12 1.08 1.31 2/855 13083
+/proc/meminfo: memFree=91571096/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=411700 memory=310720 CPUtime=0.69 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 59267 0 0 0 60 9 0 0 20 0 1 0 6800985 421580800 77680 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 102925 77680 25929 4198 0 52465 0
+Current children cumulated CPU time: 0.69 s
+Current children cumulated vsize: 411700 KiB
+Current children cumulated memory: 310720 KiB
+
+[startup+1.50021 s]
+/proc/loadavg: 1.12 1.08 1.31 2/855 13083
+/proc/meminfo: memFree=91503888/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=526872 memory=441784 CPUtime=1.49 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 93155 0 0 0 136 13 0 0 20 0 1 0 6800985 539516928 110446 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 131718 110446 30620 4198 0 81258 0
+Current children cumulated CPU time: 1.49 s
+Current children cumulated vsize: 526872 KiB
+Current children cumulated memory: 441784 KiB
+
+[startup+3.11729 s]
+/proc/loadavg: 1.12 1.08 1.31 2/855 13106
+/proc/meminfo: memFree=91138948/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=843580 memory=799224 CPUtime=3.1 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 176544 0 0 0 283 27 0 0 20 0 1 0 6800985 863825920 199806 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 210895 199806 40812 4198 0 160435 0
+Current children cumulated CPU time: 3.1 s
+Current children cumulated vsize: 843580 KiB
+Current children cumulated memory: 799224 KiB
+BRUNCH_STAT PTA_KIND SeaDsa_BUTD
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 1 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 2 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 3 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  12
+	Type size:  8
+WARNING: 382330680 is allocating a new cell.
+WARNING: 382320056 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: 381544904 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 4 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 5 / 100
+WARNING: 379692264 is allocating a new cell.
+WARNING: 379693800 is allocating a new cell.
+WARNING: 449560904 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 6 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 7 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 8 / 100
+WARNING: 646247960 is allocating a new cell.
+WARNING: 646105432 is allocating a new cell.
+WARNING: 646105672 is allocating a new cell.
+WARNING: 646105768 is allocating a new cell.
+WARNING: 646365816 is allocating a new cell.
+WARNING: 646400568 is allocating a new cell.
+WARNING: 646702152 is allocating a new cell.
+WARNING: 646484472 is allocating a new cell.
+WARNING: 646485272 is allocating a new cell.
+WARNING: 646491512 is allocating a new cell.
+WARNING: 646492312 is allocating a new cell.
+WARNING: 646508472 is allocating a new cell.
+WARNING: 646509272 is allocating a new cell.
+WARNING: 646515512 is allocating a new cell.
+WARNING: 646516312 is allocating a new cell.
+WARNING: 646532536 is allocating a new cell.
+WARNING: 646533336 is allocating a new cell.
+WARNING: 646539576 is allocating a new cell.
+WARNING: 646540376 is allocating a new cell.
+WARNING: 646556600 is allocating a new cell.
+WARNING: 646557400 is allocating a new cell.
+WARNING: 646563640 is allocating a new cell.
+WARNING: 646564440 is allocating a new cell.
+WARNING: 646580664 is allocating a new cell.
+WARNING: 646581464 is allocating a new cell.
+WARNING: 646587704 is allocating a new cell.
+WARNING: 646588504 is allocating a new cell.
+WARNING: 646604728 is allocating a new cell.
+WARNING: 646605528 is allocating a new cell.
+WARNING: 646611768 is allocating a new cell.
+WARNING: 646612568 is allocating a new cell.
+WARNING: 646766776 is allocating a new cell.
+WARNING: 646766872 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  1
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  1
+WARNING: 646789304 is allocating a new cell.
+WARNING: 646883688 is allocating a new cell.
+WARNING: 646886760 is allocating a new cell.
+WARNING: 646885848 is allocating a new cell.
+WARNING: 646888744 is allocating a new cell.
+WARNING: 646890056 is allocating a new cell.
+WARNING: 646894008 is allocating a new cell.
+WARNING: 646894264 is allocating a new cell.
+WARNING: 646866488 is allocating a new cell.
+WARNING: 646866744 is allocating a new cell.
+WARNING: 646812392 is allocating a new cell.
+WARNING: 646745848 is allocating a new cell.
+WARNING: 646305560 is allocating a new cell.
+WARNING: 646315000 is allocating a new cell.
+WARNING: 646318456 is allocating a new cell.
+WARNING: 646319944 is allocating a new cell.
+WARNING: 646325592 is allocating a new cell.
+WARNING: 646327080 is allocating a new cell.
+WARNING: 646329848 is allocating a new cell.
+WARNING: 646340840 is allocating a new cell.
+WARNING: 646337048 is allocating a new cell.
+WARNING: 646344280 is allocating a new cell.
+WARNING: 646345352 is allocating a new cell.
+WARNING: 646349832 is allocating a new cell.
+WARNING: 646054856 is allocating a new cell.
+WARNING: 646055096 is allocating a new cell.
+WARNING: 646055192 is allocating a new cell.
+WARNING: 646069560 is allocating a new cell.
+WARNING: 646069800 is allocating a new cell.
+WARNING: 646069896 is allocating a new cell.
+WARNING: 646255560 is allocating a new cell.
+WARNING: 646260888 is allocating a new cell.
+WARNING: 646257256 is allocating a new cell.
+WARNING: 646267912 is allocating a new cell.
+WARNING: 646264200 is allocating a new cell.
+WARNING: 646274616 is allocating a new cell.
+WARNING: 646270952 is allocating a new cell.
+WARNING: 367537256 is allocating a new cell.
+WARNING: 367553896 is allocating a new cell.
+WARNING: 367556264 is allocating a new cell.
+WARNING: 367621544 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 9 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 10 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 11 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  5
+	Type size:  4
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 12 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 13 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 14 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 15 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 16 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 17 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 18 / 100
+WARNING: 293449592 is allocating a new cell.
+WARNING: 293560056 is allocating a new cell.
+WARNING: 358961704 is allocating a new cell.
+WARNING: 363386680 is allocating a new cell.
+WARNING: 340630664 is allocating a new cell.
+WARNING: 340754312 is allocating a new cell.
+WARNING: 340845400 is allocating a new cell.
+WARNING: 342050696 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 19 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 20 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 21 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 22 / 100
+WARNING: 474888360 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 23 / 100
+WARNING: 451348056 is allocating a new cell.
+WARNING: 474534040 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 24 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: 538834296 is allocating a new cell.
+WARNING: 538834744 is allocating a new cell.
+WARNING: 538840520 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  13
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 25 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 26 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 27 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  1
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 28 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 29 / 100
+WARNING: 550532952 is allocating a new cell.
+WARNING: 441571336 is allocating a new cell.
+WARNING: 599641128 is allocating a new cell.
+WARNING: 606572280 is allocating a new cell.
+WARNING: 612400360 is allocating a new cell.
+WARNING: 619328248 is allocating a new cell.
+WARNING: 539518136 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  13
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 30 / 100
+WARNING: 543835352 is allocating a new cell.
+WARNING: 419816024 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 31 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 32 / 100
+WARNING: 582304248 is allocating a new cell.
+WARNING: 582573080 is allocating a new cell.
+WARNING: 620849160 is allocating a new cell.
+WARNING: 620955384 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  13
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 33 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  13
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 34 / 100
+
+[startup+6.30016 s]
+/proc/loadavg: 1.11 1.08 1.31 2/855 13145
+/proc/meminfo: memFree=90702836/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=1154680 memory=1122520 CPUtime=6.29 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 307203 0 0 0 577 52 0 0 20 0 1 0 6800985 1182392320 280630 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 288670 280630 3378 4198 0 277661 0
+Current children cumulated CPU time: 6.29 s
+Current children cumulated vsize: 1154680 KiB
+Current children cumulated memory: 1122520 KiB
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 35 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  13
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 36 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  13
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 37 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  28
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  33
+	Type size:  8
+WARNING: 646030920 is allocating a new cell.
+WARNING: 648107864 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 38 / 100
+WARNING: 655949064 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 39 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 40 / 100
+WARNING: 657027096 is allocating a new cell.
+WARNING: 657028744 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 41 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 42 / 100
+WARNING: 569703912 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  68
+	Type size:  4
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  68
+	Type size:  4
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 43 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  68
+	Type size:  4
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 44 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 45 / 100
+WARNING: 343174056 is allocating a new cell.
+WARNING: 352994840 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 46 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 47 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 48 / 100
+WARNING: 352691608 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 49 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 50 / 100
+WARNING: 487304728 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 51 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 52 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 53 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 54 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 55 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  40
+	Type size:  1
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  40
+	Type size:  1
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  40
+	Type size:  1
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 56 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 57 / 100
+WARNING: 488593848 is allocating a new cell.
+WARNING: 489152568 is allocating a new cell.
+WARNING: 435076136 is allocating a new cell.
+WARNING: 435133256 is allocating a new cell.
+WARNING: 435038792 is allocating a new cell.
+WARNING: 434973192 is allocating a new cell.
+WARNING: 434906200 is allocating a new cell.
+WARNING: 435966712 is allocating a new cell.
+WARNING: 436023832 is allocating a new cell.
+WARNING: 435937352 is allocating a new cell.
+WARNING: 435883896 is allocating a new cell.
+WARNING: 435831384 is allocating a new cell.
+WARNING: 434398856 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 58 / 100
+WARNING: 449242824 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 59 / 100
+WARNING: 375308264 is allocating a new cell.
+WARNING: 376608408 is allocating a new cell.
+WARNING: 375961800 is allocating a new cell.
+WARNING: 429141464 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 60 / 100
+WARNING: 429482968 is allocating a new cell.
+WARNING: 430150632 is allocating a new cell.
+WARNING: 430833112 is allocating a new cell.
+WARNING: 431500232 is allocating a new cell.
+WARNING: 428054760 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 61 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 62 / 100
+WARNING: 463672536 is allocating a new cell.
+WARNING: 463840392 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 63 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 64 / 100
+WARNING: 646648488 is allocating a new cell.
+WARNING: 646644632 is allocating a new cell.
+WARNING: 646640104 is allocating a new cell.
+WARNING: 646652136 is allocating a new cell.
+WARNING: 646653832 is allocating a new cell.
+WARNING: 646627960 is allocating a new cell.
+WARNING: 527219400 is allocating a new cell.
+WARNING: 527236040 is allocating a new cell.
+WARNING: 527238408 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 65 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 66 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 67 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 68 / 100
+WARNING: 652569704 is allocating a new cell.
+WARNING: 703482296 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 69 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 70 / 100
+WARNING: 490650552 is allocating a new cell.
+WARNING: 490652200 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  24
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  47
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  24
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  47
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 71 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  24
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  47
+	Type size:  8
+WARNING: 641899448 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 72 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  40
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  16
+	Type size:  4
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  40
+	Type size:  4
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  88
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  37
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  32
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  9
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 73 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 74 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 75 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  24
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  47
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  24
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  47
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  24
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  47
+	Type size:  8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 76 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  24
+	Type size:  8
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  47
+	Type size:  8
+WARNING: 661878568 is allocating a new cell.
+WARNING: 644719912 is allocating a new cell.
+WARNING: 644729768 is allocating a new cell.
+WARNING: 645845544 is allocating a new cell.
+WARNING: 515533496 is allocating a new cell.
+WARNING: 515375848 is allocating a new cell.
+WARNING: 643372104 is allocating a new cell.
+WARNING: 643380392 is allocating a new cell.
+WARNING: 643387080 is allocating a new cell.
+WARNING: 643393768 is allocating a new cell.
+WARNING: 515780120 is allocating a new cell.
+WARNING: 614285064 is allocating a new cell.
+WARNING: 608743544 is allocating a new cell.
+WARNING: 601527400 is allocating a new cell.
+WARNING: 595986216 is allocating a new cell.
+WARNING: 554445192 is allocating a new cell.
+WARNING: 541956616 is allocating a new cell.
+
+[startup+12.7002 s]
+/proc/loadavg: 1.18 1.09 1.32 2/855 13216
+/proc/meminfo: memFree=89888876/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=1923840 memory=1880164 CPUtime=12.68 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 497020 0 0 0 1181 87 0 0 20 0 1 0 6800985 1970012160 470041 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 480960 470041 3378 4198 0 469951 0
+Current children cumulated CPU time: 12.68 s
+Current children cumulated vsize: 1923840 KiB
+Current children cumulated memory: 1880164 KiB
+
+[startup+25.5002 s]
+/proc/loadavg: 1.14 1.09 1.31 2/855 13384
+/proc/meminfo: memFree=89810376/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=1996024 memory=1952440 CPUtime=25.49 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 515053 0 0 0 2455 94 0 0 20 0 1 0 6800985 2043928576 488110 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 499006 488110 3378 4198 0 487997 0
+Current children cumulated CPU time: 25.49 s
+Current children cumulated vsize: 1996024 KiB
+Current children cumulated memory: 1952440 KiB
+
+[startup+51.1177 s]
+/proc/loadavg: 1.09 1.08 1.30 2/856 13704
+/proc/meminfo: memFree=89687284/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=2121460 memory=2074672 CPUtime=51.1 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 545647 0 0 0 5005 105 0 0 20 0 1 0 6800985 2172375040 518668 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 530365 518668 3378 4198 0 519356 0
+Current children cumulated CPU time: 51.1 s
+Current children cumulated vsize: 2121460 KiB
+Current children cumulated memory: 2074672 KiB
+
+[startup+102.3 s]
+/proc/loadavg: 1.11 1.08 1.29 2/856 14324
+/proc/meminfo: memFree=89608308/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=2215372 memory=2155720 CPUtime=102.29 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 565933 0 0 0 10111 118 0 0 20 0 1 0 6800985 2268540928 538930 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 553843 538930 3378 4198 0 542834 0
+Current children cumulated CPU time: 102.29 s
+Current children cumulated vsize: 2215372 KiB
+Current children cumulated memory: 2155720 KiB
+
+[startup+162.3 s]
+/proc/loadavg: 1.04 1.07 1.27 2/857 15041
+/proc/meminfo: memFree=89260180/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=2567196 memory=2502864 CPUtime=162.29 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 660890 0 0 0 16090 139 0 0 20 0 1 0 6800985 2628808704 625716 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 641799 625716 3378 4198 0 630790 0
+Current children cumulated CPU time: 162.29 s
+Current children cumulated vsize: 2567196 KiB
+Current children cumulated memory: 2502864 KiB
+
+[startup+222.3 s]
+/proc/loadavg: 1.01 1.05 1.25 2/857 15771
+/proc/meminfo: memFree=89092700/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=2719644 memory=2667764 CPUtime=222.29 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 702155 0 0 0 22077 152 0 0 20 0 1 0 6800985 2784915456 666941 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 679911 666941 3378 4198 0 668902 0
+Current children cumulated CPU time: 222.29 s
+Current children cumulated vsize: 2719644 KiB
+Current children cumulated memory: 2667764 KiB
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 77 / 100
+WARNING: 370713512 is allocating a new cell.
+WARNING: 386680584 is allocating a new cell.
+WARNING: 387851304 is allocating a new cell.
+WARNING: 387867864 is allocating a new cell.
+WARNING: 387870232 is allocating a new cell.
+WARNING: 387684424 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 78 / 100
+WARNING: 698473784 is allocating a new cell.
+WARNING: 370656712 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 79 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 80 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 81 / 100
+WARNING: 331169080 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 82 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 83 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 84 / 100
+WARNING: 468726296 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  4
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 85 / 100
+WARNING: 466210424 is allocating a new cell.
+WARNING: 406238824 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  4
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  20
+	Type size:  4
+WARNING: 362027304 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 86 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 87 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 88 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  68
+	Type size:  4
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 89 / 100
+WARNING: 471055320 is allocating a new cell.
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  68
+	Type size:  4
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 90 / 100
+WARNING: 471140920 is allocating a new cell.
+WARNING: 331045384 is allocating a new cell.
+WARNING: 491944136 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 91 / 100
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  6
+	Type size:  4
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  24
+	Type size:  1
+WARNING: MemTransfer past object size!
+	Transfer:  
+	Length:  6
+	Type size:  4
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 92 / 100
+WARNING: 79264440 is allocating a new cell.
+WARNING: 79212008 is allocating a new cell.
+WARNING: 79188376 is allocating a new cell.
+WARNING: 79189592 is allocating a new cell.
+WARNING: 79281256 is allocating a new cell.
+WARNING: 79188568 is allocating a new cell.
+WARNING: 79193896 is allocating a new cell.
+WARNING: 79187736 is allocating a new cell.
+WARNING: 79194088 is allocating a new cell.
+WARNING: 79189080 is allocating a new cell.
+WARNING: 79188760 is allocating a new cell.
+WARNING: 79187160 is allocating a new cell.
+WARNING: 79186136 is allocating a new cell.
+WARNING: 79211112 is allocating a new cell.
+WARNING: 79285352 is allocating a new cell.
+WARNING: 79196328 is allocating a new cell.
+WARNING: 79193368 is allocating a new cell.
+WARNING: 79210856 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 93 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 94 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 95 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 96 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 97 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 98 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 99 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 100 / 100
+BRUNCH_STAT SEA_TIME_LOCAL_MS 2507
+BRUNCH_STAT SEA_TIME_BU_AND_LOCAL_MS 235789
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 1 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 2 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 3 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 4 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 5 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 6 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 7 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 8 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 9 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 10 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 11 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 12 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 13 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 14 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 15 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 16 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 17 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 18 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 19 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 20 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 21 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 22 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 23 / 100
+
+[startup+282.3 s]
+/proc/loadavg: 1.00 1.04 1.23 2/857 16511
+/proc/meminfo: memFree=79272984/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=13108348 memory=12498668 CPUtime=282.22 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 3159973 0 0 0 27689 533 0 0 20 0 1 0 6800985 13422948352 3124667 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 6 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 3277087 3124667 3378 4198 0 3266078 0
+Current children cumulated CPU time: 282.22 s
+Current children cumulated vsize: 13108348 KiB
+Current children cumulated memory: 12498668 KiB
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 24 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 25 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 26 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 27 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 28 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 29 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 30 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 31 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 32 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 33 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 34 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 35 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 36 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 37 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 38 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 39 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 40 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 41 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 42 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 43 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 44 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 45 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 46 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 47 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 48 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 49 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 50 / 100
+
+[startup+342.3 s]
+/proc/loadavg: 1.06 1.05 1.22 2/858 17251
+/proc/meminfo: memFree=68120968/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=24283016 memory=23641964 CPUtime=342.23 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 5945843 0 0 0 33279 944 0 0 20 0 1 0 6800985 24865808384 5910491 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 6 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 6070754 5910491 3378 4198 0 6059745 0
+Current children cumulated CPU time: 342.23 s
+Current children cumulated vsize: 24283016 KiB
+Current children cumulated memory: 23641964 KiB
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 51 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 52 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 53 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 54 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 55 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 56 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 57 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 58 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 59 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 60 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 61 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 62 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 63 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 64 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 65 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 66 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 67 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 68 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 69 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 70 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 71 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 72 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 73 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 74 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 75 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 76 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 77 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 78 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 79 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 80 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 81 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 82 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 83 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 84 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 85 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 86 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 87 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 88 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 89 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 90 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 91 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 92 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 93 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 94 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 95 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 96 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 97 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 98 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 99 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 100 / 100
+BRUNCH_STAT SEA_TIME_TD_MS 141292
+BRUNCH_STAT SEA_TIME_PTA_MS 379923
+WARNING DsaInfo: pointer value i32* null has not cell
+
+[startup+402.3 s]
+/proc/loadavg: 1.02 1.03 1.20 2/860 17969
+/proc/meminfo: memFree=52555796/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=39873396 memory=39133252 CPUtime=402.23 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 9819688 0 0 0 38695 1528 0 0 20 0 1 0 6800985 40830357504 9783313 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 6 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 9968349 9783313 3410 4198 0 9957340 0
+Current children cumulated CPU time: 402.23 s
+Current children cumulated vsize: 39873396 KiB
+Current children cumulated memory: 39133252 KiB
+
+[startup+462.3 s]
+/proc/loadavg: 1.01 1.03 1.18 2/859 18699
+/proc/meminfo: memFree=49905312/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=42963116 memory=41784324 CPUtime=462.23 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 10521512 0 0 0 44541 1682 0 0 20 0 1 0 6800985 43994230784 10446081 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 6 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 10740779 10446081 3410 4198 0 10729770 0
+Current children cumulated CPU time: 462.23 s
+Current children cumulated vsize: 42963116 KiB
+Current children cumulated memory: 41784324 KiB
+
+[startup+522.3 s]
+/proc/loadavg: 1.08 1.04 1.18 2/860 19437
+/proc/meminfo: memFree=47440220/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=45997544 memory=44237300 CPUtime=522.24 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 11943207 0 0 0 50162 2062 0 0 20 0 1 0 6800985 47101485056 11059325 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 6 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 11499386 11059325 3410 4198 0 11488377 0
+Current children cumulated CPU time: 522.24 s
+Current children cumulated vsize: 45997544 KiB
+Current children cumulated memory: 44237300 KiB
+
+[startup+582.3 s]
+/proc/loadavg: 1.03 1.03 1.16 2/859 20165
+/proc/meminfo: memFree=44186768/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=51136284 memory=47844628 CPUtime=582.23 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 13048960 0 0 0 55877 2346 0 0 20 0 1 0 6800985 52363554816 11961157 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 6 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 12784071 11961157 3410 4198 0 12773062 0
+Current children cumulated CPU time: 582.23 s
+Current children cumulated vsize: 51136284 KiB
+Current children cumulated memory: 47844628 KiB
+
+[startup+642.3 s]
+/proc/loadavg: 1.40 1.12 1.19 4/866 20910
+/proc/meminfo: memFree=42395060/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=52085544 memory=49269116 CPUtime=642.23 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 13548668 0 0 0 61695 2528 0 0 20 0 1 0 6800985 53335597056 12317229 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 6 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 13021386 12317279 3410 4198 0 13010377 0
+Current children cumulated CPU time: 642.23 s
+Current children cumulated vsize: 52085544 KiB
+Current children cumulated memory: 49269116 KiB
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: Sea Dsa node not found for i32* null
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+
+[startup+702.3 s]
+/proc/loadavg: 1.22 1.12 1.18 2/860 21643
+/proc/meminfo: memFree=46464920/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=45938404 memory=45206240 CPUtime=702.11 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 13844698 0 0 0 67501 2710 0 0 20 0 1 0 6800985 47040925696 11301560 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 18 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 11484601 11301560 3426 4198 0 11473592 0
+Current children cumulated CPU time: 702.11 s
+Current children cumulated vsize: 45938404 KiB
+Current children cumulated memory: 45206240 KiB
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+BRUNCH_STAT SEA_TIME_SMC_ANALYSIS_MS 37508
+
+=========== Start of Simple Memory Check Stats ===========
+Format:	All instructions (Heap/Stack/Global)
+
+
+[startup+762.3 s]
+/proc/loadavg: 1.11 1.11 1.17 2/861 22370
+/proc/meminfo: memFree=39110872/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=53278448 memory=52546140 CPUtime=762 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 16611161 0 0 0 73008 3192 0 0 20 0 1 0 6800985 54557130752 13136535 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 30 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 13319612 13136535 3442 4198 0 13308603 0
+Current children cumulated CPU time: 762 s
+Current children cumulated vsize: 53278448 KiB
+Current children cumulated memory: 52546140 KiB
+Discovered memory instructions	165958
+Discovered allocation sites	33622	(2548/23661/6348)
+Interesting allocation sites	8031	(756/2597/4678)
+Other allocation sites		18247	(2308/10232/4748)
+Total Simple AS to instrument	73527594
+Interesting <Barrier, AllocSite> pairs	21225772
+Total <Barrier, AllocSite> pairs	130957748
+BRUNCH_STAT SMC_ALL_AS 33622
+BRUNCH_STAT SMC_AS_BARRIER_INTERESTING 21225772
+BRUNCH_STAT SMC_AS_BARRIER_CHECKS 130957748
+BRUNCH_STAT SMC_AS_BARRIER_TOTAL 129910852
+
+
+Warning: SMC: exiting without instrumenting (--smc-analyze-only)
+BRUNCH_STAT PTA_RSS_KB 55691972
+
+[startup+821.66 s]
+# the end of solver process 13072 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=774.144 s, system=47.2247 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+[startup+768 s]*
+/proc/loadavg: 1.10 1.11 1.17 2/862 22443
+/proc/meminfo: memFree=40159952/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=52229868 memory=51497768 CPUtime=767.72 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 16611679 0 0 0 73569 3203 0 0 20 0 1 0 6800985 53483384832 12874442 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 30 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 13057467 12874442 3442 4198 0 13046458 0
+Current children cumulated CPU time: 767.72 s
+Current children cumulated vsize: 52229868 KiB
+Current children cumulated memory: 51497768 KiB
+
+[startup+793.6 s]
+/proc/loadavg: 1.07 1.10 1.17 2/862 22757
+/proc/meminfo: memFree=38060060/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=54327020 memory=53594920 CPUtime=793.3 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 17660588 0 0 0 75942 3388 0 0 20 0 1 0 6800985 55630868480 13398730 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 30 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 13581755 13398730 3442 4198 0 13570746 0
+Current children cumulated CPU time: 793.3 s
+Current children cumulated vsize: 54327020 KiB
+Current children cumulated memory: 53594920 KiB
+
+[startup+806.4 s]
+/proc/loadavg: 1.20 1.13 1.18 2/862 22910
+/proc/meminfo: memFree=46302720/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=45938404 memory=45206496 CPUtime=806.1 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 19122802 0 0 0 76736 3874 0 0 20 0 1 0 6800985 47040925696 11301624 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 30 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 11484601 11301624 3490 4198 0 11473592 0
+Current children cumulated CPU time: 806.1 s
+Current children cumulated vsize: 45938404 KiB
+Current children cumulated memory: 45206496 KiB
+
+[startup+812.8 s]
+/proc/loadavg: 1.18 1.12 1.18 3/862 22986
+/proc/meminfo: memFree=46303428/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=45938404 memory=45206496 CPUtime=812.49 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 12582912 20446732 0 0 0 77001 4248 0 0 20 0 1 0 6800985 47040925696 11301624 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 30 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 11484601 11301624 3490 4198 0 11473592 0
+Current children cumulated CPU time: 812.49 s
+Current children cumulated vsize: 45938404 KiB
+Current children cumulated memory: 45206496 KiB
+
+[startup+816 s]*
+/proc/loadavg: 1.17 1.12 1.17 2/862 23031
+/proc/meminfo: memFree=46303012/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=45938404 memory=45206496 CPUtime=815.71 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 21130803 0 0 0 77133 4438 0 0 20 0 1 0 6800985 47040925696 11301624 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 30 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 11484601 11301624 3490 4198 0 11473592 0
+Current children cumulated CPU time: 815.71 s
+Current children cumulated vsize: 45938404 KiB
+Current children cumulated memory: 45206496 KiB
+
+[startup+819.2 s]
+/proc/loadavg: 1.17 1.12 1.17 2/862 23074
+/proc/meminfo: memFree=46553784/131989204 swapFree=244398076/244398076
+[pid=13072] ppid=13071 vsize=45684628 memory=44956736 CPUtime=818.9 cores=0-39
+/proc/13072/stat : 13072 (seapp) R 13071 13072 30945 34824 9014 4194304 21576746 0 0 0 77328 4562 0 0 20 0 1 0 6800985 46781059072 11239184 18446744073709551615 4194304 21388776 140726249680448 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 30 0 0 23486544 23735464 51879936 140726249685691 140726249686044 140726249686044 140726249689020 0
+/proc/13072/statm: 11421157 11239184 3490 4198 0 11410148 0
+Current children cumulated CPU time: 818.9 s
+Current children cumulated vsize: 45684628 KiB
+Current children cumulated memory: 44956736 KiB
+
+[startup+820.8 s]
+/proc/loadavg: 1.17 1.12 1.17 2/862 23084
+/proc/meminfo: memFree=47700596/131989204 swapFree=244398076/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+[startup+821.2 s]
+/proc/loadavg: 1.15 1.12 1.17 2/862 23096
+/proc/meminfo: memFree=74039096/131989204 swapFree=244398076/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+[startup+821.6 s]
+/proc/loadavg: 1.15 1.12 1.17 2/862 23096
+/proc/meminfo: memFree=74039096/131989204 swapFree=244398076/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+Child status: 0
+Real time (s): 821.66
+CPU time (s): 821.369
+CPU user time (s): 774.144
+CPU system time (s): 47.2247
+CPU usage (%): 99.9646
+Max. virtual memory (cumulated for all children) (KiB): 56424176
+Max. memory (cumulated for all children) (KiB): 55691972
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 774.144
+system time used= 47.2247
+maximum resident set size= 55691972
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 21576882
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 315784
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 8
+involuntary context switches= 957
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 13072
+#   total CPU time (s): 821.369
+#   total CPU user time (s): 774.144
+#   total CPU system time (s): 47.2247
+
+??? end of timestamper thread
+runsolver used 7.99851 second user time and 9.2189 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 821740
+BRUNCH_STAT ORIGINAL_BITCODE_NAME rippled.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 485344
+BRUNCH_STAT FINAL_BITCODE_NAME rippled.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 157804
+BRUNCH_STAT EXPERIMENT_TIME 19/05/09-12:20:37

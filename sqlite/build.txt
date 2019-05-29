@@ -1,0 +1,1 @@
+Build with clang -O3 -emit-llvm -o sqlite3.bc -Xclang -disable-llvm-optzns sqlite3.c.

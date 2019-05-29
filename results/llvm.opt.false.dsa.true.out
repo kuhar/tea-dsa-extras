@@ -1,0 +1,595 @@
+opt.bc false dsa true
+BITCODE:opt.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/clang
+PTA=dsa
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt opt.bc -O1 -o ./temps/opt.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/opt.n.bc -o ./temps/opt.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 80000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/opt.n.pp.bc -o ./temps/opt.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=dsa --sea-dsa-no-td-flow-sensitive-opt=true --sea-dsa-no-bu-flow-sensitive-opt=true --sea-dsa-no-td-copying-opt=true --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (47904 MiB free)
+  memory of node 1: 64486 MiB (59559 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 80000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/opt.n.pp.bc -o ./temps/opt.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=dsa --sea-dsa-no-td-flow-sensitive-opt=true --sea-dsa-no-bu-flow-sensitive-opt=true --sea-dsa-no-td-copying-opt=true --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 81920000 KiB
+Linux 4.15.0-47-generic
+Current StackSize limit: 8192 KiB
+
+solver pid=21726, runsolver pid=21725
+
+[startup+0.100135 s]*
+/proc/loadavg: 1.29 1.07 0.63 1/909 21727
+/proc/meminfo: memFree=110033008/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=75284 memory=27616 CPUtime=0.04 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 4586 0 4 0 4 0 0 0 20 0 1 0 131570483 77090816 6904 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 6 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 18821 6904 3228 4198 0 3809 0
+Current children cumulated CPU time: 0.04 s
+Current children cumulated vsize: 75284 KiB
+Current children cumulated memory: 27616 KiB
+
+[startup+0.22227 s]*
+/proc/loadavg: 1.29 1.07 0.63 2/909 21727
+/proc/meminfo: memFree=109992796/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=113328 memory=70256 CPUtime=0.16 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 15155 0 5 0 13 3 0 0 20 0 1 0 131570483 116047872 17564 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 6 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 28332 17564 4559 4198 0 13320 0
+Current children cumulated CPU time: 0.16 s
+Current children cumulated vsize: 113328 KiB
+Current children cumulated memory: 70256 KiB
+
+[startup+0.323046 s]*
+/proc/loadavg: 1.29 1.07 0.63 2/909 21747
+/proc/meminfo: memFree=109972500/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=125360 memory=83744 CPUtime=0.23 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 19247 0 5 0 19 4 0 0 20 0 1 0 131570483 128368640 20936 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 10 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 31340 20936 4864 4198 0 16328 0
+Current children cumulated CPU time: 0.23 s
+Current children cumulated vsize: 125360 KiB
+Current children cumulated memory: 83744 KiB
+
+[startup+0.700369 s]
+/proc/loadavg: 1.29 1.07 0.63 1/909 21747
+/proc/meminfo: memFree=109922760/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=217372 memory=182444 CPUtime=0.57 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 45483 0 5 0 49 8 0 0 20 0 1 0 131570483 222588928 45611 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 11 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 54343 45611 6576 4198 0 39331 0
+Current children cumulated CPU time: 0.57 s
+Current children cumulated vsize: 217372 KiB
+Current children cumulated memory: 182444 KiB
+BRUNCH_STAT PTA_KIND SeaDsa_BUTD
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 1 / 100
+WARNING: 117424712 is allocating a new cell.
+WARNING: 157190872 is allocating a new cell.
+WARNING: 157194216 is allocating a new cell.
+WARNING: 157196952 is allocating a new cell.
+WARNING: 73855304 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 2 / 100
+WARNING: 66310904 is allocating a new cell.
+WARNING: 66565704 is allocating a new cell.
+WARNING: 66385000 is allocating a new cell.
+WARNING: 66565704 is allocating a new cell.
+WARNING: 89363384 is allocating a new cell.
+WARNING: 89363384 is allocating a new cell.
+WARNING: 88015784 is allocating a new cell.
+WARNING: 89363384 is allocating a new cell.
+WARNING: 106396712 is allocating a new cell.
+WARNING: 106655064 is allocating a new cell.
+WARNING: 106655064 is allocating a new cell.
+WARNING: 107051912 is allocating a new cell.
+WARNING: 107280008 is allocating a new cell.
+WARNING: 107051912 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 3 / 100
+WARNING: 107879944 is allocating a new cell.
+WARNING: 108117768 is allocating a new cell.
+WARNING: 105885928 is allocating a new cell.
+WARNING: 86170248 is allocating a new cell.
+WARNING: 86370904 is allocating a new cell.
+WARNING: 86563848 is allocating a new cell.
+WARNING: 86758712 is allocating a new cell.
+WARNING: 86758712 is allocating a new cell.
+WARNING: 86758712 is allocating a new cell.
+WARNING: 87361912 is allocating a new cell.
+WARNING: 87592088 is allocating a new cell.
+WARNING: 87823576 is allocating a new cell.
+WARNING: 110953304 is allocating a new cell.
+WARNING: 87823576 is allocating a new cell.
+WARNING: 87823576 is allocating a new cell.
+WARNING: 87823576 is allocating a new cell.
+WARNING: 83165112 is allocating a new cell.
+WARNING: 99363864 is allocating a new cell.
+WARNING: 99363864 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 4 / 100
+WARNING: 99363864 is allocating a new cell.
+WARNING: 100536552 is allocating a new cell.
+WARNING: 66823528 is allocating a new cell.
+WARNING: 75318040 is allocating a new cell.
+WARNING: 100819928 is allocating a new cell.
+WARNING: 114010488 is allocating a new cell.
+WARNING: 93608392 is allocating a new cell.
+WARNING: 92308616 is allocating a new cell.
+WARNING: 77086040 is allocating a new cell.
+WARNING: 113684184 is allocating a new cell.
+WARNING: 66310904 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 5 / 100
+WARNING: 152786712 is allocating a new cell.
+WARNING: 65861688 is allocating a new cell.
+WARNING: 152786712 is allocating a new cell.
+WARNING: 78533480 is allocating a new cell.
+WARNING: 78533480 is allocating a new cell.
+WARNING: 66311592 is allocating a new cell.
+WARNING: 66310904 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 6 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 7 / 100
+WARNING: 73533032 is allocating a new cell.
+WARNING: 73532296 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 8 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 9 / 100
+WARNING: 107745736 is allocating a new cell.
+WARNING: 107761320 is allocating a new cell.
+WARNING: 157252408 is allocating a new cell.
+WARNING: 66937112 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 10 / 100
+WARNING: 66852504 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 11 / 100
+WARNING: 66823528 is allocating a new cell.
+WARNING: 66351880 is allocating a new cell.
+WARNING: 92308008 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 12 / 100
+WARNING: 107745736 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 13 / 100
+WARNING: 66822920 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 14 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 15 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 16 / 100
+WARNING: 76778408 is allocating a new cell.
+WARNING: 78532872 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 17 / 100
+WARNING: 124460600 is allocating a new cell.
+WARNING: 106034024 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 18 / 100
+WARNING: 66351944 is allocating a new cell.
+WARNING: 66578024 is allocating a new cell.
+WARNING: 66600344 is allocating a new cell.
+WARNING: 113699992 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 19 / 100
+WARNING: 128688856 is allocating a new cell.
+WARNING: 66822920 is allocating a new cell.
+WARNING: 75326488 is allocating a new cell.
+WARNING: 80064408 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 20 / 100
+WARNING: 76165496 is allocating a new cell.
+WARNING: 66578024 is allocating a new cell.
+WARNING: 83164504 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 21 / 100
+WARNING: 99508504 is allocating a new cell.
+WARNING: 80127448 is allocating a new cell.
+WARNING: 99380936 is allocating a new cell.
+WARNING: 101078760 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 22 / 100
+WARNING: 146925160 is allocating a new cell.
+WARNING: 147624056 is allocating a new cell.
+WARNING: 100572360 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 23 / 100
+WARNING: 101097688 is allocating a new cell.
+WARNING: 101055176 is allocating a new cell.
+WARNING: 100835512 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 24 / 100
+WARNING: 75287416 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 25 / 100
+WARNING: 80145400 is allocating a new cell.
+WARNING: 101384360 is allocating a new cell.
+WARNING: 99380936 is allocating a new cell.
+WARNING: 101506824 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 26 / 100
+WARNING: 99380936 is allocating a new cell.
+WARNING: 106034024 is allocating a new cell.
+WARNING: 106107720 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 27 / 100
+WARNING: 88015176 is allocating a new cell.
+WARNING: 106034024 is allocating a new cell.
+WARNING: 106396104 is allocating a new cell.
+WARNING: 106471192 is allocating a new cell.
+WARNING: 106654456 is allocating a new cell.
+WARNING: 85694536 is allocating a new cell.
+WARNING: 106654456 is allocating a new cell.
+WARNING: 107051304 is allocating a new cell.
+WARNING: 107284744 is allocating a new cell.
+WARNING: 107051304 is allocating a new cell.
+WARNING: 107879336 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 28 / 100
+WARNING: 108117160 is allocating a new cell.
+WARNING: 76309960 is allocating a new cell.
+WARNING: 105885352 is allocating a new cell.
+WARNING: 86169640 is allocating a new cell.
+WARNING: 86370296 is allocating a new cell.
+WARNING: 86563240 is allocating a new cell.
+WARNING: 86758104 is allocating a new cell.
+WARNING: 86758104 is allocating a new cell.
+WARNING: 86758104 is allocating a new cell.
+WARNING: 87361304 is allocating a new cell.
+WARNING: 87591480 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 29 / 100
+WARNING: 87822968 is allocating a new cell.
+WARNING: 110952696 is allocating a new cell.
+WARNING: 87822968 is allocating a new cell.
+WARNING: 87822968 is allocating a new cell.
+WARNING: 87822968 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 30 / 100
+WARNING: 81408344 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 31 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 32 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 33 / 100
+
+[startup+1.50034 s]
+/proc/loadavg: 1.29 1.07 0.63 2/909 21747
+/proc/meminfo: memFree=109869964/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=291792 memory=260832 CPUtime=1.37 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 69240 0 5 0 123 14 0 0 20 0 1 0 131570483 298795008 65208 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 11 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 72948 65208 3389 4198 0 61939 0
+Current children cumulated CPU time: 1.37 s
+Current children cumulated vsize: 291792 KiB
+Current children cumulated memory: 260832 KiB
+WARNING: 107761320 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 34 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 35 / 100
+WARNING: 115847576 is allocating a new cell.
+WARNING: 94698088 is allocating a new cell.
+WARNING: 127855048 is allocating a new cell.
+WARNING: 112919192 is allocating a new cell.
+WARNING: 150229512 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 36 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 37 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 38 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 39 / 100
+WARNING: 97355880 is allocating a new cell.
+WARNING: 97382920 is allocating a new cell.
+WARNING: 77085976 is allocating a new cell.
+WARNING: 114166072 is allocating a new cell.
+WARNING: 114182792 is allocating a new cell.
+WARNING: 114131832 is allocating a new cell.
+WARNING: 114026072 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 40 / 100
+WARNING: 169266200 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 41 / 100
+WARNING: 170246904 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 42 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 43 / 100
+WARNING: 127404584 is allocating a new cell.
+WARNING: 127403976 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 44 / 100
+WARNING: 126441288 is allocating a new cell.
+WARNING: 126452296 is allocating a new cell.
+WARNING: 126463080 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 45 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 46 / 100
+
+[startup+3.12353 s]
+/proc/loadavg: 1.26 1.07 0.63 2/909 21800
+/proc/meminfo: memFree=109656008/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=416260 memory=384384 CPUtime=2.99 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 100096 0 5 0 279 20 0 0 20 0 1 0 131570483 426250240 96096 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 11 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 104065 96096 3389 4198 0 93056 0
+Current children cumulated CPU time: 2.99 s
+Current children cumulated vsize: 416260 KiB
+Current children cumulated memory: 384384 KiB
+WARNING: 67449320 is allocating a new cell.
+WARNING: 105885928 is allocating a new cell.
+WARNING: 108565496 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 47 / 100
+WARNING: 77086040 is allocating a new cell.
+WARNING: 83190456 is allocating a new cell.
+WARNING: 83188344 is allocating a new cell.
+WARNING: 66351816 is allocating a new cell.
+WARNING: 92331400 is allocating a new cell.
+WARNING: 83855352 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 48 / 100
+WARNING: 92330792 is allocating a new cell.
+WARNING: 80664184 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 49 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 50 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 51 / 100
+WARNING: 74390808 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 52 / 100
+WARNING: 83854744 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 53 / 100
+WARNING: 136000984 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 54 / 100
+WARNING: 132324808 is allocating a new cell.
+WARNING: 152851784 is allocating a new cell.
+WARNING: 132322008 is allocating a new cell.
+WARNING: 108564888 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 55 / 100
+WARNING: 105885352 is allocating a new cell.
+WARNING: 67459176 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 56 / 100
+WARNING: 66576200 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 57 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 58 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 59 / 100
+WARNING: 77085976 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 60 / 100
+
+[startup+6.3003 s]
+/proc/loadavg: 1.26 1.07 0.63 2/909 21864
+/proc/meminfo: memFree=109001960/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=1131616 memory=1087680 CPUtime=6.17 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 275946 0 5 0 573 44 0 0 20 0 1 0 131570483 1158774784 271920 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 11 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 282904 271920 3389 4198 0 271895 0
+Current children cumulated CPU time: 6.17 s
+Current children cumulated vsize: 1131616 KiB
+Current children cumulated memory: 1087680 KiB
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 61 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 62 / 100
+WARNING: 66351880 is allocating a new cell.
+WARNING: 66351816 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 63 / 100
+WARNING: 65790888 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 64 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 65 / 100
+WARNING: 78532872 is allocating a new cell.
+WARNING: 95484200 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 66 / 100
+WARNING: 95483592 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 67 / 100
+WARNING: 89363384 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 68 / 100
+WARNING: 142848776 is allocating a new cell.
+WARNING: 137417480 is allocating a new cell.
+WARNING: 142450808 is allocating a new cell.
+WARNING: 75307256 is allocating a new cell.
+WARNING: 74583928 is allocating a new cell.
+WARNING: 143704312 is allocating a new cell.
+WARNING: 66821464 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 69 / 100
+WARNING: 142099512 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 70 / 100
+WARNING: 76161944 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 71 / 100
+WARNING: 76133496 is allocating a new cell.
+WARNING: 144335736 is allocating a new cell.
+WARNING: 76161944 is allocating a new cell.
+WARNING: 76450728 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 72 / 100
+WARNING: 89593144 is allocating a new cell.
+WARNING: 75307256 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 73 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 74 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 75 / 100
+WARNING: 74566104 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 76 / 100
+WARNING: 130554680 is allocating a new cell.
+WARNING: 130569048 is allocating a new cell.
+WARNING: 130546680 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 77 / 100
+WARNING: 116740168 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 78 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 79 / 100
+WARNING: 83165112 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 80 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 81 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 82 / 100
+WARNING: 143241112 is allocating a new cell.
+WARNING: 143253288 is allocating a new cell.
+WARNING: 66385000 is allocating a new cell.
+WARNING: 66351944 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 83 / 100
+WARNING: 104667032 is allocating a new cell.
+WARNING: 104667416 is allocating a new cell.
+WARNING: 104720536 is allocating a new cell.
+WARNING: 104720920 is allocating a new cell.
+WARNING: 104721304 is allocating a new cell.
+WARNING: 104721688 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 84 / 100
+WARNING: 104766904 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 85 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 86 / 100
+WARNING: 95531928 is allocating a new cell.
+WARNING: 95535304 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 87 / 100
+WARNING: 150248504 is allocating a new cell.
+WARNING: 66311592 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 88 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 89 / 100
+WARNING: 60781272 is allocating a new cell.
+WARNING: 60781400 is allocating a new cell.
+WARNING: 60789288 is allocating a new cell.
+WARNING: 60779864 is allocating a new cell.
+WARNING: 60789544 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 90 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 91 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 92 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 93 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 94 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 95 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 96 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 97 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 98 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 99 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 100 / 100
+BRUNCH_STAT SEA_TIME_LOCAL_MS 591
+BRUNCH_STAT SEA_TIME_BU_AND_LOCAL_MS 7835
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 1 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 2 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 3 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 4 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 5 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 6 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 7 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 8 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 9 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 10 / 100
+
+[startup+12.7003 s]
+/proc/loadavg: 1.22 1.07 0.63 2/909 22001
+/proc/meminfo: memFree=107523428/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=3402000 memory=2745336 CPUtime=12.52 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 690328 0 5 0 1136 116 0 0 20 0 1 0 131570483 3483648000 686334 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 16 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 850500 686334 3389 4198 0 839491 0
+Current children cumulated CPU time: 12.52 s
+Current children cumulated vsize: 3402000 KiB
+Current children cumulated memory: 2745336 KiB
+
+[startup+25.5003 s]
+/proc/loadavg: 1.19 1.07 0.64 2/909 22286
+/proc/meminfo: memFree=103082816/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=10229492 memory=7107672 CPUtime=25.32 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 1780939 0 5 0 2229 303 0 0 20 0 1 0 131570483 10474999808 1776918 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 16 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 2557373 1776918 3389 4198 0 2546364 0
+Current children cumulated CPU time: 25.32 s
+Current children cumulated vsize: 10229492 KiB
+Current children cumulated memory: 7107672 KiB
+
+[startup+51.1234 s]
+/proc/loadavg: 1.12 1.06 0.65 2/909 22866
+/proc/meminfo: memFree=94284984/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=23693520 memory=15747864 CPUtime=50.95 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 3940998 0 5 0 4426 669 0 0 20 0 1 0 131570483 24262164480 3936966 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 16 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 5923380 3936966 3389 4198 0 5912371 0
+Current children cumulated CPU time: 50.95 s
+Current children cumulated vsize: 23693520 KiB
+Current children cumulated memory: 15747864 KiB
+
+[startup+102.3 s]
+/proc/loadavg: 1.05 1.05 0.67 2/908 23989
+/proc/meminfo: memFree=76963976/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=50560588 memory=33081880 CPUtime=102.12 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 8274564 0 5 0 8822 1390 0 0 20 0 1 0 131570483 51774042112 8270404 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 30 0 0 16 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 12640147 8270404 3389 4198 0 12629138 0
+Current children cumulated CPU time: 102.12 s
+Current children cumulated vsize: 50560588 KiB
+Current children cumulated memory: 33081880 KiB
+
+[startup+162.3 s]
+/proc/loadavg: 1.24 1.09 0.71 2/909 25339
+/proc/meminfo: memFree=56435696/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=82165600 memory=53542768 CPUtime=162.12 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 13391025 0 5 0 13965 2247 0 0 20 0 1 0 131570483 84137574400 13385692 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 16 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 20541400 13385692 3389 4198 0 20530391 0
+Current children cumulated CPU time: 162.12 s
+Current children cumulated vsize: 82165600 KiB
+Current children cumulated memory: 53542768 KiB
+
+[startup+222.3 s]
+/proc/loadavg: 1.58 1.22 0.78 4/908 26660
+/proc/meminfo: memFree=37013908/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=112030936 memory=72907440 CPUtime=222.12 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 18271441 0 5 0 18923 3289 0 0 20 0 1 0 131570483 114719678464 18226860 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 16 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 28007734 18226860 3389 4198 0 27996725 0
+Current children cumulated CPU time: 222.12 s
+Current children cumulated vsize: 112030936 KiB
+Current children cumulated memory: 72907440 KiB
+
+
+
+Maximum memory exceeded: sending SIGTERM then SIGKILL
+
+[startup+248.4 s]
+/proc/loadavg: 1.35 1.20 0.79 2/908 27256
+/proc/meminfo: memFree=28004824/131989204 swapFree=244395760/244398076
+[pid=21726] ppid=21725 vsize=126084560 memory=81926204 CPUtime=248.22 cores=0-39
+/proc/21726/stat : 21726 (seapp) R 21725 21726 30945 34824 9203 4194304 20546103 0 5 0 21136 3686 0 0 20 0 1 0 131570483 129110589440 20481551 18446744073709551615 4194304 21388984 140737214427808 0 0 0 0 0 1098931967 0 0 0 17 0 0 0 16 0 0 23486544 23735464 43814912 140737214431827 140737214432285 140737214432285 140737214435260 0
+/proc/21726/statm: 31521140 20481551 3389 4198 0 31510131 0
+Current children cumulated CPU time: 248.22 s
+Current children cumulated vsize: 126084560 KiB
+Current children cumulated memory: 81926204 KiB
+
+Sending SIGTERM to process tree (bottom up)
+Sleeping 2 seconds
+
+Sending SIGKILL to process tree (bottom up)
+??? end of watcher thread
+
+[startup+251.776 s]
+# the end of solver process 21726 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=211.366 s, system=40.239 s
+
+Solver just ended.
+Dumping a history of the last processes samples
+
+[startup+249.6 s]
+/proc/loadavg: 1.35 1.20 0.79 2/908 27278
+/proc/meminfo: memFree=37301432/131989204 swapFree=244395760/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+[startup+250 s]*
+/proc/loadavg: 1.35 1.20 0.79 2/908 27299
+/proc/meminfo: memFree=62494404/131989204 swapFree=244395760/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+[startup+250.4 s]
+/proc/loadavg: 1.35 1.20 0.79 2/908 27299
+/proc/meminfo: memFree=62494404/131989204 swapFree=244395760/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+Child ended because it received signal 15 (SIGTERM)
+Real time (s): 251.776
+CPU time (s): 251.605
+CPU user time (s): 211.366
+CPU system time (s): 40.239
+CPU usage (%): 99.9322
+Max. virtual memory (cumulated for all children) (KiB): 126084560
+Max. memory (cumulated for all children) (KiB): 81926204
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 211.366
+system time used= 40.239
+maximum resident set size= 81926356
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 20546121
+page faults= 5
+swaps= 0
+block input operations= 30408
+block output operations= 32
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 15
+involuntary context switches= 523
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 21726
+#   total CPU time (s): 251.605
+#   total CPU user time (s): 211.366
+#   total CPU system time (s): 40.239
+
+??? end of timestamper thread
+runsolver used 2.49569 second user time and 3.76012 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 251783
+BRUNCH_STAT ORIGINAL_BITCODE_NAME opt.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 142064
+BRUNCH_STAT FINAL_BITCODE_NAME opt.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 16012
+BRUNCH_STAT EXPERIMENT_TIME 19/05/23-22:55:32

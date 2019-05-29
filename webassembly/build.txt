@@ -1,0 +1,5 @@
+git clone https://github.com/WebAssembly/binaryen.git
+cd binaryen ; mkdir build; cd build
+CC=~/go/bin/gclang CXX=~/go/bin/gclang cmake ../ -GNinja
+time ninja
+for file in ./bin/* ; do ~/go/bin/get-bc "$file" ; done

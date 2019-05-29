@@ -1,0 +1,369 @@
+CASS_DDSim.llvm5.externalized.o0.g.bc false wave-diff
+BITCODE:CASS_DDSim.llvm5.externalized.o0.g.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/CASS
+PTA=wave-diff
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt CASS_DDSim.llvm5.externalized.o0.g.bc -O1 -o ./temps/CASS_DDSim.llvm5.externalized.o0.g.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/CASS_DDSim.llvm5.externalized.o0.g.n.bc -o ./temps/CASS_DDSim.llvm5.externalized.o0.g.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 40000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/CASS_DDSim.llvm5.externalized.o0.g.n.pp.bc -o ./temps/CASS_DDSim.llvm5.externalized.o0.g.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (26951 MiB free)
+  memory of node 1: 64486 MiB (46733 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 40000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/CASS_DDSim.llvm5.externalized.o0.g.n.pp.bc -o ./temps/CASS_DDSim.llvm5.externalized.o0.g.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 40960000 KiB
+Linux 4.15.0-43-generic
+solver pid=22353, runsolver pid=22352
+Current StackSize limit: 8192 KiB
+
+Sea Allocators:
+	Znaj
+	ZnajRKSt9nothrow_t
+	Znam
+	ZnamRKSt9nothrow_t
+	Znwj
+	ZnwjRKSt9nothrow_t
+	Znwm
+	ZnwmRKSt9nothrow_t
+	_ZN3AFA6stringaSERKS0_
+	_ZNKSt3__16locale9use_facetERNS0_2idE
+	_ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE5eraseEmm
+	_ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKc
+	_ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6appendEPKcm
+	_ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6assignEPKc
+	_ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEE6insertEmPKc
+	_ZNSt3__112basic_stringIcNS_11char_traitsIcEENS_9allocatorIcEEEaSERKS5_
+	_ZNSt3__113basic_filebufIcNS_11char_traitsIcEEE6setbufEPcl.stub
+	_ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE4readEPcl
+	_ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE5seekgExNS_8ios_base7seekdirE
+	_ZNSt3__113basic_istreamIcNS_11char_traitsIcEEE7getlineEPclc
+	_ZNSt3__113basic_istreamIcNS_11char_traitsIcEEErsERd
+	_ZNSt3__113basic_istreamIcNS_11char_traitsIcEEErsERi
+	_ZNSt3__113basic_istreamIcNS_11char_traitsIcEEErsERt
+	_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEE3putEc
+	_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEE5flushEv
+	_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEE5writeEPKcl
+	_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEd
+	_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEi
+	_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEj
+	_ZNSt3__113basic_ostreamIcNS_11char_traitsIcEEElsEt
+	_ZNSt3__115basic_streambufIcNS_11char_traitsIcEEE6setbufEPcl
+	_Znam
+	_Znwm
+	calloc
+	fopen
+	malloc
+	memchr
+Warning: Running SVF PTA!
+BRUNCH_STAT PTA_KIND SVF_Andersen_Diff_Wave_NoType
+
+[startup+0.100079 s]*
+/proc/loadavg: 1.02 1.69 2.08 2/931 22354
+/proc/meminfo: memFree=75405484/131989204 swapFree=244112016/244398076
+[pid=22353] ppid=22352 vsize=115764 memory=84680 CPUtime=0.11 cores=0-39
+/proc/22353/stat : 22353 (seapp) R 22352 22353 40453 34836 17777 4194304 18647 0 0 0 9 2 0 0 20 0 1 0 477289731 118542336 21170 18446744073709551615 4194304 21451464 140720509117856 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 21459200 21708072 24141824 140720509125253 140720509125666 140720509125666 140720509128636 0
+/proc/22353/statm: 28941 21170 3309 4214 0 17916 0
+Current children cumulated CPU time: 0.11 s
+Current children cumulated vsize: 115764 KiB
+Current children cumulated memory: 84680 KiB
+
+[startup+0.222285 s]*
+/proc/loadavg: 1.02 1.69 2.08 2/931 22354
+/proc/meminfo: memFree=75316204/131989204 swapFree=244112016/244398076
+[pid=22353] ppid=22352 vsize=185400 memory=154496 CPUtime=0.22 cores=0-39
+/proc/22353/stat : 22353 (seapp) R 22352 22353 40453 34836 17777 4194304 36052 0 0 0 17 5 0 0 20 0 1 0 477289731 189849600 38624 18446744073709551615 4194304 21451464 140720509117856 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 21459200 21708072 24141824 140720509125253 140720509125666 140720509125666 140720509128636 0
+/proc/22353/statm: 46350 38624 3341 4214 0 35325 0
+Current children cumulated CPU time: 0.22 s
+Current children cumulated vsize: 185400 KiB
+Current children cumulated memory: 154496 KiB
+
+[startup+0.31885 s]*
+/proc/loadavg: 1.02 1.69 2.08 2/931 22354
+/proc/meminfo: memFree=75301084/131989204 swapFree=244112016/244398076
+[pid=22353] ppid=22352 vsize=199260 memory=168548 CPUtime=0.33 cores=0-39
+/proc/22353/stat : 22353 (seapp) R 22352 22353 40453 34836 17777 4194304 39547 0 0 0 25 8 0 0 20 0 1 0 477289731 204042240 42137 18446744073709551615 4194304 21451464 140720509117856 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 21459200 21708072 24141824 140720509125253 140720509125666 140720509125666 140720509128636 0
+/proc/22353/statm: 49815 42137 3357 4214 0 38790 0
+Current children cumulated CPU time: 0.33 s
+Current children cumulated vsize: 199260 KiB
+Current children cumulated memory: 168548 KiB
+
+[startup+0.700242 s]
+/proc/loadavg: 1.02 1.69 2.08 3/931 22354
+/proc/meminfo: memFree=75292944/131989204 swapFree=244112016/244398076
+[pid=22353] ppid=22352 vsize=205264 memory=174356 CPUtime=0.69 cores=0-39
+/proc/22353/stat : 22353 (seapp) R 22352 22353 40453 34836 17777 4194304 41031 0 0 0 59 10 0 0 20 0 1 0 477289731 210190336 43589 18446744073709551615 4194304 21451464 140720509117856 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 21459200 21708072 24141824 140720509125253 140720509125666 140720509125666 140720509128636 0
+/proc/22353/statm: 51316 43589 3357 4214 0 40291 0
+Current children cumulated CPU time: 0.69 s
+Current children cumulated vsize: 205264 KiB
+Current children cumulated memory: 174356 KiB
+
+****CallGraph SCC Stat****
+################ (program : temps/CASS_DDSim)###############
+-------------------------------------------------------
+CalRetPairInCycle   0
+MaxNodeInCycle      0
+NodeInCycle         0
+TotalCycle          0
+TotalEdge           5455
+TotalNode           575
+#######################################################
+
+****Andersen Pointer Analysis Statistics****
+################ (program : temps/CASS_DDSim)###############
+TotalObjects        1769
+TotalFieldObjects   2481
+TotalPointers       35913
+HeapObjs            237
+FunctionObjs        575
+GlobalObjs          54
+StackObjs           901
+IndCallSites        25
+TotalPAGEdges       31557
+LocalVarInRecur     0
+BitCastNumber       1738
+CopysNum            2315
+AddrsNum            2197
+GepsNum             6251
+ReturnsNum          390
+CallsNum            2198
+StoresNum           1012
+LoadsNum            1245
+FSObjNum            1469
+FIObjNum            298
+ConstArrayObj       6
+VarArrayObj         8
+ConstStructObj      32
+VarStructObj        753
+NonPtrObj           1132
+MaxStructSize       186
+TotalCallSite       5480
+BBWith3Succ         7
+BBWith2Succ         1073
+-------------------------------------------------------
+AvgPtsSetSize       1.80797
+AvgTopLvlPtsSize    4.96002
+SCCDetectTime       0.308
+CopyGepTime         0.315
+TotalTime           0.782
+CollapseTime        0.001
+LoadStoreTime       0.019
+SCCMergeTime        0.044
+UpdateCGTime        0
+TotalStoreInst      2735
+TotalLoadInst       3394
+NumOfSCCDetect      6
+MemObjects          1769
+TotalObjects        4250
+DYFieldPtrs         81
+TotalPointers       35913
+Pointers            35832
+Iterations          6
+DYFieldObjs         2481
+IndCallSites        25
+NodesInCycles       338
+TotalPAGEdges       16708
+PointsToConstPtr    0
+PointsToBlkPtr      35
+NullPointer         214
+CopysNum            8256
+AddrsNum            2125
+GepsNum             6212
+StoresNum           1001
+LoadsNum            1239
+TotalCycleNum       27
+TotalPWCCycleNum    2
+CGNodeNum           39359
+MaxPtsSetSize       171
+IndEdgeSolved       0
+CopyProcessed       6128
+AddrProcessed       2197
+GepProcessed        5819
+StoreProcessed      1550
+LoadProcessed       5283
+MaxNodesInSCC       86
+#######################################################
+BRUNCH_STAT SEA_TIME_PTA_MS 827
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+BRUNCH_STAT SEA_TIME_SMC_ANALYSIS_MS 2
+
+=========== Start of Simple Memory Check Stats ===========
+Format:	All instructions (Heap/Stack/Global)
+
+Discovered memory instructions	6067
+Discovered allocation sites	633	(94/518/21)
+Interesting allocation sites	19	(1/3/15)
+Other allocation sites		30	(9/9/12)
+Total Simple AS to instrument	452
+Interesting <Barrier, AllocSite> pairs	283
+Total <Barrier, AllocSite> pairs	1984
+BRUNCH_STAT SMC_ALL_AS 633
+BRUNCH_STAT SMC_AS_BARRIER_INTERESTING 283
+BRUNCH_STAT SMC_AS_BARRIER_CHECKS 1984
+BRUNCH_STAT SMC_AS_BARRIER_TOTAL 7351
+
+
+Warning: SMC: exiting without instrumenting (--smc-analyze-only)
+BRUNCH_STAT PTA_RSS_KB 399720
+
+[startup+1.32787 s]
+# the end of solver process 22353 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=1.01542 s, system=0.259851 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+[startup+0.800213 s]
+/proc/loadavg: 1.02 1.69 2.08 3/931 22354
+/proc/meminfo: memFree=75292944/131989204 swapFree=244112016/244398076
+[pid=22353] ppid=22352 vsize=205476 memory=174620 CPUtime=0.78 cores=0-39
+/proc/22353/stat : 22353 (seapp) R 22352 22353 40453 34836 17777 4194304 41069 0 0 0 67 11 0 0 20 0 1 0 477289731 210407424 43655 18446744073709551615 4194304 21451464 140720509117856 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 21459200 21708072 24141824 140720509125253 140720509125666 140720509125666 140720509128636 0
+/proc/22353/statm: 51369 43655 3357 4214 0 40344 0
+Current children cumulated CPU time: 0.78 s
+Current children cumulated vsize: 205476 KiB
+Current children cumulated memory: 174620 KiB
+
+[startup+1.20017 s]
+/proc/loadavg: 1.02 1.69 2.08 2/931 22370
+/proc/meminfo: memFree=75290220/131989204 swapFree=244112016/244398076
+[pid=22353] ppid=22352 vsize=425332 memory=394788 CPUtime=1.19 cores=0-39
+/proc/22353/stat : 22353 (seapp) R 22352 22353 40453 34836 17777 4194304 98059 0 0 0 95 24 0 0 20 0 1 0 477289731 435539968 98697 18446744073709551615 4194304 21451464 140720509117856 0 0 0 0 0 1098931967 0 0 0 17 8 0 0 0 0 0 21459200 21708072 24141824 140720509125253 140720509125666 140720509125666 140720509128636 0
+/proc/22353/statm: 106333 98697 3469 4214 0 95308 0
+Current children cumulated CPU time: 1.19 s
+Current children cumulated vsize: 425332 KiB
+Current children cumulated memory: 394788 KiB
+
+[startup+1.30018 s]
+/proc/loadavg: 1.02 1.69 2.08 2/931 22370
+/proc/meminfo: memFree=75290220/131989204 swapFree=244112016/244398076
+[pid=22353] ppid=22352 vsize=425332 memory=394788 CPUtime=1.24 cores=0-39
+/proc/22353/stat : 22353 (seapp) R 22352 22353 40453 34836 17777 4194304 98059 0 0 0 100 24 0 0 20 0 1 0 477289731 435539968 98697 18446744073709551615 4194304 21451464 140720509117856 0 0 0 0 0 1098931967 0 0 0 17 0 0 0 0 0 0 21459200 21708072 24141824 140720509125253 140720509125666 140720509125666 140720509128636 0
+/proc/22353/statm: 106333 98697 3469 4214 0 95308 0
+Current children cumulated CPU time: 1.24 s
+Current children cumulated vsize: 425332 KiB
+Current children cumulated memory: 394788 KiB
+
+Child status: 0
+Real time (s): 1.32789
+CPU time (s): 1.27527
+CPU user time (s): 1.01542
+CPU system time (s): 0.259851
+CPU usage (%): 96.0376
+Max. virtual memory (cumulated for all children) (KiB): 425332
+Max. memory (cumulated for all children) (KiB): 394788
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 1.01542
+system time used= 0.259851
+maximum resident set size= 399720
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 98066
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 2800
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 4
+involuntary context switches= 6
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 22353
+#   total CPU time (s): 1.27527
+#   total CPU user time (s): 1.01542
+#   total CPU system time (s): 0.259851
+
+??? end of timestamper thread
+runsolver used 0.072364 second user time and 0.084425 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 1456
+BRUNCH_STAT ORIGINAL_BITCODE_NAME CASS_DDSim.llvm5.externalized.o0.g.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 2164
+BRUNCH_STAT FINAL_BITCODE_NAME CASS_DDSim.llvm5.externalized.o0.g.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 1384
+BRUNCH_STAT EXPERIMENT_TIME 19/03/05-21:16:29

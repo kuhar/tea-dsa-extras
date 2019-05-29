@@ -1,0 +1,1219 @@
+wasm-opt.bc true sparse
+BITCODE:wasm-opt.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/webassembly
+PTA=sparse
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt wasm-opt.bc -O1 -o ./temps/wasm-opt.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/wasm-opt.n.bc -o ./temps/wasm-opt.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/wasm-opt.n.pp.bc -o ./temps/wasm-opt.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=sparse --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (52912 MiB free)
+  memory of node 1: 64486 MiB (54034 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/wasm-opt.n.pp.bc -o ./temps/wasm-opt.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=sparse --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing wall clock limit (soft limit, will send SIGTERM then SIGKILL): 3600 seconds
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 65536000 KiB
+Linux 4.15.0-43-generic
+Current StackSize limit: 8192 KiB
+
+solver pid=10848, runsolver pid=10847
+
+[startup+0.100071 s]*
+/proc/loadavg: 1.04 1.07 1.05 2/901 10849
+/proc/meminfo: memFree=109480628/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=87656 memory=53616 CPUtime=0.1 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 12423 0 0 0 9 1 0 0 20 0 1 0 372730002 89759744 13404 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 21914 13404 3490 4212 0 10011 0
+Current children cumulated CPU time: 0.1 s
+Current children cumulated vsize: 87656 KiB
+Current children cumulated memory: 53616 KiB
+Sea Allocators:
+	Znaj
+	ZnajRKSt9nothrow_t
+	Znam
+	ZnamRKSt9nothrow_t
+	Znwj
+	ZnwjRKSt9nothrow_t
+	Znwm
+	ZnwmRKSt9nothrow_t
+	_ZN4wasm10Precompute6createEv.stub
+	_ZN4wasm10ReFinalize6createEv.stub
+	_ZN4wasm11CodeFolding6createEv.stub
+	_ZN4wasm11CodePushing6createEv.stub
+	_ZN4wasm11MergeBlocks6createEv.stub
+	_ZN4wasm11MergeLocals6createEv.stub
+	_ZN4wasm12DataFlowOpts6createEv.stub
+	_ZN4wasm12TrapModePass6createEv.stub
+	_ZN4wasm12_GLOBAL__N_123RedundantSetElimination6createEv.stub
+	_ZN4wasm13ConstHoisting6createEv.stub
+	_ZN4wasm13PickLoadSigns6createEv.stub
+	_ZN4wasm13ReorderLocals6createEv.stub
+	_ZN4wasm13SpillPointers6createEv.stub
+	_ZN4wasm13createDAEPassEv.stub
+	_ZN4wasm14CoalesceLocals6createEv.stub
+	_ZN4wasm14PostEmscripten6createEv.stub
+	_ZN4wasm14SimplifyLocalsILb0ELb0ELb0EE6createEv.stub
+	_ZN4wasm14SimplifyLocalsILb0ELb0ELb1EE6createEv.stub
+	_ZN4wasm14SimplifyLocalsILb0ELb1ELb1EE6createEv.stub
+	_ZN4wasm14SimplifyLocalsILb1ELb0ELb1EE6createEv.stub
+	_ZN4wasm14SimplifyLocalsILb1ELb1ELb1EE6createEv.stub
+	_ZN4wasm15GenerateStackIR6createEv.stub
+	_ZN4wasm15OptimizeStackIR6createEv.stub
+	_ZN4wasm15RemoveUnusedBrs6createEv.stub
+	_ZN4wasm15createUnteePassEv.stub
+	_ZN4wasm16I64ToI32Lowering6createEv.stub
+	_ZN4wasm16createSSAifyPassEv.stub
+	_ZN4wasm16createTrapModeJSEv.stub
+	_ZN4wasm16createVacuumPassEv.stub
+	_ZN4wasm17FunctionValidator6createEv.stub
+	_ZN4wasm17RemoveUnusedNames6createEv.stub
+	_ZN4wasm17createFlattenPassEv.stub
+	_ZN4wasm17createMetricsPassEv.stub
+	_ZN4wasm17createPrinterPassEv.stub
+	_ZN4wasm18RemoveNonJSOpsPass6createEv.stub
+	_ZN4wasm18createInliningPassEv.stub
+	_ZN4wasm18createLocalCSEPassEv.stub
+	_ZN4wasm18createNameListPassEv.stub
+	_ZN4wasm18createReReloopPassEv.stub
+	_ZN4wasm18createSafeHeapPassEv.stub
+	_ZN4wasm19DeadCodeElimination6createEv.stub
+	_ZN4wasm19createSouperifyPassEv.stub
+	_ZN4wasm19createTrapModeClampEv.stub
+	_ZN4wasm20OptimizeInstructions6createEv.stub
+	_ZN4wasm20createPrecomputePassEv.stub
+	_ZN4wasm21RelooperJumpThreading6createEv.stub
+	_ZN4wasm21createCodeFoldingPassEv.stub
+	_ZN4wasm21createCodePushingPassEv.stub
+	_ZN4wasm21createFullPrinterPassEv.stub
+	_ZN4wasm21createMergeBlocksPassEv.stub
+	_ZN4wasm21createMergeLocalsPassEv.stub
+	_ZN4wasm22createDataFlowOptsPassEv.stub
+	_ZN4wasm22createLogExecutionPassEv.stub
+	_ZN4wasm22createPrintStackIRPassEv.stub
+	_ZN4wasm22createRemoveMemoryPassEv.stub
+	_ZN4wasm23LoopInvariantCodeMotion6createEv.stub
+	_ZN4wasm23createConstHoistingPassEv.stub
+	_ZN4wasm23createDAEOptimizingPassEv.stub
+	_ZN4wasm23createMemoryPackingPassEv.stub
+	_ZN4wasm23createPickLoadSignsPassEv.stub
+	_ZN4wasm23createRemoveImportsPassEv.stub
+	_ZN4wasm23createReorderLocalsPassEv.stub
+	_ZN4wasm23createSpillPointersPassEv.stub
+	_ZN4wasm24createPostEmscriptenPassEv.stub
+	_ZN4wasm24createPrintCallGraphPassEv.stub
+	_ZN4wasm24createRemoveNonJSOpsPassEv.stub
+	_ZN4wasm24createSimplifyLocalsPassEv.stub
+	_ZN4wasm25createExtractFunctionPassEv.stub
+	_ZN4wasm25createFunctionMetricsPassEv.stub
+	_ZN4wasm25createGenerateStackIRPassEv.stub
+	_ZN4wasm25createMinifiedPrinterPassEv.stub
+	_ZN4wasm25createOptimizeStackIRPassEv.stub
+	_ZN4wasm25createRemoveUnusedBrsPassEv.stub
+	_ZN4wasm26CoalesceLocalsWithLearning6createEv.stub
+	_ZN4wasm26createI64ToI32LoweringPassEv.stub
+	_ZN4wasm26createInstrumentLocalsPassEv.stub
+	_ZN4wasm26createInstrumentMemoryPassEv.stub
+	_ZN4wasm26createReorderFunctionsPassEv.stub
+	_ZN4wasm27createFuncCastEmulationPassEv.stub
+	_ZN4wasm27createRemoveUnusedNamesPassEv.stub
+	_ZN4wasm28createInliningOptimizingPassEv.stub
+	_ZN4wasm28createSouperifySingleUsePassEv.stub
+	_ZN4wasm29createDeadCodeEliminationPassEv.stub
+	_ZN4wasm29createLegalizeJSInterfacePassEv.stub
+	_ZN4wasm29createPrecomputePropagatePassEv.stub
+	_ZN4wasm29createSimplifyLocalsNoTeePassEv.stub
+	_ZN4wasm30createOptimizeInstructionsPassEv.stub
+	_ZN4wasm31createRelooperJumpThreadingPassEv.stub
+	_ZN4wasm33createLoopInvariantCodeMotionPassEv.stub
+	_ZN4wasm33createMinifyImportsAndExportsPassEv.stub
+	_ZN4wasm33createRedundantSetEliminationPassEv.stub
+	_ZN4wasm33createSimplifyLocalsNoNestingPassEv.stub
+	_ZN4wasm35createSimplifyLocalsNoStructurePassEv.stub
+	_ZN4wasm36createCoalesceLocalsWithLearningPassEv.stub
+	_ZN4wasm36createRemoveUnusedModuleElementsPassEv.stub
+	_ZN4wasm38createDuplicateFunctionEliminationPassEv.stub
+	_ZN4wasm40createSimplifyLocalsNoTeeNoStructurePassEv.stub
+	_ZN4wasm47createRemoveUnusedNonFunctionModuleElementsPassEv.stub
+	_ZN4wasm4Pass6createEv.stub
+	_ZN4wasm5Untee6createEv.stub
+	_ZN4wasm6SSAify6createEv.stub
+	_ZN4wasm6Vacuum6createEv.stub
+	_ZN4wasm7Flatten6createEv.stub
+	_ZN4wasm8LocalCSE6createEv.stub
+	_ZN4wasm8ReReloop6createEv.stub
+	_ZNSi10_M_extractIjEERSiRT_
+	_ZNSi10_M_extractImEERSiRT_
+	_ZNSi4readEPcl
+	_ZNSi5seekgESt4fposI11__mbstate_tE
+	_ZNSi5seekgElSt12_Ios_Seekdir
+	_ZNSo3putEc
+	_ZNSo5flushEv
+	_ZNSo9_M_insertIPKvEERSoT_
+	_ZNSo9_M_insertIdEERSoT_
+	_ZNSo9_M_insertIlEERSoT_
+	_ZNSo9_M_insertImEERSoT_
+	_ZNSolsEi
+	_ZNSt13basic_filebufIcSt11char_traitsIcEE4openEPKcSt13_Ios_Openmode
+	_ZNSt13basic_filebufIcSt11char_traitsIcEE5closeEv
+	_ZNSt17_Function_handlerIFPN4wasm10ExpressionES2_EZNS0_21ExpressionManipulator4copyES2_RNS0_6ModuleEEUlS2_E_E9_M_invokeERKSt9_Any_dataOS2_.stub
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_replaceEmmPKcm
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE14_M_replace_auxEmmmc
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_appendEPKcm
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERmm
+	_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
+	_ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base
+	_ZSt18_Rb_tree_incrementPKSt18_Rb_tree_node_base
+	_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base
+	_ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_
+	_ZSt4endlIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_
+	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc
+	_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_c
+	_ZStrsIcSt11char_traitsIcEERSt13basic_istreamIT_T0_ES6_RS3_
+	_Znam
+	_Znwm
+	__errno_location
+	calloc
+	fgets
+	getenv
+	llvm.invariant.start.p0i8
+	malloc
+	popen
+	strchr
+	strncpy
+	strpbrk
+	verifier.nondet.9
+Warning: Running SVF PTA!
+BRUNCH_STAT PTA_KIND SVF_Sparse
+
+[startup+0.222192 s]*
+/proc/loadavg: 1.04 1.07 1.05 2/901 10849
+/proc/meminfo: memFree=109470512/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=93536 memory=62588 CPUtime=0.23 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 14941 0 0 0 21 2 0 0 20 0 1 0 372730002 95780864 15647 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 23384 15647 3330 4212 0 12361 0
+Current children cumulated CPU time: 0.23 s
+Current children cumulated vsize: 93536 KiB
+Current children cumulated memory: 62588 KiB
+
+[startup+0.322642 s]*
+/proc/loadavg: 1.04 1.07 1.05 2/901 10849
+/proc/meminfo: memFree=109417132/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=162404 memory=131516 CPUtime=0.32 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 34543 0 0 0 27 5 0 0 20 0 1 0 372730002 166301696 32813 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 40601 32813 3348 4212 0 29578 0
+Current children cumulated CPU time: 0.32 s
+Current children cumulated vsize: 162404 KiB
+Current children cumulated memory: 131516 KiB
+
+[startup+0.700375 s]
+/proc/loadavg: 1.04 1.07 1.05 2/901 10849
+/proc/meminfo: memFree=109159716/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=620316 memory=589292 CPUtime=0.69 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 149022 0 0 0 46 23 0 0 20 0 1 0 372730002 635203584 147323 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 155079 147323 3348 4212 0 144056 0
+Current children cumulated CPU time: 0.69 s
+Current children cumulated vsize: 620316 KiB
+Current children cumulated memory: 589292 KiB
+
+[startup+1.50024 s]
+/proc/loadavg: 1.04 1.07 1.05 2/901 10862
+/proc/meminfo: memFree=108768332/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=814368 memory=783332 CPUtime=1.49 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 197536 0 0 0 119 30 0 0 20 0 1 0 372730002 833912832 195833 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 203592 195833 3348 4212 0 192569 0
+Current children cumulated CPU time: 1.49 s
+Current children cumulated vsize: 814368 KiB
+Current children cumulated memory: 783332 KiB
+
+[startup+3.12183 s]
+/proc/loadavg: 1.04 1.07 1.05 2/901 10889
+/proc/meminfo: memFree=108496196/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=1073856 memory=1042964 CPUtime=3.11 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 262426 0 0 0 272 39 0 0 20 0 1 0 372730002 1099628544 260741 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 268464 260741 3380 4212 0 257441 0
+Current children cumulated CPU time: 3.11 s
+Current children cumulated vsize: 1073856 KiB
+Current children cumulated memory: 1042964 KiB
+
+[startup+6.30025 s]
+/proc/loadavg: 1.12 1.09 1.06 2/903 10929
+/proc/meminfo: memFree=108391384/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=1227548 memory=1196672 CPUtime=6.29 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 300855 0 0 0 537 92 0 0 20 0 1 0 372730002 1257009152 299168 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 306887 299168 3396 4212 0 295864 0
+Current children cumulated CPU time: 6.29 s
+Current children cumulated vsize: 1227548 KiB
+Current children cumulated memory: 1196672 KiB
+
+[startup+12.7002 s]
+/proc/loadavg: 1.11 1.09 1.06 2/901 10990
+/proc/meminfo: memFree=108170692/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=1394264 memory=1363520 CPUtime=12.69 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 342533 0 0 0 1160 109 0 0 20 0 1 0 372730002 1427726336 340880 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 348566 340880 3396 4212 0 337543 0
+Current children cumulated CPU time: 12.69 s
+Current children cumulated vsize: 1394264 KiB
+Current children cumulated memory: 1363520 KiB
+
+[startup+25.5003 s]
+/proc/loadavg: 1.08 1.08 1.06 2/901 11146
+/proc/meminfo: memFree=107848412/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=1711328 memory=1680584 CPUtime=25.49 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 421802 0 0 0 2382 167 0 0 20 0 1 0 372730002 1752399872 420146 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 427832 420146 3396 4212 0 416809 0
+Current children cumulated CPU time: 25.49 s
+Current children cumulated vsize: 1711328 KiB
+Current children cumulated memory: 1680584 KiB
+
+****CallGraph SCC Stat****
+################ (program : temps/wasm-opt)###############
+-------------------------------------------------------
+CalRetPairInCycle   771
+MaxNodeInCycle      23
+NodeInCycle         153
+TotalCycle          36
+TotalEdge           23420
+TotalNode           2354
+#######################################################
+
+****Andersen Pointer Analysis Statistics****
+################ (program : temps/wasm-opt)###############
+TotalObjects        8804
+TotalFieldObjects   6074
+TotalPointers       207930
+HeapObjs            2577
+FunctionObjs        2354
+GlobalObjs          408
+StackObjs           3463
+IndCallSites        235
+TotalPAGEdges       251059
+LocalVarInRecur     371
+BitCastNumber       18388
+CopysNum            28151
+AddrsNum            10931
+GepsNum             45849
+ReturnsNum          2730
+CallsNum            12129
+StoresNum           11323
+LoadsNum            12899
+FSObjNum            7564
+FIObjNum            1238
+ConstArrayObj       3
+VarArrayObj         5
+ConstStructObj      373
+VarStructObj        1142
+NonPtrObj           3179
+MaxStructSize       91
+TotalCallSite       23646
+BBWith3Succ         615
+BBWith2Succ         11819
+-------------------------------------------------------
+AvgPtsSetSize       53.4797
+AvgTopLvlPtsSize    110.069
+SCCDetectTime       4.66
+CopyGepTime         14.249
+TotalTime           35.723
+CollapseTime        0.136
+LoadStoreTime       14.615
+SCCMergeTime        1.131
+UpdateCGTime        0.003
+TotalStoreInst      20266
+TotalLoadInst       22138
+NumOfSCCDetect      10
+MemObjects          8804
+TotalObjects        14878
+DYFieldPtrs         2428
+TotalPointers       207930
+Pointers            205502
+Iterations          10
+DYFieldObjs         6074
+IndCallSites        235
+NodesInCycles       6509
+TotalPAGEdges       127886
+PointsToConstPtr    0
+PointsToBlkPtr      3086
+NullPointer         2993
+CopysNum            60342
+AddrsNum            10496
+GepsNum             44353
+StoresNum           10833
+LoadsNum            12358
+TotalCycleNum       678
+TotalPWCCycleNum    3
+CGNodeNum           217411
+MaxPtsSetSize       877
+IndEdgeSolved       9
+CopyProcessed       93144
+AddrProcessed       10931
+GepProcessed        61826
+StoreProcessed      1098019
+LoadProcessed       1137168
+MaxNodesInSCC       3028
+#######################################################
+
+****Memory SSA Statistics****
+################ (program : temps/wasm-opt)###############
+-------------------------------------------------------
+AverageRegSize      21.5646
+GenRegionTime       10.011
+SSARenameTime       0.061
+InsertPHITime       0.147
+GenMUCHITime        0.822
+TotalMSSATime       11.072
+FunHasRetMu         1295
+FunRetMu            10575
+LoadHasMu           12899
+CSHasMu             5597
+MemRegions          6551
+BBHasMSSAPhi        3659
+MSSAPhi             32403
+FunHasEntryChi      1003
+FunEntryChi         10586
+StoreHasChi         10375
+CSHasChi            4917
+MaxRegSize          596
+LoadMuNode          30183
+CSMuNode            55666
+StoreChiNode        17660
+CSChiNode           35625
+#######################################################
+
+[startup+51.1232 s]
+/proc/loadavg: 1.12 1.09 1.06 2/901 11469
+/proc/meminfo: memFree=106075896/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=3498348 memory=3467240 CPUtime=51.11 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 875065 0 0 0 4792 319 0 0 20 0 1 0 372730002 3582308352 866810 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 874587 866810 3539 4212 0 863564 0
+Current children cumulated CPU time: 51.11 s
+Current children cumulated vsize: 3498348 KiB
+Current children cumulated memory: 3467240 KiB
+
+****SVFG Statistics****
+################ (program : temps/wasm-opt)###############
+-------------------------------------------------------
+AvgWeight           32.6635
+OptTime             1.089
+TotalTime           3.051
+ConnDirEdgeTime     0.087
+ConnIndEdgeTime     1.585
+ATNodeTime          0.208
+TLNodeTime          0.082
+Copy                20480
+ActualOut           13649
+FormalOut           0
+ActualRet           0
+FormalRet           0
+Addr                10931
+Gep                 45849
+ActualIn            0
+FormalIn            5932
+ActualParam         0
+FormalParam         0
+MSSAPhi             16847
+MaxIndOutDeg        5724
+AvgIndOutDeg        5
+MaxIndInDeg         5178
+AvgIndInDeg         4
+Store               11323
+DirectRetEdge       2730
+IndRetEdge          50577
+IndirectEdge        231016
+DirectEdge          124404
+DirectCallEdge      12129
+IndCallEdge         110549
+TotalEdge           355420
+MaxOutDegree        5724
+AvgOutDegree        2
+MaxInDegree         5178
+AvgInDegree         2
+TotalNode           146727
+Load                12899
+PHI                 8816
+#######################################################
+
+[startup+102.3 s]
+/proc/loadavg: 1.25 1.12 1.07 2/901 12114
+/proc/meminfo: memFree=103870636/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=5793440 memory=5762140 CPUtime=102.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 1450374 0 0 0 9670 560 0 0 20 0 1 0 372730002 5932482560 1440535 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 1448360 1440535 3539 4212 0 1437337 0
+Current children cumulated CPU time: 102.3 s
+Current children cumulated vsize: 5793440 KiB
+Current children cumulated memory: 5762140 KiB
+
+[startup+162.3 s]
+/proc/loadavg: 1.15 1.11 1.07 2/902 12861
+/proc/meminfo: memFree=98074984/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=11505872 memory=11474772 CPUtime=162.29 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 2879493 0 0 0 15370 859 0 0 20 0 1 0 372730002 11782012928 2868693 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 2876468 2868693 3539 4212 0 2865445 0
+Current children cumulated CPU time: 162.29 s
+Current children cumulated vsize: 11505872 KiB
+Current children cumulated memory: 11474772 KiB
+
+[startup+222.3 s]
+/proc/loadavg: 1.20 1.14 1.08 2/902 13600
+/proc/meminfo: memFree=91377152/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=18178736 memory=18147616 CPUtime=222.29 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 4549778 0 0 0 21042 1187 0 0 20 0 1 0 372730002 18615025664 4536904 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 4544684 4536904 3539 4212 0 4533661 0
+Current children cumulated CPU time: 222.29 s
+Current children cumulated vsize: 18178736 KiB
+Current children cumulated memory: 18147616 KiB
+
+[startup+282.3 s]
+/proc/loadavg: 1.07 1.11 1.08 2/902 14340
+/proc/meminfo: memFree=86750664/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=22765208 memory=22734152 CPUtime=282.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 5698941 0 0 0 26796 1434 0 0 20 0 1 0 372730002 23311572992 5683538 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 5691302 5683538 3539 4212 0 5680279 0
+Current children cumulated CPU time: 282.3 s
+Current children cumulated vsize: 22765208 KiB
+Current children cumulated memory: 22734152 KiB
+
+[startup+342.3 s]
+/proc/loadavg: 1.02 1.09 1.07 2/907 15100
+/proc/meminfo: memFree=83796032/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=25717388 memory=25686320 CPUtime=342.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 6439350 0 0 0 32610 1620 0 0 20 0 1 0 372730002 26334605312 6421580 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 6429347 6421580 3539 4212 0 6418324 0
+Current children cumulated CPU time: 342.3 s
+Current children cumulated vsize: 25717388 KiB
+Current children cumulated memory: 25686320 KiB
+
+[startup+402.3 s]
+/proc/loadavg: 1.01 1.07 1.06 2/908 15855
+/proc/meminfo: memFree=81439880/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=28079264 memory=28048004 CPUtime=402.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 7034305 0 0 0 38458 1772 0 0 20 0 1 0 372730002 28753166336 7012001 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 7019816 7012001 3539 4212 0 7008793 0
+Current children cumulated CPU time: 402.3 s
+Current children cumulated vsize: 28079264 KiB
+Current children cumulated memory: 28048004 KiB
+
+[startup+462.3 s]
+/proc/loadavg: 1.11 1.08 1.07 2/904 16602
+/proc/meminfo: memFree=79774992/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=29722928 memory=29691876 CPUtime=462.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 7448484 0 0 0 44324 1906 0 0 20 0 1 0 372730002 30436278272 7422969 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 7430732 7422969 3539 4212 0 7419709 0
+Current children cumulated CPU time: 462.3 s
+Current children cumulated vsize: 29722928 KiB
+Current children cumulated memory: 29691876 KiB
+
+[startup+522.3 s]
+/proc/loadavg: 1.04 1.07 1.06 2/905 17347
+/proc/meminfo: memFree=78731660/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=30768368 memory=30737216 CPUtime=522.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 7716507 0 0 0 50210 2020 0 0 20 0 1 0 372730002 31506808832 7684304 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 7692092 7684304 3539 4212 0 7681069 0
+Current children cumulated CPU time: 522.3 s
+Current children cumulated vsize: 30768368 KiB
+Current children cumulated memory: 30737216 KiB
+
+[startup+582.3 s]
+/proc/loadavg: 1.01 1.05 1.06 2/907 18099
+/proc/meminfo: memFree=77845716/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=31647092 memory=31616036 CPUtime=582.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 7938930 0 0 0 56102 2128 0 0 20 0 1 0 372730002 32406622208 7904009 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 7911773 7904009 3539 4212 0 7900750 0
+Current children cumulated CPU time: 582.3 s
+Current children cumulated vsize: 31647092 KiB
+Current children cumulated memory: 31616036 KiB
+
+[startup+642.3 s]
+/proc/loadavg: 1.00 1.04 1.05 2/902 18866
+/proc/meminfo: memFree=77358100/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=32138792 memory=32107596 CPUtime=642.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8062300 0 0 0 62012 2218 0 0 20 0 1 0 372730002 32910123008 8026899 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8034698 8026899 3539 4212 0 8023675 0
+Current children cumulated CPU time: 642.3 s
+Current children cumulated vsize: 32138792 KiB
+Current children cumulated memory: 32107596 KiB
+
+[startup+702.3 s]
+/proc/loadavg: 1.00 1.03 1.05 2/901 19604
+/proc/meminfo: memFree=77018664/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=32476316 memory=32445280 CPUtime=702.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8148743 0 0 0 67929 2301 0 0 20 0 1 0 372730002 33255747584 8111320 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8119079 8111320 3539 4212 0 8108056 0
+Current children cumulated CPU time: 702.3 s
+Current children cumulated vsize: 32476316 KiB
+Current children cumulated memory: 32445280 KiB
+
+[startup+762.3 s]
+/proc/loadavg: 1.24 1.10 1.07 2/901 20348
+/proc/meminfo: memFree=76834988/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=32662436 memory=32631328 CPUtime=762.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8198900 0 0 0 73862 2368 0 0 20 0 1 0 372730002 33446334464 8157832 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8165609 8157832 3539 4212 0 8154586 0
+Current children cumulated CPU time: 762.3 s
+Current children cumulated vsize: 32662436 KiB
+Current children cumulated memory: 32631328 KiB
+
+[startup+822.3 s]
+/proc/loadavg: 1.36 1.16 1.09 2/902 21087
+/proc/meminfo: memFree=76680828/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=32814236 memory=32782972 CPUtime=822.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8239598 0 0 0 79794 2436 0 0 20 0 1 0 372730002 33601777664 8195743 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8203559 8195743 3539 4212 0 8192536 0
+Current children cumulated CPU time: 822.3 s
+Current children cumulated vsize: 32814236 KiB
+Current children cumulated memory: 32782972 KiB
+
+[startup+882.3 s]
+/proc/loadavg: 1.16 1.14 1.09 2/907 21850
+/proc/meminfo: memFree=76550840/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=32939240 memory=32908120 CPUtime=882.31 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8276075 0 0 0 85721 2510 0 0 20 0 1 0 372730002 33729781760 8227030 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8234810 8227030 3539 4212 0 8223787 0
+Current children cumulated CPU time: 882.31 s
+Current children cumulated vsize: 32939240 KiB
+Current children cumulated memory: 32908120 KiB
+
+[startup+942.3 s]
+/proc/loadavg: 1.10 1.13 1.09 2/905 22599
+/proc/meminfo: memFree=76474260/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=33016460 memory=32985476 CPUtime=942.3 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8300614 0 0 0 91633 2597 0 0 20 0 1 0 372730002 33808855040 8246369 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8254115 8246369 3539 4212 0 8243092 0
+Current children cumulated CPU time: 942.3 s
+Current children cumulated vsize: 33016460 KiB
+Current children cumulated memory: 32985476 KiB
+
+****CallGraph SCC Stat****
+################ (program : temps/wasm-opt)###############
+-------------------------------------------------------
+CalRetPairInCycle   771
+MaxNodeInCycle      23
+NodeInCycle         153
+TotalCycle          36
+TotalEdge           23412
+TotalNode           2354
+#######################################################
+
+****Flow-Sensitive Pointer Analysis Statistics****
+################ (program : temps/wasm-opt)###############
+TotalObjects        8804
+TotalFieldObjects   6075
+TotalPointers       207930
+HeapObjs            2577
+FunctionObjs        2354
+GlobalObjs          408
+StackObjs           3463
+IndCallSites        235
+TotalPAGEdges       251059
+LocalVarInRecur     371
+BitCastNumber       18388
+CopysNum            28151
+AddrsNum            10931
+GepsNum             45849
+ReturnsNum          2730
+CallsNum            12129
+StoresNum           11323
+LoadsNum            12899
+FSObjNum            7564
+FIObjNum            1238
+ConstArrayObj       3
+VarArrayObj         5
+ConstStructObj      373
+VarStructObj        1142
+NonPtrObj           3179
+MaxStructSize       91
+TotalCallSite       23646
+BBWith3Succ         615
+BBWith2Succ         11819
+-------------------------------------------------------
+AvgAddrTakenVarPts  402.902
+AvgTopLvlPtsSize    102.989
+AvgPtsSize          457.959
+AvgOUTPtsSize       468.541
+AvgINPtsSize        471.13
+AverageSCCSize      54.6266
+ProcessTime         220.157
+AddrTime            0.059
+CopyGepTime         91.361
+PropagationTime     698.559
+TotalTime           926.973
+SolveTime           926.18
+StoreTime           23.143
+Strong/WeakUpdTime  20.311
+LoadTime            41.73
+IndirectPropaTime   694.315
+DirectPropaTime     0.239
+UpdateCGTime        0.002
+SCCTime             1.482
+ProcessedCopy       148462
+ProcessedFRet       0
+MemObjects          8804
+TotalObjects        14879
+MaxAddrTakenVarPts  519
+DYFieldPtrs         2428
+TotalPointers       207930
+Pointers            205502
+Iterations          2
+DYFieldObjs         6075
+StrongUpdates       5253
+PointsToConstPtr    0
+PointsToBlkPtr      3084
+NullPointer         3072
+ProcessedAddr       21862
+NumOfAddrTakenVar   511986
+ProcessedGep        257891
+CopysNum            20480
+StoresNum           11323
+ProcessedAParam     0
+ProcessedPhi        100679
+MaxPtsSize          558
+MaxTopLvlPtsSize    558
+MaxOUTPtsSize       519
+MaxINPtsSize        519
+MaxSCCSize          46323
+ProcessedStore      106173
+ProcessedMSSANode   491360
+IndEdgeSolved       1
+ProcessedLoad       159456
+ST_SNodesHaveOUT    8304
+FO_SNodesHaveOUT    0
+AO_SNodesHaveOUT    0
+PHI_SNodesHaveOUT   0
+FI_SNodesHaveOUT    0
+AI_SNodesHaveOUT    0
+LD_SNodesHaveOUT    0
+SNodesHaveOUT       8304
+VarHaveOUT          444604
+VarHaveOUT_ST       444604
+VarHaveIN_ST        439469
+VarHaveOUT_FO       0
+VarHaveIN_FO        0
+VarHaveOUT_AO       0
+VarHaveIN_AO        377430
+ST_SNodesHaveIN     5790
+FO_SNodesHaveIN     0
+AO_SNodesHaveIN     10646
+PHI_SNodesHaveIN    13604
+FI_SNodesHaveIN     2457
+AI_SNodesHaveIN     0
+LD_SNodesHaveIN     7441
+SNodesHaveIN        39938
+VarHaveIN           2289171
+VarHaveOUT_PHI      0
+VarHaveIN_PHI       344688
+VarHaveOUT_FI       0
+VarHaveIN_FI        282469
+VarHaveOUT_AI       0
+VarHaveIN_AI        0
+VarHaveOUT_LD       0
+VarHaveIN_LD        845115
+NumOfNodesInSCC     50038
+NumOfSCC            916
+#######################################################
+BRUNCH_STAT SEA_TIME_PTA_MS 960571
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+BRUNCH_STAT SEA_TIME_SMC_ANALYSIS_MS 545
+
+=========== Start of Simple Memory Check Stats ===========
+Format:	All instructions (Heap/Stack/Global)
+
+Discovered memory instructions	42402
+Discovered allocation sites	3670	(964/2588/118)
+Interesting allocation sites	233	(27/159/47)
+Other allocation sites		505	(232/227/46)
+Total Simple AS to instrument	386824
+Interesting <Barrier, AllocSite> pairs	145000
+Total <Barrier, AllocSite> pairs	718650
+BRUNCH_STAT SMC_ALL_AS 3670
+BRUNCH_STAT SMC_AS_BARRIER_INTERESTING 145000
+BRUNCH_STAT SMC_AS_BARRIER_CHECKS 718650
+BRUNCH_STAT SMC_AS_BARRIER_TOTAL 1174325
+
+
+Warning: SMC: exiting without instrumenting (--smc-analyze-only)
+Warning: found 2 possible reads of undefined values
+
+[startup+1002.3 s]
+/proc/loadavg: 1.11 1.12 1.09 2/905 23389
+/proc/meminfo: memFree=76392488/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=33094308 memory=33063540 CPUtime=1002.31 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8352715 0 0 0 97555 2676 0 0 20 0 1 0 372730002 33888571392 8265885 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8273577 8265885 3619 4212 0 8262554 0
+Current children cumulated CPU time: 1002.31 s
+Current children cumulated vsize: 33094308 KiB
+Current children cumulated memory: 33063540 KiB
+BRUNCH_STAT PTA_RSS_KB 33138088
+
+[startup+1015.24 s]
+# the end of solver process 10848 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=987.457 s, system=27.7124 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+[startup+1004.8 s]
+/proc/loadavg: 1.11 1.12 1.09 2/905 23412
+/proc/meminfo: memFree=76392476/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=33094308 memory=33063540 CPUtime=1004.8 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8352715 0 0 0 97803 2677 0 0 20 0 1 0 372730002 33888571392 8265885 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8273577 8265885 3619 4212 0 8262554 0
+Current children cumulated CPU time: 1004.8 s
+Current children cumulated vsize: 33094308 KiB
+Current children cumulated memory: 33063540 KiB
+
+[startup+1011.2 s]
+/proc/loadavg: 1.09 1.11 1.09 2/905 23499
+/proc/meminfo: memFree=76393560/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=33094308 memory=33063540 CPUtime=1011.21 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8352945 0 0 0 98439 2682 0 0 20 0 1 0 372730002 33888571392 8265885 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8273577 8265885 3619 4212 0 8262554 0
+Current children cumulated CPU time: 1011.21 s
+Current children cumulated vsize: 33094308 KiB
+Current children cumulated memory: 33063540 KiB
+
+[startup+1012.8 s]
+/proc/loadavg: 1.09 1.11 1.09 2/905 23516
+/proc/meminfo: memFree=76391704/131989204 swapFree=244096144/244398076
+[pid=10848] ppid=10847 vsize=33094308 memory=33063540 CPUtime=1012.81 cores=10
+/proc/10848/stat : 10848 (seapp) R 10847 10848 20134 34834 25294 4194304 8353462 0 0 0 98598 2683 0 0 20 0 1 0 372730002 33888571392 8265885 18446744073709551615 4194304 21443392 140732914295616 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 51703808 140732914299562 140732914299919 140732914299919 140732914302908 0
+/proc/10848/statm: 8273577 8265885 3619 4212 0 8262554 0
+Current children cumulated CPU time: 1012.81 s
+Current children cumulated vsize: 33094308 KiB
+Current children cumulated memory: 33063540 KiB
+
+[startup+1014.4 s]*
+/proc/loadavg: 1.09 1.11 1.09 2/905 23539
+/proc/meminfo: memFree=77049852/131989204 swapFree=244096144/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+[startup+1014.8 s]
+/proc/loadavg: 1.09 1.11 1.09 2/905 23539
+/proc/meminfo: memFree=77049852/131989204 swapFree=244096144/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+[startup+1015.2 s]
+/proc/loadavg: 1.09 1.11 1.09 2/905 23554
+/proc/meminfo: memFree=100197172/131989204 swapFree=244096144/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+Child status: 0
+Real time (s): 1015.24
+CPU time (s): 1015.17
+CPU user time (s): 987.457
+CPU system time (s): 27.7124
+CPU usage (%): 99.9931
+Max. virtual memory (cumulated for all children) (KiB): 33157808
+Max. memory (cumulated for all children) (KiB): 33121848
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 987.457
+system time used= 27.7124
+maximum resident set size= 33138088
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 8353543
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 7184
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 4
+involuntary context switches= 1192
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 10848
+#   total CPU time (s): 1015.17
+#   total CPU user time (s): 987.457
+#   total CPU system time (s): 27.7124
+
+??? end of timestamper thread
+runsolver used 9.84633 second user time and 14.428 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 1015338
+BRUNCH_STAT ORIGINAL_BITCODE_NAME wasm-opt.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 10332
+BRUNCH_STAT FINAL_BITCODE_NAME wasm-opt.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 3520
+BRUNCH_STAT EXPERIMENT_TIME 19/02/21-18:49:52

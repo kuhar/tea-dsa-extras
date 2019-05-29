@@ -1,0 +1,7 @@
+git clone https://github.com/hishamhm/htop.git
+cd htop/
+./autogen.sh
+mkdir build ; cd build
+CC=~/go/bin/gclang CXX=~/go/bin/gclang++ ../configure  --disable-unicode
+make -j32
+~/go/bin/get-bc htop

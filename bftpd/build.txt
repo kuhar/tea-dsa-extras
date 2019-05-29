@@ -1,0 +1,11 @@
+git clone https://github.com/gamman/bftpd.git
+cd bftpd
+export LLVM_COMPILER_PATH=/usr/lib/llvm-5.0/bin
+export CC=gclang
+export CXX=gclang++
+chmod 764 configure
+./configure
+chmod 764 mksources
+make -j
+for i in $(find . -executable -and -type f) ; do echo $i ; get-bc $i ; done
+find . -name "[^\.]*.bc"

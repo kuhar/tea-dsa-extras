@@ -1,0 +1,9 @@
+git clone https://github.com/llvm/llvm-project --depth=10
+cd llvm-project/
+mkdir build ; cd build
+LLVM_COMPILER_PATH=~/apps/clang-5.0/bin cmake ../llvm/ -GNinja -DCMAKE_CXX_COMPILER=~/go/bin/gclang++ -DCMAKE_C_COMPILER=~/go/bin/gclang -DLLVM_ENABLE_PROJECTS="clang;lld" -DLLVM_EXTERNAL_PROJECTS="clang;lld" -DLLVM_EXTERNAL_CLANG_SOURCE_DIR="../clang" -DLLVM_EXTERNAL_LLD_SOURCE_DIR="../lld"  -DLLVM_ENABLE_LLD=1 -DLLVM_TARGETS_TO_BUILD="X86" -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS='-Xclang -disable-llvm-optzns' -DCMAKE_C_FLAGS='-Xclang -disable-llvm-optzns' -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+LLVM_COMPILER_PATH=~/apps/clang-5.0/bin ninja clang
+LLVM_COMPILER_PATH=~/apps/clang-5.0/bin ninja
+LLVM_COMPILER_PATH=~/apps/clang-5.0/bin ~/go/bin/get-bc bin/llvm-as
+LLVM_COMPILER_PATH=~/apps/clang-5.0/bin ~/go/bin/get-bc bin/llvm-dis
+LLVM_COMPILER_PATH=~/apps/clang-5.0/bin ~/go/bin/get-bc bin/opt

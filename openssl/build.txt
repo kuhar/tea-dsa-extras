@@ -1,0 +1,10 @@
+git clone -b OpenSSL_1_1_1-stable https://github.com/openssl/openssl.git
+cd openssl
+mkdir build; cd build
+export LLVM_COMPILER_PATH=/usr/lib/llvm-5.0/bin
+../config CC=gclang CXX=gclang++
+make -j32
+for i in $(find . -executable -and -type f) ; do echo $i ; extract-bc $i ; done
+
+#to collect all the .bc files those are not hidden
+#find . -name "[^\.]*.bc" | xargs cp --parents -t /home/nle/workspace/points-to-bitcode/5.0/openssl/

@@ -1,0 +1,16 @@
+wget https://dl.bintray.com/boostorg/release/1.67.0/source/boost_1_67_0.tar.gz
+tar -xvf boost_1_67_0.tar.gz
+cd boost_1_67_0
+./bootstrap.sh --prefix="$(pwd)"/install
+./b2 headers
+./b2 -j32
+./b2 install -j32
+cd ..
+git clone https://github.com/ripple/rippled
+cd rippled
+mkdir build ; cd build
+export LLVM_COMPILER_PATH=~/apps/clang-5.0/bin
+cmake .. -GNinja -DCMAKE_CXX_COMPILER=gclang++ DCMAKE_C_COMPILER=gclang -DBOOST_ROOT=../../boost_1_67_0/install -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS='-Xclang -disable-llvm-optzns' -DCMAKE_C_FLAGS='-Xclang -disable-llvm-optzns' -DCMAKE_EXPORT_COMPILE_COMMANDS=1
+~/go/bin/get-bc rippled
+
+Run preprocessing `ripple_preproc.sh`.

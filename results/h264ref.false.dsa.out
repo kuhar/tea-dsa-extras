@@ -1,0 +1,661 @@
+h264ref.bc false dsa
+BITCODE:h264ref.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/spec2k6
+PTA=dsa
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt h264ref.bc -O1 -o ./temps/h264ref.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/h264ref.n.bc -o ./temps/h264ref.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 80000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/h264ref.n.pp.bc -o ./temps/h264ref.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=dsa --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (40943 MiB free)
+  memory of node 1: 64486 MiB (48651 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 80000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/h264ref.n.pp.bc -o ./temps/h264ref.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=dsa --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 81920000 KiB
+Linux 4.15.0-47-generic
+Current StackSize limit: 8192 KiB
+
+solver pid=9119, runsolver pid=9118
+
+[startup+0.100064 s]*
+/proc/loadavg: 0.57 0.96 1.38 2/858 9120
+/proc/meminfo: memFree=91710940/131989204 swapFree=244398076/244398076
+[pid=9119] ppid=9118 vsize=86104 memory=52932 CPUtime=0.11 cores=0-39
+/proc/9119/stat : 9119 (seapp) R 9118 9119 30945 34824 9014 4194304 12274 0 0 0 9 2 0 0 20 0 1 0 6770020 88170496 13233 18446744073709551615 4194304 21388776 140731666342208 0 0 0 0 0 1098931967 0 0 0 17 19 0 0 0 0 0 23486544 23735464 26562560 140731666350776 140731666351129 140731666351129 140731666354108 0
+/proc/9119/statm: 21526 13233 3441 4198 0 9900 0
+Current children cumulated CPU time: 0.11 s
+Current children cumulated vsize: 86104 KiB
+Current children cumulated memory: 52932 KiB
+BRUNCH_STAT PTA_KIND SeaDsa_BUTD
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 1 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 2 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 3 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 4 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 5 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 6 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 7 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 8 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 9 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 10 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 11 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 12 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 18 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 19 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 20 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 21 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 22 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 23 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 24 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 25 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 26 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 27 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x2a9ea68
+WARNING: shuffle vector inst is allocationg a new cell: 0x2a9eb88
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 28 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 29 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 30 / 100
+WARNING: 47127944 is allocating a new cell.
+WARNING: 47128152 is allocating a new cell.
+WARNING: 47128360 is allocating a new cell.
+WARNING: 47128568 is allocating a new cell.
+WARNING: 47128776 is allocating a new cell.
+WARNING: 47128984 is allocating a new cell.
+WARNING: 47129192 is allocating a new cell.
+WARNING: 47129400 is allocating a new cell.
+WARNING: 47129608 is allocating a new cell.
+WARNING: 47129816 is allocating a new cell.
+WARNING: 47130024 is allocating a new cell.
+WARNING: 47130232 is allocating a new cell.
+WARNING: 47130440 is allocating a new cell.
+WARNING: 47130648 is allocating a new cell.
+WARNING: 47130856 is allocating a new cell.
+WARNING: 47131064 is allocating a new cell.
+WARNING: 47131272 is allocating a new cell.
+WARNING: 47131480 is allocating a new cell.
+WARNING: 47131688 is allocating a new cell.
+WARNING: 47131896 is allocating a new cell.
+WARNING: 47132104 is allocating a new cell.
+WARNING: 47132312 is allocating a new cell.
+WARNING: 47132520 is allocating a new cell.
+WARNING: 47132728 is allocating a new cell.
+WARNING: 47132936 is allocating a new cell.
+WARNING: 47133144 is allocating a new cell.
+WARNING: 47133352 is allocating a new cell.
+WARNING: 47133560 is allocating a new cell.
+WARNING: 47133768 is allocating a new cell.
+WARNING: 47133976 is allocating a new cell.
+WARNING: 47134184 is allocating a new cell.
+WARNING: 47134392 is allocating a new cell.
+WARNING: 47134600 is allocating a new cell.
+WARNING: 47134808 is allocating a new cell.
+WARNING: 47135016 is allocating a new cell.
+WARNING: 47135224 is allocating a new cell.
+WARNING: 47135432 is allocating a new cell.
+WARNING: 47135640 is allocating a new cell.
+WARNING: 47135848 is allocating a new cell.
+WARNING: 47136056 is allocating a new cell.
+WARNING: 47136264 is allocating a new cell.
+WARNING: 47136472 is allocating a new cell.
+WARNING: 47136680 is allocating a new cell.
+WARNING: 47136888 is allocating a new cell.
+WARNING: 47137096 is allocating a new cell.
+WARNING: 47137304 is allocating a new cell.
+WARNING: 47137512 is allocating a new cell.
+WARNING: 47137720 is allocating a new cell.
+WARNING: 47137928 is allocating a new cell.
+WARNING: 47138136 is allocating a new cell.
+WARNING: 47138344 is allocating a new cell.
+WARNING: 47138552 is allocating a new cell.
+WARNING: 47138760 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 31 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 32 / 100
+WARNING: 47209976 is allocating a new cell.
+WARNING: 47210184 is allocating a new cell.
+WARNING: 47210392 is allocating a new cell.
+WARNING: 47210600 is allocating a new cell.
+WARNING: 47210808 is allocating a new cell.
+WARNING: 47211016 is allocating a new cell.
+WARNING: 47211224 is allocating a new cell.
+WARNING: 47211432 is allocating a new cell.
+WARNING: 47211640 is allocating a new cell.
+WARNING: 47211848 is allocating a new cell.
+WARNING: 47212056 is allocating a new cell.
+WARNING: 47212264 is allocating a new cell.
+WARNING: 47212472 is allocating a new cell.
+WARNING: 47212680 is allocating a new cell.
+WARNING: 47212888 is allocating a new cell.
+WARNING: 47213096 is allocating a new cell.
+WARNING: 47213304 is allocating a new cell.
+WARNING: 47213512 is allocating a new cell.
+WARNING: 47213720 is allocating a new cell.
+WARNING: 47213928 is allocating a new cell.
+WARNING: 47214136 is allocating a new cell.
+WARNING: 47214344 is allocating a new cell.
+WARNING: 47214552 is allocating a new cell.
+WARNING: 47214760 is allocating a new cell.
+WARNING: 47214968 is allocating a new cell.
+WARNING: 47215176 is allocating a new cell.
+WARNING: 47215384 is allocating a new cell.
+WARNING: 47215592 is allocating a new cell.
+WARNING: 47215800 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 33 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 34 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 35 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 36 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 37 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x23b6088
+WARNING: shuffle vector inst is allocationg a new cell: 0x23bc868
+WARNING: shuffle vector inst is allocationg a new cell: 0x23bc988
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 38 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 39 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 40 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 41 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 42 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 43 / 100
+WARNING: 36508440 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 44 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x2db10d8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2daec78
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 45 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 46 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 47 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 48 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 49 / 100
+WARNING: 35588120 is allocating a new cell.
+WARNING: 35588328 is allocating a new cell.
+WARNING: 35588536 is allocating a new cell.
+WARNING: 35588744 is allocating a new cell.
+WARNING: 35588952 is allocating a new cell.
+WARNING: 35589160 is allocating a new cell.
+WARNING: 35589368 is allocating a new cell.
+WARNING: 35589576 is allocating a new cell.
+WARNING: 35589784 is allocating a new cell.
+WARNING: 35589992 is allocating a new cell.
+WARNING: 35590200 is allocating a new cell.
+WARNING: 35590408 is allocating a new cell.
+WARNING: 35590616 is allocating a new cell.
+WARNING: 35590824 is allocating a new cell.
+WARNING: 35591032 is allocating a new cell.
+WARNING: 35591240 is allocating a new cell.
+WARNING: 35591448 is allocating a new cell.
+WARNING: 35591656 is allocating a new cell.
+WARNING: 35591864 is allocating a new cell.
+WARNING: 35592072 is allocating a new cell.
+WARNING: 35592280 is allocating a new cell.
+WARNING: 35592488 is allocating a new cell.
+WARNING: 35592696 is allocating a new cell.
+WARNING: 35592904 is allocating a new cell.
+WARNING: 35593112 is allocating a new cell.
+WARNING: 35593320 is allocating a new cell.
+WARNING: 35593528 is allocating a new cell.
+WARNING: 35593736 is allocating a new cell.
+WARNING: 35593944 is allocating a new cell.
+WARNING: 35594152 is allocating a new cell.
+WARNING: 35594360 is allocating a new cell.
+WARNING: 35594568 is allocating a new cell.
+WARNING: 35594776 is allocating a new cell.
+WARNING: 35594984 is allocating a new cell.
+WARNING: 35595192 is allocating a new cell.
+WARNING: 35595400 is allocating a new cell.
+WARNING: 35595608 is allocating a new cell.
+WARNING: 35595816 is allocating a new cell.
+WARNING: 35596024 is allocating a new cell.
+WARNING: 35596232 is allocating a new cell.
+WARNING: 35596440 is allocating a new cell.
+WARNING: 35596648 is allocating a new cell.
+WARNING: 35596856 is allocating a new cell.
+WARNING: 35597064 is allocating a new cell.
+WARNING: 35597272 is allocating a new cell.
+WARNING: 35597480 is allocating a new cell.
+WARNING: 35597688 is allocating a new cell.
+WARNING: 35597896 is allocating a new cell.
+WARNING: 35598104 is allocating a new cell.
+WARNING: 35598312 is allocating a new cell.
+WARNING: 35598520 is allocating a new cell.
+WARNING: 35598728 is allocating a new cell.
+WARNING: 35598936 is allocating a new cell.
+WARNING: 35599144 is allocating a new cell.
+WARNING: 35599352 is allocating a new cell.
+WARNING: 35599560 is allocating a new cell.
+WARNING: 35599768 is allocating a new cell.
+WARNING: 35600312 is allocating a new cell.
+WARNING: 35602792 is allocating a new cell.
+WARNING: 35602888 is allocating a new cell.
+WARNING: 35602984 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 50 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 51 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 52 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 53 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e10328
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e10428
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e13d78
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e146b8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e148b8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e25538
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e25638
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e28ea8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e297e8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2e299e8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 54 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 55 / 100
+
+[startup+0.23533 s]*
+/proc/loadavg: 0.57 0.96 1.38 2/858 9120
+/proc/meminfo: memFree=91693432/131989204 swapFree=244398076/244398076
+[pid=9119] ppid=9118 vsize=102672 memory=71828 CPUtime=0.25 cores=0-39
+/proc/9119/stat : 9119 (seapp) R 9118 9119 30945 34824 9014 4194304 17150 0 0 0 22 3 0 0 20 0 1 0 6770020 105136128 17957 18446744073709551615 4194304 21388776 140731666342208 0 0 0 0 0 1098931967 0 0 0 17 19 0 0 0 0 0 23486544 23735464 26562560 140731666350776 140731666351129 140731666351129 140731666354108 0
+/proc/9119/statm: 25668 17957 3337 4198 0 14659 0
+Current children cumulated CPU time: 0.25 s
+Current children cumulated vsize: 102672 KiB
+Current children cumulated memory: 71828 KiB
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 56 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 57 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x35931a8
+WARNING: shuffle vector inst is allocationg a new cell: 0x35932c8
+WARNING: shuffle vector inst is allocationg a new cell: 0x35933e8
+WARNING: shuffle vector inst is allocationg a new cell: 0x3593508
+WARNING: shuffle vector inst is allocationg a new cell: 0x3594398
+WARNING: shuffle vector inst is allocationg a new cell: 0x35944b8
+WARNING: shuffle vector inst is allocationg a new cell: 0x3589ae8
+WARNING: shuffle vector inst is allocationg a new cell: 0x3589c08
+WARNING: shuffle vector inst is allocationg a new cell: 0x3589d28
+WARNING: shuffle vector inst is allocationg a new cell: 0x3589e48
+WARNING: shuffle vector inst is allocationg a new cell: 0x358ab28
+WARNING: shuffle vector inst is allocationg a new cell: 0x358ac48
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 58 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x357c9e8
+WARNING: shuffle vector inst is allocationg a new cell: 0x357cb08
+WARNING: shuffle vector inst is allocationg a new cell: 0x357cc28
+WARNING: shuffle vector inst is allocationg a new cell: 0x357cd48
+WARNING: shuffle vector inst is allocationg a new cell: 0x357dbd8
+WARNING: shuffle vector inst is allocationg a new cell: 0x357dcf8
+WARNING: shuffle vector inst is allocationg a new cell: 0x3573468
+WARNING: shuffle vector inst is allocationg a new cell: 0x3573588
+WARNING: shuffle vector inst is allocationg a new cell: 0x35736a8
+WARNING: shuffle vector inst is allocationg a new cell: 0x35737c8
+WARNING: shuffle vector inst is allocationg a new cell: 0x35744a8
+WARNING: shuffle vector inst is allocationg a new cell: 0x35745c8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 59 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 60 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abdd68
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abddf8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abde88
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abdf18
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abdfa8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abe038
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abe0c8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abe158
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abecc8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abed58
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abede8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abee78
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abef08
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abef98
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf028
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf278
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf308
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf398
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf428
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf4b8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf548
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf5d8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2abf668
+WARNING: shuffle vector inst is allocationg a new cell: 0x2ac0288
+WARNING: shuffle vector inst is allocationg a new cell: 0x2ac0318
+WARNING: shuffle vector inst is allocationg a new cell: 0x2ac03a8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2ac0438
+WARNING: shuffle vector inst is allocationg a new cell: 0x2ac04c8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2ac0558
+WARNING: shuffle vector inst is allocationg a new cell: 0x2ac05e8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2ae91f8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 61 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 62 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 63 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x2f64098
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 64 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 65 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x1daa5a8
+WARNING: shuffle vector inst is allocationg a new cell: 0x1dabf08
+WARNING: shuffle vector inst is allocationg a new cell: 0x1e21f68
+WARNING: shuffle vector inst is allocationg a new cell: 0x1e238c8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 66 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 67 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 68 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 69 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 70 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 71 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 72 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 73 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 74 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 75 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 76 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 77 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x2623d48
+WARNING: shuffle vector inst is allocationg a new cell: 0x262fb18
+WARNING: shuffle vector inst is allocationg a new cell: 0x262fc38
+WARNING: shuffle vector inst is allocationg a new cell: 0x2634458
+WARNING: shuffle vector inst is allocationg a new cell: 0x2634b98
+WARNING: shuffle vector inst is allocationg a new cell: 0x2635758
+WARNING: shuffle vector inst is allocationg a new cell: 0x2635b08
+WARNING: shuffle vector inst is allocationg a new cell: 0x2635c08
+WARNING: shuffle vector inst is allocationg a new cell: 0x2637298
+WARNING: shuffle vector inst is allocationg a new cell: 0x26379d8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2638598
+WARNING: shuffle vector inst is allocationg a new cell: 0x2638948
+WARNING: shuffle vector inst is allocationg a new cell: 0x2638a48
+WARNING: shuffle vector inst is allocationg a new cell: 0x2639be8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2639d08
+WARNING: shuffle vector inst is allocationg a new cell: 0x263a168
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 78 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x1bbb268
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 79 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04538
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04658
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04778
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04898
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c049b8
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04ad8
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04bf8
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04d18
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04e38
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c04f58
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c05078
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c05198
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c052b8
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c053d8
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c054f8
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c05618
+WARNING: shuffle vector inst is allocationg a new cell: 0x1c05738
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 80 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x3772de8
+WARNING: shuffle vector inst is allocationg a new cell: 0x3773218
+WARNING: shuffle vector inst is allocationg a new cell: 0x3701a68
+WARNING: shuffle vector inst is allocationg a new cell: 0x3703c58
+WARNING: shuffle vector inst is allocationg a new cell: 0x3707768
+WARNING: shuffle vector inst is allocationg a new cell: 0x370df98
+WARNING: shuffle vector inst is allocationg a new cell: 0x370e6b8
+WARNING: shuffle vector inst is allocationg a new cell: 0x370ee78
+WARNING: shuffle vector inst is allocationg a new cell: 0x370f6d8
+WARNING: shuffle vector inst is allocationg a new cell: 0x370ff38
+WARNING: shuffle vector inst is allocationg a new cell: 0x3710798
+WARNING: shuffle vector inst is allocationg a new cell: 0x3710ff8
+WARNING: shuffle vector inst is allocationg a new cell: 0x3711858
+WARNING: shuffle vector inst is allocationg a new cell: 0x3726258
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 81 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 82 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 83 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 84 / 100
+
+[startup+0.336855 s]*
+/proc/loadavg: 0.57 0.96 1.38 2/858 9120
+/proc/meminfo: memFree=91666720/131989204 swapFree=244398076/244398076
+[pid=9119] ppid=9118 vsize=131132 memory=100076 CPUtime=0.35 cores=0-39
+/proc/9119/stat : 9119 (seapp) R 9118 9119 30945 34824 9014 4194304 24244 0 0 0 30 5 0 0 20 0 1 0 6770020 134279168 25019 18446744073709551615 4194304 21388776 140731666342208 0 0 0 0 0 1098931967 0 0 0 17 19 0 0 0 0 0 23486544 23735464 26562560 140731666350776 140731666351129 140731666351129 140731666354108 0
+/proc/9119/statm: 32783 25019 3337 4198 0 21774 0
+Current children cumulated CPU time: 0.35 s
+Current children cumulated vsize: 131132 KiB
+Current children cumulated memory: 100076 KiB
+WARNING: 51303256 is allocating a new cell.
+WARNING: 51303496 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 85 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x2dc8a98
+WARNING: shuffle vector inst is allocationg a new cell: 0x2dc8b98
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 86 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 87 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x1f6f368
+WARNING: shuffle vector inst is allocationg a new cell: 0x1f6a3d8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 88 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 89 / 100
+WARNING: shuffle vector inst is allocationg a new cell: 0x247d4d8
+WARNING: shuffle vector inst is allocationg a new cell: 0x247d5d8
+WARNING: shuffle vector inst is allocationg a new cell: 0x247d6d8
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 90 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 91 / 100
+WARNING: 36461368 is allocating a new cell.
+WARNING: 36461464 is allocating a new cell.
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 92 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 93 / 100
+WARNING: 35952952 is allocating a new cell.
+WARNING: 36127208 is allocating a new cell.
+WARNING: 36127304 is allocating a new cell.
+WARNING: shuffle vector inst is allocationg a new cell: 0x2279ce8
+WARNING: shuffle vector inst is allocationg a new cell: 0x2279f98
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 94 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 95 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 96 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 97 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 98 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 99 / 100
+BRUNCH_PROGRESS BU_FUNCTIONS_PROCESSED_PERCENT 100 / 100
+BRUNCH_STAT SEA_TIME_LOCAL_MS 82
+BRUNCH_STAT SEA_TIME_BU_AND_LOCAL_MS 242
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 1 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 2 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 3 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 4 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 5 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 6 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 7 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 8 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 9 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 10 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 11 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 12 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 13 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 14 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 15 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 16 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 17 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 18 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 19 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 20 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 21 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 22 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 23 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 24 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 25 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 26 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 27 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 28 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 29 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 30 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 31 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 32 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 33 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 34 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 35 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 36 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 37 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 38 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 39 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 40 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 41 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 42 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 43 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 44 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 45 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 46 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 47 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 48 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 49 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 50 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 51 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 52 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 53 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 54 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 55 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 56 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 57 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 58 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 59 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 60 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 61 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 62 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 63 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 64 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 65 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 66 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 67 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 68 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 69 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 70 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 71 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 72 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 73 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 74 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 75 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 76 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 77 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 78 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 79 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 80 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 81 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 82 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 87 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 88 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 89 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 90 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 91 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 92 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 93 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 94 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 95 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 96 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 97 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 98 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 99 / 100
+BRUNCH_PROGRESS TD_FUNCTIONS_PROCESSED_PERCENT 100 / 100
+BRUNCH_STAT SEA_TIME_TD_MS 165
+BRUNCH_STAT SEA_TIME_PTA_MS 419
+
+[startup+0.700326 s]
+/proc/loadavg: 0.57 0.96 1.38 2/858 9120
+/proc/meminfo: memFree=91619728/131989204 swapFree=244398076/244398076
+[pid=9119] ppid=9118 vsize=193008 memory=161708 CPUtime=0.69 cores=0-39
+/proc/9119/stat : 9119 (seapp) R 9118 9119 30945 34824 9014 4194304 39619 0 0 0 60 9 0 0 20 0 1 0 6770020 197640192 40427 18446744073709551615 4194304 21388776 140731666342208 0 0 0 0 0 1098931967 0 0 0 17 11 0 0 0 0 0 23486544 23735464 26562560 140731666350776 140731666351129 140731666351129 140731666354108 0
+/proc/9119/statm: 48252 40427 3369 4198 0 37243 0
+Current children cumulated CPU time: 0.69 s
+Current children cumulated vsize: 193008 KiB
+Current children cumulated memory: 161708 KiB
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+BRUNCH_STAT SEA_TIME_SMC_ANALYSIS_MS 103
+
+=========== Start of Simple Memory Check Stats ===========
+Format:	All instructions (Heap/Stack/Global)
+
+Discovered memory instructions	48512
+Discovered allocation sites	687	(142/185/351)
+Interesting allocation sites	23	(11/2/10)
+Other allocation sites		46	(42/1/2)
+Total Simple AS to instrument	16009
+Interesting <Barrier, AllocSite> pairs	4665
+Total <Barrier, AllocSite> pairs	15304
+BRUNCH_STAT SMC_ALL_AS 687
+BRUNCH_STAT SMC_AS_BARRIER_INTERESTING 4665
+BRUNCH_STAT SMC_AS_BARRIER_CHECKS 15304
+BRUNCH_STAT SMC_AS_BARRIER_TOTAL 148080
+
+
+Warning: SMC: exiting without instrumenting (--smc-analyze-only)
+Warning: found 326 possible reads of undefined values
+BRUNCH_STAT PTA_RSS_KB 183504
+
+[startup+1.10404 s]
+# the end of solver process 9119 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=0.922061 s, system=0.115756 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+[startup+0.800295 s]
+/proc/loadavg: 0.57 0.96 1.38 2/858 9120
+/proc/meminfo: memFree=91619728/131989204 swapFree=244398076/244398076
+[pid=9119] ppid=9118 vsize=210084 memory=174732 CPUtime=0.79 cores=0-39
+/proc/9119/stat : 9119 (seapp) R 9118 9119 30945 34824 9014 4194304 45562 0 0 0 70 9 0 0 20 0 1 0 6770020 215126016 43683 18446744073709551615 4194304 21388776 140731666342208 0 0 0 0 0 1098931967 0 0 0 17 11 0 0 0 0 0 23486544 23735464 26562560 140731666350776 140731666351129 140731666351129 140731666354108 0
+/proc/9119/statm: 52521 43683 3369 4198 0 41512 0
+Current children cumulated CPU time: 0.79 s
+Current children cumulated vsize: 210084 KiB
+Current children cumulated memory: 174732 KiB
+
+[startup+1.00029 s]*
+/proc/loadavg: 0.57 0.96 1.38 1/858 9130
+/proc/meminfo: memFree=91584572/131989204 swapFree=244398076/244398076
+[pid=9119] ppid=9118 vsize=204680 memory=173928 CPUtime=0.96 cores=0-39
+/proc/9119/stat : 9119 (seapp) D 9118 9119 30945 34824 9014 4194304 47929 0 0 0 86 10 0 0 20 0 1 0 6770020 209592320 43482 18446744073709551615 4194304 21388776 140731666342208 0 0 0 2147221247 0 1098931967 1 0 0 17 11 0 0 0 0 0 23486544 23735464 26562560 140731666350776 140731666351129 140731666351129 140731666354108 0
+/proc/9119/statm: 51170 43482 3417 4198 0 40161 0
+Current children cumulated CPU time: 0.96 s
+Current children cumulated vsize: 204680 KiB
+Current children cumulated memory: 173928 KiB
+
+Child status: 0
+Real time (s): 1.10407
+CPU time (s): 1.03782
+CPU user time (s): 0.922061
+CPU system time (s): 0.115756
+CPU usage (%): 93.9996
+Max. virtual memory (cumulated for all children) (KiB): 210084
+Max. memory (cumulated for all children) (KiB): 174732
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 0.922061
+system time used= 0.115756
+maximum resident set size= 183504
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 47940
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 5000
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 4
+involuntary context switches= 8
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 9119
+#   total CPU time (s): 1.03782
+#   total CPU user time (s): 0.922061
+#   total CPU system time (s): 0.115756
+
+??? end of timestamper thread
+runsolver used 0.064661 second user time and 0.148901 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 1176
+BRUNCH_STAT ORIGINAL_BITCODE_NAME h264ref.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 1816
+BRUNCH_STAT FINAL_BITCODE_NAME h264ref.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 2468
+BRUNCH_STAT EXPERIMENT_TIME 19/05/09-12:15:27

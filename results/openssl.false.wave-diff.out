@@ -1,0 +1,744 @@
+openssl.bc false wave-diff
+BITCODE:openssl.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/openssl
+PTA=wave-diff
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt openssl.bc -O1 -o ./temps/openssl.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/openssl.n.bc -o ./temps/openssl.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 40000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/openssl.n.pp.bc -o ./temps/openssl.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (26947 MiB free)
+  memory of node 1: 64486 MiB (46734 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 40000 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/openssl.n.pp.bc -o ./temps/openssl.n.pp.smc.bc --smc --sea-dsa-type-aware=false --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 40960000 KiB
+Linux 4.15.0-43-generic
+Current StackSize limit: 8192 KiB
+
+solver pid=22418, runsolver pid=22417
+Sea Allocators:
+	AES_options
+	ASN1_ENUMERATED_new
+	ASN1_GENERALIZEDTIME_new
+	ASN1_INTEGER_new
+	ASN1_INTEGER_to_BN
+	ASN1_ITEM_get
+	ASN1_ITEM_lookup
+	ASN1_STRING_get0_data
+	ASN1_TIME_new
+	ASN1_TYPE_new
+	ASN1_UTCTIME_new
+	ASN1_d2i_bio
+	ASN1_generate_nconf
+	ASN1_item_d2i
+	ASN1_item_unpack
+	ASN1_tag2str
+	ASYNC_WAIT_CTX_new
+	BF_options
+	BIO_ADDRINFO_address
+	BIO_ADDRINFO_next
+	BIO_ADDR_hostname_string
+	BIO_ADDR_new
+	BIO_ADDR_service_string
+	BIO_f_base64
+	BIO_f_buffer
+	BIO_f_cipher
+	BIO_f_md
+	BIO_f_nbio_test
+	BIO_f_ssl
+	BIO_meth_new
+	BIO_new
+	BIO_new_connect
+	BIO_new_dgram
+	BIO_new_fd
+	BIO_new_file
+	BIO_new_fp
+	BIO_new_mem_buf
+	BIO_new_socket
+	BIO_new_ssl
+	BIO_pop
+	BIO_ptr_ctrl
+	BIO_push
+	BIO_s_accept
+	BIO_s_connect
+	BIO_s_file
+	BIO_s_mem
+	BIO_s_null
+	BN_GENCB_new
+	BN_bin2bn
+	BN_bn2dec
+	BN_bn2hex
+	BN_new
+	BN_options
+	BN_to_ASN1_INTEGER
+	BUF_MEM_new
+	CMS_EncryptedData_encrypt
+	CMS_ReceiptRequest_create0
+	CMS_RecipientInfo_get0_pkey_ctx
+	CMS_RecipientInfo_kari_get0_ctx
+	CMS_SignerInfo_get0_pkey_ctx
+	CMS_add0_recipient_key
+	CMS_add0_recipient_password
+	CMS_add1_recipient_cert
+	CMS_add1_signer
+	CMS_compress
+	CMS_data_create
+	CMS_digest_create
+	CMS_encrypt
+	CMS_get0_SignerInfos
+	CMS_get0_signers
+	CMS_get1_certs
+	CMS_sign
+	CMS_sign_receipt
+	CONF_get_section
+	CONF_load
+	CRYPTO_gcm128_new
+	CRYPTO_malloc
+	CRYPTO_realloc
+	CRYPTO_strdup
+	CRYPTO_zalloc
+	DES_crypt
+	DES_options
+	DH_new
+	DSA_dup_DH
+	DSA_new
+	DSAparams_dup
+	DTLS_client_method
+	DTLS_server_method
+	EC_GROUP_get0_generator
+	EC_GROUP_method_of
+	EC_GROUP_new_by_curve_name
+	EC_KEY_get0_group
+	EC_KEY_new
+	EC_KEY_new_by_curve_name
+	EC_POINT_point2bn
+	EC_curve_nid2nist
+	ENGINE_by_id
+	ENGINE_get_DH
+	ENGINE_get_DSA
+	ENGINE_get_RAND
+	ENGINE_get_RSA
+	ENGINE_get_ciphers
+	ENGINE_get_digests
+	ENGINE_get_first
+	ENGINE_get_id
+	ENGINE_get_name
+	ENGINE_get_next
+	ENGINE_get_pkey_asn1_meth_str
+	ENGINE_get_pkey_meths
+	ENGINE_load_private_key
+	ENGINE_load_public_key
+	ERR_reason_error_string
+	EVP_CIPHER_CTX_new
+	EVP_MD_CTX_md
+	EVP_MD_CTX_new
+	EVP_PKCS82PKEY
+	EVP_PKEY2PKCS8
+	EVP_PKEY_CTX_new
+	EVP_PKEY_CTX_new_id
+	EVP_PKEY_asn1_find
+	EVP_PKEY_asn1_find_str
+	EVP_PKEY_asn1_get0
+	EVP_PKEY_get0_DSA
+	EVP_PKEY_get0_RSA
+	EVP_PKEY_get0_asn1
+	EVP_PKEY_get1_DSA
+	EVP_PKEY_get1_EC_KEY
+	EVP_PKEY_get1_RSA
+	EVP_PKEY_meth_get0
+	EVP_PKEY_new
+	EVP_PKEY_new_raw_private_key
+	EVP_aes_128_wrap
+	EVP_aes_192_wrap
+	EVP_aes_256_cbc
+	EVP_aes_256_wrap
+	EVP_des_ede3_cbc
+	EVP_des_ede3_wrap
+	EVP_get_cipherbyname
+	EVP_get_digestbyname
+	EVP_md4
+	EVP_md5
+	EVP_md_null
+	EVP_mdc2
+	EVP_ripemd160
+	EVP_sha1
+	EVP_sha256
+	EVP_sha512
+	GENERAL_NAMES_new
+	HMAC_CTX_new
+	IDEA_options
+	MD5
+	NCONF_get_section
+	NCONF_get_string
+	NCONF_new
+	NETSCAPE_CERT_SEQUENCE_new
+	NETSCAPE_SPKI_b64_decode
+	NETSCAPE_SPKI_b64_encode
+	NETSCAPE_SPKI_get_pubkey
+	NETSCAPE_SPKI_new
+	OBJ_nid2ln
+	OBJ_nid2obj
+	OBJ_nid2sn
+	OBJ_txt2obj
+	OCSP_BASICRESP_new
+	OCSP_REQUEST_new
+	OCSP_REQ_CTX_new
+	OCSP_RESPONSE_new
+	OCSP_basic_add1_status
+	OCSP_cert_id_new
+	OCSP_cert_status_str
+	OCSP_cert_to_id
+	OCSP_crl_reason_str
+	OCSP_onereq_get0_id
+	OCSP_request_add0_id
+	OCSP_request_onereq_get0
+	OCSP_resp_get0_signature
+	OCSP_response_create
+	OCSP_response_get1_basic
+	OCSP_response_status_str
+	OCSP_sendreq_new
+	OPENSSL_DIR_read
+	OPENSSL_LH_insert
+	OPENSSL_LH_new
+	OPENSSL_LH_retrieve
+	OPENSSL_asc2uni
+	OPENSSL_cipher_name
+	OPENSSL_hexstr2buf
+	OPENSSL_sk_delete
+	OPENSSL_sk_new_null
+	OPENSSL_sk_shift
+	OPENSSL_sk_value
+	OPENSSL_uni2asc
+	OPENSSL_uni2utf8
+	OSSL_STORE_INFO_get0_CERT
+	OSSL_STORE_INFO_get0_CRL
+	OSSL_STORE_INFO_get0_NAME
+	OSSL_STORE_INFO_get0_NAME_description
+	OSSL_STORE_INFO_get0_PARAMS
+	OSSL_STORE_INFO_get0_PKEY
+	OSSL_STORE_INFO_type_string
+	OSSL_STORE_SEARCH_by_alias
+	OSSL_STORE_SEARCH_by_issuer_serial
+	OSSL_STORE_SEARCH_by_key_fingerprint
+	OSSL_STORE_SEARCH_by_name
+	OSSL_STORE_load
+	OSSL_STORE_open
+	OpenSSL_version
+	PEM_X509_INFO_read_bio
+	PEM_read_bio_CMS
+	PEM_read_bio_DHparams
+	PEM_read_bio_DSAparams
+	PEM_read_bio_ECPKParameters
+	PEM_read_bio_ECPrivateKey
+	PEM_read_bio_EC_PUBKEY
+	PEM_read_bio_NETSCAPE_CERT_SEQUENCE
+	PEM_read_bio_PKCS7
+	PEM_read_bio_PKCS8
+	PEM_read_bio_PKCS8_PRIV_KEY_INFO
+	PEM_read_bio_PUBKEY
+	PEM_read_bio_Parameters
+	PEM_read_bio_PrivateKey
+	PEM_read_bio_RSAPublicKey
+	PEM_read_bio_SSL_SESSION
+	PEM_read_bio_X509
+	PEM_read_bio_X509_AUX
+	PEM_read_bio_X509_CRL
+	PEM_read_bio_X509_REQ
+	PKCS12_SAFEBAG_get0_attr
+	PKCS12_SAFEBAG_get0_attrs
+	PKCS12_SAFEBAG_get0_p8inf
+	PKCS12_SAFEBAG_get0_pkcs8
+	PKCS12_SAFEBAG_get0_safes
+	PKCS12_SAFEBAG_get0_type
+	PKCS12_SAFEBAG_get1_cert
+	PKCS12_create
+	PKCS12_decrypt_skey
+	PKCS12_unpack_authsafes
+	PKCS12_unpack_p7data
+	PKCS12_unpack_p7encdata
+	PKCS5_pbe2_set_iv
+	PKCS5_pbe2_set_scrypt
+	PKCS5_pbe_set
+	PKCS7_SIGNED_new
+	PKCS7_encrypt
+	PKCS7_get0_signers
+	PKCS7_new
+	PKCS7_sign
+	PKCS7_sign_add_signer
+	PKCS7_to_TS_TST_INFO
+	PKCS8_decrypt
+	PKCS8_pkey_get0_attrs
+	PKCS8_set0_pbe
+	RC4_options
+	RSA_new
+	RSA_new_method
+	SCT_validation_status_string
+	SHA1
+	SHA256
+	SHA512
+	SMIME_read_CMS
+	SMIME_read_PKCS7
+	SRP_VBASE_get1_by_user
+	SRP_VBASE_new
+	SRP_create_verifier
+	SRP_get_default_gN
+	SSL_CIPHER_description
+	SSL_CIPHER_find
+	SSL_CIPHER_get_name
+	SSL_CIPHER_get_version
+	SSL_CIPHER_standard_name
+	SSL_COMP_get_name
+	SSL_CONF_CTX_new
+	SSL_CTX_get0_ctlog_store
+	SSL_CTX_get_cert_store
+	SSL_CTX_get_security_callback
+	SSL_CTX_new
+	SSL_SESSION_get0_peer
+	SSL_SESSION_new
+	SSL_get0_peer_CA_list
+	SSL_get0_peer_scts
+	SSL_get0_peername
+	SSL_get1_supported_ciphers
+	SSL_get_SSL_CTX
+	SSL_get_ciphers
+	SSL_get_current_cipher
+	SSL_get_current_compression
+	SSL_get_current_expansion
+	SSL_get_peer_cert_chain
+	SSL_get_peer_certificate
+	SSL_get_rbio
+	SSL_get_selected_srtp_profile
+	SSL_get_session
+	SSL_get_shared_ciphers
+	SSL_get_version
+	SSL_get_wbio
+	SSL_load_client_CA_file
+	SSL_new
+	TLS_client_method
+	TLS_server_method
+	TS_CONF_get_tsa_section
+	TS_CONF_load_certs
+	TS_MSG_IMPRINT_new
+	TS_REQ_new
+	TS_REQ_to_TS_VERIFY_CTX
+	TS_RESP_CTX_new
+	TS_RESP_create_response
+	TS_RESP_get_token
+	TS_RESP_get_tst_info
+	TS_RESP_new
+	TS_STATUS_INFO_new
+	TS_VERIFY_CTS_set_certs
+	TS_VERIFY_CTX_new
+	TS_VERIFY_CTX_set_data
+	TS_VERIFY_CTX_set_imprint
+	TS_VERIFY_CTX_set_store
+	TXT_DB_get_by_index
+	TXT_DB_read
+	UI_OpenSSL
+	UI_add_user_data
+	UI_construct_prompt
+	UI_create_method
+	UI_new_method
+	UI_null
+	WHIRLPOOL
+	X509V3_parse_list
+	X509_ALGOR_new
+	X509_ATTRIBUTE_get0_object
+	X509_ATTRIBUTE_get0_type
+	X509_CRL_diff
+	X509_CRL_get0_lastUpdate
+	X509_CRL_get0_nextUpdate
+	X509_CRL_get_ext_d2i
+	X509_CRL_get_issuer
+	X509_CRL_new
+	X509_EXTENSION_get_object
+	X509_LOOKUP_file
+	X509_LOOKUP_hash_dir
+	X509_NAME_ENTRY_get_data
+	X509_NAME_ENTRY_get_object
+	X509_NAME_delete_entry
+	X509_NAME_dup
+	X509_NAME_get_entry
+	X509_NAME_new
+	X509_NAME_oneline
+	X509_OBJECT_get0_X509
+	X509_PURPOSE_get0
+	X509_PURPOSE_get0_name
+	X509_PURPOSE_get0_sname
+	X509_REQ_get0_pubkey
+	X509_REQ_get_extensions
+	X509_REQ_get_subject_name
+	X509_REQ_new
+	X509_REVOKED_new
+	X509_STORE_CTX_get1_chain
+	X509_STORE_CTX_get_obj_by_subject
+	X509_STORE_CTX_new
+	X509_STORE_add_lookup
+	X509_STORE_new
+	X509_VERIFY_PARAM_get0
+	X509_VERIFY_PARAM_get0_name
+	X509_VERIFY_PARAM_lookup
+	X509_VERIFY_PARAM_new
+	X509_alias_get0
+	X509_delete_ext
+	X509_get0_extensions
+	X509_get0_notAfter
+	X509_get0_notBefore
+	X509_get0_pubkey
+	X509_get0_pubkey_bitstr
+	X509_get1_email
+	X509_get1_ocsp
+	X509_get_X509_PUBKEY
+	X509_get_default_cert_area
+	X509_get_default_cert_dir
+	X509_get_default_cert_dir_env
+	X509_get_ext
+	X509_get_issuer_name
+	X509_get_pubkey
+	X509_get_serialNumber
+	X509_get_subject_name
+	X509_getm_notAfter
+	X509_getm_notBefore
+	X509_gmtime_adj
+	X509_new
+	X509_time_adj_ex
+	X509_to_X509_REQ
+	X509_verify_cert_error_string
+	Znaj
+	ZnajRKSt9nothrow_t
+	Znam
+	ZnamRKSt9nothrow_t
+	Znwj
+	ZnwjRKSt9nothrow_t
+	Znwm
+	ZnwmRKSt9nothrow_t
+	__ctype_b_loc
+	__ctype_toupper_loc
+	__errno_location
+	a2i_GENERAL_NAME
+	b2i_PVK_bio
+	b2i_PrivateKey_bio
+	b2i_PublicKey_bio
+	calloc
+	crls_http_cb.stub
+	d2i_ASN1_TYPE
+	d2i_CMS_bio
+	d2i_DHparams
+	d2i_DHxparams
+	d2i_DSAparams
+	d2i_ECPKParameters
+	d2i_ECPrivateKey_bio
+	d2i_EC_PUBKEY_bio
+	d2i_OCSP_REQUEST
+	d2i_OCSP_RESPONSE
+	d2i_PKCS12_bio
+	d2i_PKCS7_bio
+	d2i_PKCS8_PRIV_KEY_INFO_bio
+	d2i_PKCS8_bio
+	d2i_PUBKEY_bio
+	d2i_PrivateKey_bio
+	d2i_RSAPrivateKey
+	d2i_RSAPublicKey_bio
+	d2i_SSL_SESSION
+	d2i_TS_REQ_bio
+	d2i_TS_RESP_bio
+	d2i_X509_CRL_bio
+	d2i_X509_REQ_bio
+	d2i_X509_bio
+	dummy_srp.stub
+	fdopen
+	fgets
+	get_session.stub
+	getenv
+	malloc
+	s2i_ASN1_INTEGER
+	serial_cb.stub
+	signal
+	ssl_give_srp_client_pwd_cb.stub
+	strchr
+	strcpy
+	strerror
+	strncpy
+	strrchr
+	strstr
+	strtok
+Warning: Running SVF PTA!
+BRUNCH_STAT PTA_KIND SVF_Andersen_Diff_Wave_NoType
+
+[startup+0.100082 s]*
+/proc/loadavg: 1.02 1.69 2.08 3/933 22419
+/proc/meminfo: memFree=75428684/131989204 swapFree=244112016/244398076
+[pid=22418] ppid=22417 vsize=82504 memory=51540 CPUtime=0.1 cores=0-39
+/proc/22418/stat : 22418 (seapp) R 22417 22418 40453 34836 17777 4194304 10927 0 0 0 9 1 0 0 20 0 1 0 477289974 84484096 12885 18446744073709551615 4194304 21451464 140733249571216 0 0 0 0 0 1098931967 0 0 0 17 3 0 0 0 0 0 21459200 21708072 40132608 140733249573555 140733249573914 140733249573914 140733249576892 0
+/proc/22418/statm: 20659 12885 3307 4214 0 9634 0
+Current children cumulated CPU time: 0.1 s
+Current children cumulated vsize: 82504 KiB
+Current children cumulated memory: 51540 KiB
+
+[startup+0.220668 s]*
+/proc/loadavg: 1.02 1.69 2.08 2/933 22430
+/proc/meminfo: memFree=75283060/131989204 swapFree=244112016/244398076
+[pid=22418] ppid=22417 vsize=230312 memory=199116 CPUtime=0.22 cores=0-39
+/proc/22418/stat : 22418 (seapp) R 22417 22418 40453 34836 17777 4194304 47860 0 0 0 15 7 0 0 20 0 1 0 477289974 235839488 49779 18446744073709551615 4194304 21451464 140733249571216 0 0 0 0 0 1098931967 0 0 0 17 3 0 0 0 0 0 21459200 21708072 40132608 140733249573555 140733249573914 140733249573914 140733249576892 0
+/proc/22418/statm: 57578 49779 3307 4214 0 46553 0
+Current children cumulated CPU time: 0.22 s
+Current children cumulated vsize: 230312 KiB
+Current children cumulated memory: 199116 KiB
+
+[startup+0.319371 s]*
+/proc/loadavg: 1.02 1.69 2.08 2/933 22430
+/proc/meminfo: memFree=75223044/131989204 swapFree=244112016/244398076
+[pid=22418] ppid=22417 vsize=274904 memory=243792 CPUtime=0.32 cores=0-39
+/proc/22418/stat : 22418 (seapp) R 22417 22418 40453 34836 17777 4194304 59005 0 0 0 23 9 0 0 20 0 1 0 477289974 281501696 60948 18446744073709551615 4194304 21451464 140733249571216 0 0 0 0 0 1098931967 0 0 0 17 3 0 0 0 0 0 21459200 21708072 40132608 140733249573555 140733249573914 140733249573914 140733249576892 0
+/proc/22418/statm: 68726 60948 3323 4214 0 57701 0
+Current children cumulated CPU time: 0.32 s
+Current children cumulated vsize: 274904 KiB
+Current children cumulated memory: 243792 KiB
+
+[startup+0.700227 s]
+/proc/loadavg: 1.02 1.69 2.08 2/933 22430
+/proc/meminfo: memFree=75151816/131989204 swapFree=244112016/244398076
+[pid=22418] ppid=22417 vsize=362820 memory=332148 CPUtime=0.69 cores=0-39
+/proc/22418/stat : 22418 (seapp) R 22417 22418 40453 34836 17777 4194304 81006 0 0 0 55 14 0 0 20 0 1 0 477289974 371527680 83037 18446744073709551615 4194304 21451464 140733249571216 0 0 0 0 0 1098931967 0 0 0 17 3 0 0 0 0 0 21459200 21708072 40132608 140733249573555 140733249573914 140733249573914 140733249576892 0
+/proc/22418/statm: 90705 83037 3371 4214 0 79680 0
+Current children cumulated CPU time: 0.69 s
+Current children cumulated vsize: 362820 KiB
+Current children cumulated memory: 332148 KiB
+
+[startup+1.50025 s]
+/proc/loadavg: 1.02 1.67 2.08 2/933 22430
+/proc/meminfo: memFree=75125048/131989204 swapFree=244112016/244398076
+[pid=22418] ppid=22417 vsize=371140 memory=340332 CPUtime=1.49 cores=0-39
+/proc/22418/stat : 22418 (seapp) R 22417 22418 40453 34836 17777 4194304 83083 0 0 0 124 25 0 0 20 0 1 0 477289974 380047360 85083 18446744073709551615 4194304 21451464 140733249571216 0 0 0 0 0 1098931967 0 0 0 17 3 0 0 0 0 0 21459200 21708072 40132608 140733249573555 140733249573914 140733249573914 140733249576892 0
+/proc/22418/statm: 92785 85083 3371 4214 0 81760 0
+Current children cumulated CPU time: 1.49 s
+Current children cumulated vsize: 371140 KiB
+Current children cumulated memory: 340332 KiB
+
+****CallGraph SCC Stat****
+################ (program : temps/openssl)###############
+-------------------------------------------------------
+CalRetPairInCycle   6
+MaxNodeInCycle      3
+NodeInCycle         6
+TotalCycle          4
+TotalEdge           10878
+TotalNode           1689
+#######################################################
+
+****Andersen Pointer Analysis Statistics****
+################ (program : temps/openssl)###############
+TotalObjects        3781
+TotalFieldObjects   559
+TotalPointers       67017
+HeapObjs            1365
+FunctionObjs        1689
+GlobalObjs          207
+StackObjs           518
+IndCallSites        17
+TotalPAGEdges       102385
+LocalVarInRecur     4
+BitCastNumber       1164
+CopysNum            6442
+AddrsNum            9079
+GepsNum             9505
+ReturnsNum          958
+CallsNum            1996
+StoresNum           3931
+LoadsNum            3720
+FSObjNum            3722
+FIObjNum            57
+ConstArrayObj       68
+VarArrayObj         126
+ConstStructObj      3
+VarStructObj        133
+NonPtrObj           2051
+MaxStructSize       21
+TotalCallSite       10894
+BBWith3Succ         192
+BBWith2Succ         5103
+-------------------------------------------------------
+AvgPtsSetSize       0.527565
+AvgTopLvlPtsSize    1.38721
+SCCDetectTime       0.451
+CopyGepTime         0.449
+TotalTime           1.126
+CollapseTime        0.001
+LoadStoreTime       0.035
+SCCMergeTime        0.059
+UpdateCGTime        0.001
+TotalStoreInst      1656
+TotalLoadInst       5787
+NumOfSCCDetect      4
+MemObjects          3781
+TotalObjects        4340
+DYFieldPtrs         177
+TotalPointers       67017
+Pointers            66840
+Iterations          4
+DYFieldObjs         559
+IndCallSites        17
+NodesInCycles       1125
+TotalPAGEdges       34299
+PointsToConstPtr    0
+PointsToBlkPtr      14
+NullPointer         96
+CopysNum            17262
+AddrsNum            9077
+GepsNum             9386
+StoresNum           3931
+LoadsNum            3720
+TotalCycleNum       494
+TotalPWCCycleNum    5
+CGNodeNum           72466
+MaxPtsSetSize       57
+IndEdgeSolved       1
+CopyProcessed       10622
+AddrProcessed       9079
+GepProcessed        9217
+StoreProcessed      4025
+LoadProcessed       5166
+MaxNodesInSCC       10
+#######################################################
+BRUNCH_STAT SEA_TIME_PTA_MS 1331
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+BRUNCH_STAT SEA_TIME_SMC_ANALYSIS_MS 5
+
+=========== Start of Simple Memory Check Stats ===========
+Format:	All instructions (Heap/Stack/Global)
+
+Discovered memory instructions	7436
+Discovered allocation sites	510	(187/230/93)
+Interesting allocation sites	0	(0/0/0)
+Other allocation sites		0	(0/0/0)
+Total Simple AS to instrument	0
+Interesting <Barrier, AllocSite> pairs	0
+Total <Barrier, AllocSite> pairs	0
+BRUNCH_STAT SMC_ALL_AS 510
+BRUNCH_STAT SMC_AS_BARRIER_INTERESTING 0
+BRUNCH_STAT SMC_AS_BARRIER_CHECKS 0
+BRUNCH_STAT SMC_AS_BARRIER_TOTAL 2237
+
+
+Warning: found 4 possible reads of undefined values
+BRUNCH_STAT PTA_RSS_KB 706528
+
+[startup+2.12111 s]
+# the end of solver process 22418 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=1.62019 s, system=0.444051 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+[startup+1.60022 s]
+/proc/loadavg: 1.02 1.67 2.08 2/933 22430
+/proc/meminfo: memFree=75125048/131989204 swapFree=244112016/244398076
+[pid=22418] ppid=22417 vsize=380424 memory=346492 CPUtime=1.59 cores=0-39
+/proc/22418/stat : 22418 (seapp) R 22417 22418 40453 34836 17777 4194304 84940 0 0 0 131 28 0 0 20 0 1 0 477289974 389554176 86623 18446744073709551615 4194304 21451464 140733249571216 0 0 0 0 0 1098931967 0 0 0 17 3 0 0 0 0 0 21459200 21708072 40132608 140733249573555 140733249573914 140733249573914 140733249576892 0
+/proc/22418/statm: 95106 86623 3371 4214 0 84081 0
+Current children cumulated CPU time: 1.59 s
+Current children cumulated vsize: 380424 KiB
+Current children cumulated memory: 346492 KiB
+
+[startup+2.00017 s]*
+/proc/loadavg: 1.02 1.67 2.08 3/933 22442
+/proc/meminfo: memFree=74770820/131989204 swapFree=244112016/244398076
+[pid=22418] ppid=22417 vsize=722184 memory=691724 CPUtime=1.99 cores=0-39
+/proc/22418/stat : 22418 (seapp) D 22417 22418 40453 34836 17777 4456448 175651 0 0 0 159 40 0 0 20 0 1 0 477289974 739516416 172931 18446744073709551615 4194304 21451464 140733249571216 0 0 0 2147221247 0 1098931967 1 0 0 17 3 0 0 0 0 0 21459200 21708072 40132608 140733249573555 140733249573914 140733249573914 140733249576892 0
+/proc/22418/statm: 180546 172931 3451 4214 0 169521 0
+Current children cumulated CPU time: 1.99 s
+Current children cumulated vsize: 722184 KiB
+Current children cumulated memory: 691724 KiB
+
+Child status: 0
+Real time (s): 2.12113
+CPU time (s): 2.06424
+CPU user time (s): 1.62019
+CPU system time (s): 0.444051
+CPU usage (%): 97.3177
+Max. virtual memory (cumulated for all children) (KiB): 728592
+Max. memory (cumulated for all children) (KiB): 697780
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 1.62019
+system time used= 0.444051
+maximum resident set size= 706528
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 175658
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 3024
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 1
+involuntary context switches= 5
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 22418
+#   total CPU time (s): 2.06424
+#   total CPU user time (s): 1.62019
+#   total CPU system time (s): 0.444051
+
+??? end of timestamper thread
+runsolver used 0.073608 second user time and 0.106267 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 2178
+BRUNCH_STAT ORIGINAL_BITCODE_NAME openssl.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 1404
+BRUNCH_STAT FINAL_BITCODE_NAME openssl.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 1504
+BRUNCH_STAT EXPERIMENT_TIME 19/03/05-21:16:32

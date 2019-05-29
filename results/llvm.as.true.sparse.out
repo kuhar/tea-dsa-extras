@@ -1,0 +1,935 @@
+llvm-as.bc true sparse
+BITCODE:llvm-as.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/clang
+PTA=sparse
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt llvm-as.bc -O1 -o ./temps/llvm-as.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/llvm-as.n.bc -o ./temps/llvm-as.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/llvm-as.n.pp.bc -o ./temps/llvm-as.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=sparse --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (52901 MiB free)
+  memory of node 1: 64486 MiB (54054 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/llvm-as.n.pp.bc -o ./temps/llvm-as.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=sparse --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing wall clock limit (soft limit, will send SIGTERM then SIGKILL): 3600 seconds
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 65536000 KiB
+Linux 4.15.0-43-generic
+Current StackSize limit: 8192 KiB
+
+solver pid=26171, runsolver pid=26170
+
+[startup+0.100073 s]*
+/proc/loadavg: 1.00 1.03 1.06 2/909 26172
+/proc/meminfo: memFree=109490920/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=97200 memory=55156 CPUtime=0.11 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 11545 0 0 0 10 1 0 0 20 0 1 0 373173831 99532800 13789 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 24300 13789 4144 4212 0 9774 0
+Current children cumulated CPU time: 0.11 s
+Current children cumulated vsize: 97200 KiB
+Current children cumulated memory: 55156 KiB
+
+[startup+0.221811 s]*
+/proc/loadavg: 1.00 1.03 1.06 2/909 26172
+/proc/meminfo: memFree=109456848/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=138288 memory=97316 CPUtime=0.23 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 23946 0 0 0 19 4 0 0 20 0 1 0 373173831 141606912 24329 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 34572 24329 4784 4212 0 20046 0
+Current children cumulated CPU time: 0.23 s
+Current children cumulated vsize: 138288 KiB
+Current children cumulated memory: 97316 KiB
+
+[startup+0.322253 s]*
+/proc/loadavg: 1.00 1.03 1.06 2/909 26190
+/proc/meminfo: memFree=109426284/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=159944 memory=121208 CPUtime=0.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 29415 0 0 0 27 6 0 0 20 0 1 0 373173831 163782656 30302 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 39986 30302 5312 4212 0 25460 0
+Current children cumulated CPU time: 0.33 s
+Current children cumulated vsize: 159944 KiB
+Current children cumulated memory: 121208 KiB
+
+[startup+0.700344 s]
+/proc/loadavg: 1.00 1.03 1.06 2/909 26190
+/proc/meminfo: memFree=109377252/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=189792 memory=155156 CPUtime=0.69 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 42832 0 0 0 61 8 0 0 20 0 1 0 373173831 194347008 38789 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 47448 38789 2785 4212 0 36425 0
+Current children cumulated CPU time: 0.69 s
+Current children cumulated vsize: 189792 KiB
+Current children cumulated memory: 155156 KiB
+Sea Allocators:
+	Znaj
+	ZnajRKSt9nothrow_t
+	Znam
+	ZnamRKSt9nothrow_t
+	Znwj
+	ZnwjRKSt9nothrow_t
+	Znwm
+	ZnwmRKSt9nothrow_t
+	_ZL9getMemoryj
+	_ZN12_GLOBAL__N_123CreateDefaultTimerGroup4callEv.stub
+	_ZN12_GLOBAL__N_19AsmParser10getContextEv.stub
+	_ZN12_GLOBAL__N_19AsmParser11getStreamerEv.stub
+	_ZN12_GLOBAL__N_19AsmParser16getSourceManagerEv.stub
+	_ZN12_GLOBAL__N_19AsmParser3LexEv.stub
+	_ZN12_GLOBAL__N_19AsmParser8getLexerEv.stub
+	_ZN4llvm10MCStreamer12EmitCFILabelEv.stub
+	_ZN4llvm10MCStreamer12GetCommentOSEv.stub
+	_ZN4llvm10MCStreamer15getAssemblerPtrEv.stub
+	_ZN4llvm10MCStreamer23getDwarfLineTableSymbolEj.stub
+	_ZN4llvm11raw_ostream10resetColorEv.stub
+	_ZN4llvm11raw_ostream11changeColorENS0_6ColorsEbb.stub
+	_ZN4llvm11raw_ostream12reverseColorEv.stub
+	_ZN4llvm12safe_reallocEPvm
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_112Name2PairMapEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_113StatisticInfoEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_117CommandLineParserEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_118ErrorErrorCategoryEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_120FilesToRemoveCleanupEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_124BitcodeErrorCategoryTypeEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_126InstrProfErrorCategoryTypeEE4callEv.stub
+	_ZN4llvm14object_creatorINS_12PassRegistryEE4callEv.stub
+	_ZN4llvm14object_creatorINS_12_GLOBAL__N_16legacy14PassTimingInfoEE4callEv.stub
+	_ZN4llvm14object_creatorINS_2cl10SubCommandEE4callEv.stub
+	_ZN4llvm14object_creatorINS_3sys10SmartMutexILb0EEEE4callEv.stub
+	_ZN4llvm14object_creatorINS_3sys10SmartMutexILb1EEEE4callEv.stub
+	_ZN4llvm14object_creatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE4callEv.stub
+	_ZN4llvm14object_creatorISt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS7_EEE4callEv.stub
+	_ZN4llvm14raw_fd_ostream10resetColorEv.stub
+	_ZN4llvm14raw_fd_ostream11changeColorENS_11raw_ostream6ColorsEbb.stub
+	_ZN4llvm14raw_fd_ostream12reverseColorEv.stub
+	_ZN4llvm15CatchSwitchInst14handler_helperEPKNS_5ValueE.stub
+	_ZN4llvm15CatchSwitchInst14handler_helperEPNS_5ValueE.stub
+	_ZN4llvm17MCTargetAsmParser19applyModifierToExprEPKNS_6MCExprENS_15MCSymbolRefExpr11VariantKindERNS_9MCContextE.stub
+	_ZN4llvm17MCTargetAsmParser21createTargetUnaryExprEPKNS_6MCExprENS_8AsmToken9TokenKindERNS_9MCContextE.stub
+	_ZN4llvm21formatted_raw_ostream10resetColorEv.stub
+	_ZN4llvm21formatted_raw_ostream11changeColorENS_11raw_ostream6ColorsEbb.stub
+	_ZN4llvm21formatted_raw_ostream12reverseColorEv.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsENS_9StringRefE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEPKc.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEPKv.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_12SMDiagnosticE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_5TwineE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_5ValueE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_6ModuleE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEa.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEc.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEd.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEh.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEi.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEj.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEl.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEm.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEx.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEy.stub
+	_ZN4llvm7MDTuple11getDistinctERNS_11LLVMContextENS_8ArrayRefIPNS_8MetadataEEE.stub
+	_ZN4llvm7MDTuple3getERNS_11LLVMContextENS_8ArrayRefIPNS_8MetadataEEE.stub
+	_ZNK12_GLOBAL__N_118ErrorErrorCategory4nameEv.stub
+	_ZNK12_GLOBAL__N_124BitcodeErrorCategoryType4nameEv.stub
+	_ZNK12_GLOBAL__N_126InstrProfErrorCategoryType4nameEv.stub
+	_ZNK4llvm15concat_iteratorIKNS_11GlobalValueEJNS_14ilist_iteratorINS_12ilist_detail12node_optionsINS_8FunctionELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_14GlobalVariableELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_11GlobalAliasELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_11GlobalIFuncELb0ELb0EvEELb0ELb1EEEEE9getHelperILm0EEEPS2_v.stub
+	_ZNK4llvm15concat_iteratorIKNS_11GlobalValueEJNS_14ilist_iteratorINS_12ilist_detail12node_optionsINS_8FunctionELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_14GlobalVariableELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_11GlobalAliasELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_11GlobalIFuncELb0ELb0EvEELb0ELb1EEEEE9getHelperILm1EEEPS2_v.stub
+	_ZNK4llvm15concat_iteratorIKNS_11GlobalValueEJNS_14ilist_iteratorINS_12ilist_detail12node_optionsINS_8FunctionELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_14GlobalVariableELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_11GlobalAliasELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_11GlobalIFuncELb0ELb0EvEELb0ELb1EEEEE9getHelperILm2EEEPS2_v.stub
+	_ZNK4llvm15concat_iteratorIKNS_11GlobalValueEJNS_14ilist_iteratorINS_12ilist_detail12node_optionsINS_8FunctionELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_14GlobalVariableELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_11GlobalAliasELb0ELb0EvEELb0ELb1EEENS3_INS5_INS_11GlobalIFuncELb0ELb0EvEELb0ELb1EEEEE9getHelperILm3EEEPS2_v.stub
+	_ZNK4llvm15concat_iteratorINS_11GlobalValueEJNS_14ilist_iteratorINS_12ilist_detail12node_optionsINS_8FunctionELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_14GlobalVariableELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_11GlobalAliasELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_11GlobalIFuncELb0ELb0EvEELb0ELb0EEEEE9getHelperILm0EEEPS1_v.stub
+	_ZNK4llvm15concat_iteratorINS_11GlobalValueEJNS_14ilist_iteratorINS_12ilist_detail12node_optionsINS_8FunctionELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_14GlobalVariableELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_11GlobalAliasELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_11GlobalIFuncELb0ELb0EvEELb0ELb0EEEEE9getHelperILm1EEEPS1_v.stub
+	_ZNK4llvm15concat_iteratorINS_11GlobalValueEJNS_14ilist_iteratorINS_12ilist_detail12node_optionsINS_8FunctionELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_14GlobalVariableELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_11GlobalAliasELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_11GlobalIFuncELb0ELb0EvEELb0ELb0EEEEE9getHelperILm2EEEPS1_v.stub
+	_ZNK4llvm15concat_iteratorINS_11GlobalValueEJNS_14ilist_iteratorINS_12ilist_detail12node_optionsINS_8FunctionELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_14GlobalVariableELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_11GlobalAliasELb0ELb0EvEELb0ELb0EEENS2_INS4_INS_11GlobalIFuncELb0ELb0EvEELb0ELb0EEEEE9getHelperILm3EEEPS1_v.stub
+	_ZNK4llvm9ErrorInfoINS_11StringErrorENS_13ErrorInfoBaseEE14dynamicClassIDEv.stub
+	_ZNK4llvm9ErrorInfoINS_9ErrorListENS_13ErrorInfoBaseEE14dynamicClassIDEv.stub
+	_ZNSt23_Sp_counted_ptr_inplaceIN4llvm13BitCodeAbbrevESaIS1_ELN9__gnu_cxx12_Lock_policyE2EE14_M_get_deleterERKSt9type_info.stub
+	_ZNSt3_V215system_categoryEv
+	_ZNSt3_V216generic_categoryEv
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_replaceEmmPKcm
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_appendEPKcm
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERmm
+	_ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base
+	_ZSt18_Rb_tree_incrementPKSt18_Rb_tree_node_base
+	_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base
+	_ZSt28_Rb_tree_rebalance_for_erasePSt18_Rb_tree_node_baseRS_
+	_Znam
+	_Znwm
+	_ZnwmRKSt9nothrow_t
+	__ctype_b_loc
+	__ctype_tolower_loc
+	__ctype_toupper_loc
+	__errno_location
+	calloc
+	getcwd
+	getenv
+	llvm.invariant.start.p0i8
+	malloc
+	memchr
+	mmap
+	realloc
+	realpath
+	strchr
+	strdup
+	strerror_r
+	strsep
+	strsignal
+	verifier.nondet.16
+	verifier.nondet.164
+	verifier.nondet.31
+	verifier.nondet.379
+	verifier.nondet.71
+	verifier.nondet.78
+Warning: Running SVF PTA!
+BRUNCH_STAT PTA_KIND SVF_Sparse
+
+[startup+1.50037 s]
+/proc/loadavg: 1.00 1.03 1.06 2/909 26190
+/proc/meminfo: memFree=109354324/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=696788 memory=666044 CPUtime=1.48 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 169990 0 0 0 117 31 0 0 20 0 1 0 373173831 713510912 166511 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 174197 166511 3363 4212 0 163174 0
+Current children cumulated CPU time: 1.48 s
+Current children cumulated vsize: 696788 KiB
+Current children cumulated memory: 666044 KiB
+
+[startup+3.12163 s]
+/proc/loadavg: 1.00 1.03 1.06 2/909 26212
+/proc/meminfo: memFree=107228684/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=2478480 memory=2447516 CPUtime=3.11 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 615407 0 0 0 202 109 0 0 20 0 1 0 373173831 2537963520 611879 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 619620 611879 3363 4212 0 608597 0
+Current children cumulated CPU time: 3.11 s
+Current children cumulated vsize: 2478480 KiB
+Current children cumulated memory: 2447516 KiB
+
+[startup+6.30019 s]
+/proc/loadavg: 1.00 1.03 1.06 2/909 26252
+/proc/meminfo: memFree=106987852/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=2591720 memory=2561036 CPUtime=6.29 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 643735 0 0 0 513 116 0 0 20 0 1 0 373173831 2653921280 640259 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 647930 640259 3363 4212 0 636907 0
+Current children cumulated CPU time: 6.29 s
+Current children cumulated vsize: 2591720 KiB
+Current children cumulated memory: 2561036 KiB
+
+[startup+12.7002 s]
+/proc/loadavg: 1.00 1.03 1.06 2/909 26325
+/proc/meminfo: memFree=106922320/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=2698680 memory=2667956 CPUtime=12.69 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 670477 0 0 0 1146 123 0 0 20 0 1 0 373173831 2763448320 666989 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 674703 666989 3363 4212 0 663680 0
+Current children cumulated CPU time: 12.69 s
+Current children cumulated vsize: 2698680 KiB
+Current children cumulated memory: 2667956 KiB
+
+[startup+25.5003 s]
+/proc/loadavg: 1.07 1.04 1.06 2/909 26482
+/proc/meminfo: memFree=105872088/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=3747288 memory=3716688 CPUtime=25.49 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 932707 0 0 0 2345 204 0 0 20 0 1 0 373173831 3837222912 929172 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 936822 929172 3411 4212 0 925799 0
+Current children cumulated CPU time: 25.49 s
+Current children cumulated vsize: 3747288 KiB
+Current children cumulated memory: 3716688 KiB
+
+[startup+51.1226 s]
+/proc/loadavg: 1.04 1.04 1.06 2/907 26812
+/proc/meminfo: memFree=105361328/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=4209616 memory=4179072 CPUtime=51.12 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1048734 0 0 0 4825 287 0 0 20 0 1 0 373173831 4310646784 1044768 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1052404 1044768 3411 4212 0 1041381 0
+Current children cumulated CPU time: 51.12 s
+Current children cumulated vsize: 4209616 KiB
+Current children cumulated memory: 4179072 KiB
+
+[startup+102.3 s]
+/proc/loadavg: 1.02 1.03 1.05 2/903 27447
+/proc/meminfo: memFree=105109172/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=4464296 memory=4433832 CPUtime=102.29 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1112403 0 0 0 9876 353 0 0 20 0 1 0 373173831 4571439104 1108458 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1116074 1108458 3411 4212 0 1105051 0
+Current children cumulated CPU time: 102.29 s
+Current children cumulated vsize: 4464296 KiB
+Current children cumulated memory: 4433832 KiB
+
+[startup+162.3 s]
+/proc/loadavg: 1.10 1.05 1.06 2/903 28206
+/proc/meminfo: memFree=104723152/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=4843400 memory=4812896 CPUtime=162.29 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1207795 0 0 0 15846 383 0 0 20 0 1 0 373173831 4959641600 1203224 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1210850 1203224 3411 4212 0 1199827 0
+Current children cumulated CPU time: 162.29 s
+Current children cumulated vsize: 4843400 KiB
+Current children cumulated memory: 4812896 KiB
+
+[startup+222.3 s]
+/proc/loadavg: 1.03 1.04 1.05 2/905 28940
+/proc/meminfo: memFree=104447204/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=5118884 memory=5088228 CPUtime=222.29 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1276648 0 0 0 21826 403 0 0 20 0 1 0 373173831 5241737216 1272057 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1279721 1272057 3411 4212 0 1268698 0
+Current children cumulated CPU time: 222.29 s
+Current children cumulated vsize: 5118884 KiB
+Current children cumulated memory: 5088228 KiB
+
+[startup+282.3 s]
+/proc/loadavg: 1.05 1.05 1.05 2/901 29677
+/proc/meminfo: memFree=104322644/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=5247408 memory=5216776 CPUtime=282.29 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1311029 0 0 0 27777 452 0 0 20 0 1 0 373173831 5373345792 1304194 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1311852 1304194 3411 4212 0 1300829 0
+Current children cumulated CPU time: 282.29 s
+Current children cumulated vsize: 5247408 KiB
+Current children cumulated memory: 5216776 KiB
+
+[startup+342.3 s]
+/proc/loadavg: 1.02 1.03 1.05 2/901 30427
+/proc/meminfo: memFree=103819000/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=5749536 memory=5718968 CPUtime=342.29 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1436682 0 0 0 33749 480 0 0 20 0 1 0 373173831 5887524864 1429742 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1437384 1429742 3411 4212 0 1426361 0
+Current children cumulated CPU time: 342.29 s
+Current children cumulated vsize: 5749536 KiB
+Current children cumulated memory: 5718968 KiB
+
+[startup+402.3 s]
+/proc/loadavg: 1.16 1.06 1.05 2/903 31202
+/proc/meminfo: memFree=103520112/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6043764 memory=6013264 CPUtime=402.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1510275 0 0 0 39723 507 0 0 20 0 1 0 373173831 6188814336 1503316 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1510941 1503316 3411 4212 0 1499918 0
+Current children cumulated CPU time: 402.3 s
+Current children cumulated vsize: 6043764 KiB
+Current children cumulated memory: 6013264 KiB
+
+[startup+462.3 s]
+/proc/loadavg: 1.34 1.14 1.08 2/907 31977
+/proc/meminfo: memFree=103398260/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6162960 memory=6132504 CPUtime=462.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1540092 0 0 0 45702 528 0 0 20 0 1 0 373173831 6310871040 1533126 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1540740 1533126 3411 4212 0 1529717 0
+Current children cumulated CPU time: 462.3 s
+Current children cumulated vsize: 6162960 KiB
+Current children cumulated memory: 6132504 KiB
+
+[startup+522.3 s]
+/proc/loadavg: 1.28 1.17 1.10 2/907 32729
+/proc/meminfo: memFree=103312360/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6248100 memory=6217508 CPUtime=522.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1562633 0 0 0 51683 547 0 0 20 0 1 0 373173831 6398054400 1554377 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1562025 1554377 3411 4212 0 1551002 0
+Current children cumulated CPU time: 522.3 s
+Current children cumulated vsize: 6248100 KiB
+Current children cumulated memory: 6217508 KiB
+
+[startup+582.3 s]
+/proc/loadavg: 1.18 1.15 1.09 2/902 33478
+/proc/meminfo: memFree=103241640/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6324132 memory=6293432 CPUtime=582.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1582383 0 0 0 57667 563 0 0 20 0 1 0 373173831 6475911168 1573358 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1581033 1573358 3411 4212 0 1570010 0
+Current children cumulated CPU time: 582.3 s
+Current children cumulated vsize: 6324132 KiB
+Current children cumulated memory: 6293432 KiB
+
+[startup+642.3 s]
+/proc/loadavg: 1.06 1.12 1.09 2/902 34235
+/proc/meminfo: memFree=103159220/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6403596 memory=6373068 CPUtime=642.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1602323 0 0 0 63646 584 0 0 20 0 1 0 373173831 6557282304 1593267 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1600899 1593267 3411 4212 0 1589876 0
+Current children cumulated CPU time: 642.3 s
+Current children cumulated vsize: 6403596 KiB
+Current children cumulated memory: 6373068 KiB
+
+[startup+702.3 s]
+/proc/loadavg: 1.02 1.10 1.08 2/904 34976
+/proc/meminfo: memFree=103143584/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6416356 memory=6385740 CPUtime=702.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1608765 0 0 0 69604 626 0 0 20 0 1 0 373173831 6570348544 1596435 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1604089 1596435 3411 4212 0 1593066 0
+Current children cumulated CPU time: 702.3 s
+Current children cumulated vsize: 6416356 KiB
+Current children cumulated memory: 6385740 KiB
+
+[startup+762.3 s]
+/proc/loadavg: 1.14 1.11 1.09 2/905 35728
+/proc/meminfo: memFree=102776120/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6786616 memory=6756084 CPUtime=762.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1702642 0 0 0 75549 681 0 0 20 0 1 0 373173831 6949494784 1689021 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1696654 1689021 3411 4212 0 1685631 0
+Current children cumulated CPU time: 762.3 s
+Current children cumulated vsize: 6786616 KiB
+Current children cumulated memory: 6756084 KiB
+
+[startup+822.3 s]
+/proc/loadavg: 1.12 1.11 1.09 2/903 36479
+/proc/meminfo: memFree=102651432/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6913468 memory=6882804 CPUtime=822.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1734368 0 0 0 81532 698 0 0 20 0 1 0 373173831 7079391232 1720701 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1728367 1720701 3411 4212 0 1717344 0
+Current children cumulated CPU time: 822.3 s
+Current children cumulated vsize: 6913468 KiB
+Current children cumulated memory: 6882804 KiB
+
+[startup+882.3 s]
+/proc/loadavg: 1.04 1.09 1.08 2/900 37223
+/proc/meminfo: memFree=102575068/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=6989764 memory=6959100 CPUtime=882.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1753429 0 0 0 87518 712 0 0 20 0 1 0 373173831 7157518336 1739775 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1747441 1739775 3411 4212 0 1736418 0
+Current children cumulated CPU time: 882.3 s
+Current children cumulated vsize: 6989764 KiB
+Current children cumulated memory: 6959100 KiB
+
+[startup+942.3 s]
+/proc/loadavg: 1.01 1.07 1.08 2/904 37982
+/proc/meminfo: memFree=102473764/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7086388 memory=7055724 CPUtime=942.31 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1777609 0 0 0 93503 728 0 0 20 0 1 0 373173831 7256461312 1763931 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1771597 1763931 3411 4212 0 1760574 0
+Current children cumulated CPU time: 942.31 s
+Current children cumulated vsize: 7086388 KiB
+Current children cumulated memory: 7055724 KiB
+
+[startup+1002.3 s]
+/proc/loadavg: 1.00 1.06 1.07 2/904 38749
+/proc/meminfo: memFree=102341576/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7217728 memory=7187068 CPUtime=1002.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1810469 0 0 0 99487 743 0 0 20 0 1 0 373173831 7390953472 1796767 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1804432 1796767 3411 4212 0 1793409 0
+Current children cumulated CPU time: 1002.3 s
+Current children cumulated vsize: 7217728 KiB
+Current children cumulated memory: 7187068 KiB
+
+[startup+1062.3 s]
+/proc/loadavg: 1.13 1.08 1.08 2/904 39500
+/proc/meminfo: memFree=102257600/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7304320 memory=7273804 CPUtime=1062.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1832131 0 0 0 105470 760 0 0 20 0 1 0 373173831 7479623680 1818451 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1826080 1818451 3411 4212 0 1815057 0
+Current children cumulated CPU time: 1062.3 s
+Current children cumulated vsize: 7304320 KiB
+Current children cumulated memory: 7273804 KiB
+
+[startup+1122.3 s]
+/proc/loadavg: 1.26 1.12 1.09 2/903 40247
+/proc/meminfo: memFree=102152612/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7408732 memory=7378084 CPUtime=1122.3 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1858261 0 0 0 111452 778 0 0 20 0 1 0 373173831 7586541568 1844521 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1852183 1844521 3411 4212 0 1841160 0
+Current children cumulated CPU time: 1122.3 s
+Current children cumulated vsize: 7408732 KiB
+Current children cumulated memory: 7378084 KiB
+
+[startup+1182.3 s]
+/proc/loadavg: 1.14 1.11 1.09 2/901 335
+/proc/meminfo: memFree=102048464/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7513804 memory=7483156 CPUtime=1182.31 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1884502 0 0 0 117433 798 0 0 20 0 1 0 373173831 7694135296 1870789 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1878451 1870789 3411 4212 0 1867428 0
+Current children cumulated CPU time: 1182.31 s
+Current children cumulated vsize: 7513804 KiB
+Current children cumulated memory: 7483156 KiB
+
+[startup+1242.3 s]
+/proc/loadavg: 1.11 1.11 1.09 2/901 1129
+/proc/meminfo: memFree=101964128/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7602376 memory=7571860 CPUtime=1242.31 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1906664 0 0 0 123417 814 0 0 20 0 1 0 373173831 7784833024 1892965 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1900594 1892965 3411 4212 0 1889571 0
+Current children cumulated CPU time: 1242.31 s
+Current children cumulated vsize: 7602376 KiB
+Current children cumulated memory: 7571860 KiB
+
+[startup+1302.3 s]
+/proc/loadavg: 1.08 1.10 1.09 2/903 1912
+/proc/meminfo: memFree=101839932/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7720648 memory=7690132 CPUtime=1302.31 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1936213 0 0 0 129397 834 0 0 20 0 1 0 373173831 7905943552 1922533 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1930162 1922533 3411 4212 0 1919139 0
+Current children cumulated CPU time: 1302.31 s
+Current children cumulated vsize: 7720648 KiB
+Current children cumulated memory: 7690132 KiB
+
+[startup+1362.3 s]
+/proc/loadavg: 1.03 1.08 1.08 2/903 2680
+/proc/meminfo: memFree=101726280/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7833772 memory=7803296 CPUtime=1362.31 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1964541 0 0 0 135377 854 0 0 20 0 1 0 373173831 8021782528 1950824 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1958443 1950824 3411 4212 0 1947420 0
+Current children cumulated CPU time: 1362.31 s
+Current children cumulated vsize: 7833772 KiB
+Current children cumulated memory: 7803296 KiB
+
+[startup+1422.3 s]
+/proc/loadavg: 1.11 1.09 1.09 2/903 3634
+/proc/meminfo: memFree=101629572/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=7931188 memory=7900640 CPUtime=1422.31 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 1988901 0 0 0 141357 874 0 0 20 0 1 0 373173831 8121536512 1975160 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 1982797 1975160 3411 4212 0 1971774 0
+Current children cumulated CPU time: 1422.31 s
+Current children cumulated vsize: 7931188 KiB
+Current children cumulated memory: 7900640 KiB
+
+[startup+1482.3 s]
+/proc/loadavg: 1.04 1.07 1.08 2/903 4382
+/proc/meminfo: memFree=101456972/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8103052 memory=8072296 CPUtime=1482.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2031909 0 0 0 147334 898 0 0 20 0 1 0 373173831 8297525248 2018074 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2025763 2018074 3411 4212 0 2014740 0
+Current children cumulated CPU time: 1482.32 s
+Current children cumulated vsize: 8103052 KiB
+Current children cumulated memory: 8072296 KiB
+
+[startup+1542.3 s]
+/proc/loadavg: 1.01 1.06 1.08 2/901 5126
+/proc/meminfo: memFree=101426568/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8136184 memory=8105560 CPUtime=1542.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2040202 0 0 0 153316 916 0 0 20 0 1 0 373173831 8331452416 2026390 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2034046 2026390 3411 4212 0 2023023 0
+Current children cumulated CPU time: 1542.32 s
+Current children cumulated vsize: 8136184 KiB
+Current children cumulated memory: 8105560 KiB
+
+[startup+1602.3 s]
+/proc/loadavg: 1.06 1.06 1.08 2/901 5863
+/proc/meminfo: memFree=101401312/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8163508 memory=8132832 CPUtime=1602.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2047208 0 0 0 159300 932 0 0 20 0 1 0 373173831 8359432192 2033208 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2040877 2033208 3411 4212 0 2029854 0
+Current children cumulated CPU time: 1602.32 s
+Current children cumulated vsize: 8163508 KiB
+Current children cumulated memory: 8132832 KiB
+
+[startup+1662.3 s]
+/proc/loadavg: 1.31 1.11 1.09 2/900 6648
+/proc/meminfo: memFree=101318060/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8244688 memory=8213972 CPUtime=1662.31 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2067535 0 0 0 165275 956 0 0 20 0 1 0 373173831 8442560512 2053493 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2061172 2053493 3411 4212 0 2050149 0
+Current children cumulated CPU time: 1662.31 s
+Current children cumulated vsize: 8244688 KiB
+Current children cumulated memory: 8213972 KiB
+
+[startup+1722.3 s]
+/proc/loadavg: 1.14 1.11 1.09 2/899 7448
+/proc/meminfo: memFree=101195108/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8365336 memory=8334632 CPUtime=1722.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2097773 0 0 0 171253 979 0 0 20 0 1 0 373173831 8566104064 2083658 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2091334 2083658 3411 4212 0 2080311 0
+Current children cumulated CPU time: 1722.32 s
+Current children cumulated vsize: 8365336 KiB
+Current children cumulated memory: 8334632 KiB
+
+[startup+1782.3 s]
+/proc/loadavg: 1.05 1.08 1.08 2/901 8202
+/proc/meminfo: memFree=101009984/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8550136 memory=8519684 CPUtime=1782.31 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2144909 0 0 0 177229 1002 0 0 20 0 1 0 373173831 8755339264 2129921 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2137534 2129921 3411 4212 0 2126511 0
+Current children cumulated CPU time: 1782.31 s
+Current children cumulated vsize: 8550136 KiB
+Current children cumulated memory: 8519684 KiB
+
+[startup+1842.3 s]
+/proc/loadavg: 1.11 1.10 1.09 2/901 8942
+/proc/meminfo: memFree=100928200/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8633560 memory=8602904 CPUtime=1842.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2166071 0 0 0 183212 1020 0 0 20 0 1 0 373173831 8840765440 2150726 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2158390 2150726 3411 4212 0 2147367 0
+Current children cumulated CPU time: 1842.32 s
+Current children cumulated vsize: 8633560 KiB
+Current children cumulated memory: 8602904 KiB
+
+[startup+1902.3 s]
+/proc/loadavg: 1.04 1.08 1.08 2/903 9706
+/proc/meminfo: memFree=100815612/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8742460 memory=8711840 CPUtime=1902.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2193522 0 0 0 189196 1036 0 0 20 0 1 0 373173831 8952279040 2177960 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2185615 2177960 3411 4212 0 2174592 0
+Current children cumulated CPU time: 1902.32 s
+Current children cumulated vsize: 8742460 KiB
+Current children cumulated memory: 8711840 KiB
+
+[startup+1962.3 s]
+/proc/loadavg: 1.01 1.06 1.08 2/903 10433
+/proc/meminfo: memFree=100708756/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8852416 memory=8821848 CPUtime=1962.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2222292 0 0 0 195176 1056 0 0 20 0 1 0 373173831 9064873984 2205462 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2213104 2205462 3411 4212 0 2202081 0
+Current children cumulated CPU time: 1962.32 s
+Current children cumulated vsize: 8852416 KiB
+Current children cumulated memory: 8821848 KiB
+
+[startup+2022.3 s]
+/proc/loadavg: 1.00 1.05 1.07 2/911 11222
+/proc/meminfo: memFree=100607272/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8942836 memory=8912268 CPUtime=2022.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2246387 0 0 0 201157 1075 0 0 20 0 1 0 373173831 9157464064 2228067 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2235709 2228067 3411 4212 0 2224686 0
+Current children cumulated CPU time: 2022.32 s
+Current children cumulated vsize: 8942836 KiB
+Current children cumulated memory: 8912268 KiB
+
+[startup+2082.3 s]
+/proc/loadavg: 1.10 1.08 1.08 2/912 11968
+/proc/meminfo: memFree=100555184/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=8994316 memory=8963796 CPUtime=2082.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2259285 0 0 0 207140 1092 0 0 20 0 1 0 373173831 9210179584 2240949 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2248579 2240949 3411 4212 0 2237556 0
+Current children cumulated CPU time: 2082.32 s
+Current children cumulated vsize: 8994316 KiB
+Current children cumulated memory: 8963796 KiB
+
+[startup+2142.3 s]
+/proc/loadavg: 1.03 1.06 1.08 2/904 12722
+/proc/meminfo: memFree=100450060/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=9103084 memory=9072512 CPUtime=2142.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2286883 0 0 0 213119 1113 0 0 20 0 1 0 373173831 9321558016 2268128 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2275771 2268128 3411 4212 0 2264748 0
+Current children cumulated CPU time: 2142.32 s
+Current children cumulated vsize: 9103084 KiB
+Current children cumulated memory: 9072512 KiB
+
+[startup+2202.3 s]
+/proc/loadavg: 1.01 1.05 1.07 2/902 13485
+/proc/meminfo: memFree=100275704/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=9281680 memory=9251048 CPUtime=2202.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2331865 0 0 0 219099 1134 0 0 20 0 1 0 373173831 9504440320 2312762 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2320420 2312762 3411 4212 0 2309397 0
+Current children cumulated CPU time: 2202.33 s
+Current children cumulated vsize: 9281680 KiB
+Current children cumulated memory: 9251048 KiB
+
+[startup+2262.3 s]
+/proc/loadavg: 1.00 1.04 1.06 2/901 14227
+/proc/meminfo: memFree=100215884/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=9342268 memory=9311656 CPUtime=2262.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2347116 0 0 0 225079 1153 0 0 20 0 1 0 373173831 9566482432 2327914 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2335567 2327914 3411 4212 0 2324544 0
+Current children cumulated CPU time: 2262.32 s
+Current children cumulated vsize: 9342268 KiB
+Current children cumulated memory: 9311656 KiB
+
+[startup+2322.3 s]
+/proc/loadavg: 1.00 1.03 1.06 2/901 14973
+/proc/meminfo: memFree=100153860/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=9408400 memory=9377688 CPUtime=2322.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2364146 0 0 0 231060 1172 0 0 20 0 1 0 373173831 9634201600 2344422 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2352100 2344422 3411 4212 0 2341077 0
+Current children cumulated CPU time: 2322.32 s
+Current children cumulated vsize: 9408400 KiB
+Current children cumulated memory: 9377688 KiB
+
+[startup+2382.3 s]
+/proc/loadavg: 1.12 1.05 1.06 2/902 15719
+/proc/meminfo: memFree=100026212/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=9531028 memory=9500588 CPUtime=2382.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2394854 0 0 0 237041 1192 0 0 20 0 1 0 373173831 9759772672 2375147 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2382757 2375147 3411 4212 0 2371734 0
+Current children cumulated CPU time: 2382.33 s
+Current children cumulated vsize: 9531028 KiB
+Current children cumulated memory: 9500588 KiB
+
+[startup+2442.3 s]
+/proc/loadavg: 1.19 1.07 1.07 2/904 16468
+/proc/meminfo: memFree=99885404/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=9669100 memory=9638476 CPUtime=2442.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2429934 0 0 0 243018 1215 0 0 20 0 1 0 373173831 9901158400 2409619 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2417275 2409619 3411 4212 0 2406252 0
+Current children cumulated CPU time: 2442.33 s
+Current children cumulated vsize: 9669100 KiB
+Current children cumulated memory: 9638476 KiB
+
+[startup+2502.3 s]
+/proc/loadavg: 1.07 1.06 1.06 2/903 17197
+/proc/meminfo: memFree=99796232/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=9759124 memory=9728536 CPUtime=2502.32 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2453366 0 0 0 248996 1236 0 0 20 0 1 0 373173831 9993342976 2432134 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2439781 2432134 3411 4212 0 2428758 0
+Current children cumulated CPU time: 2502.32 s
+Current children cumulated vsize: 9759124 KiB
+Current children cumulated memory: 9728536 KiB
+
+[startup+2562.3 s]
+/proc/loadavg: 1.02 1.04 1.06 2/901 17933
+/proc/meminfo: memFree=99656280/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=9902212 memory=9871628 CPUtime=2562.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2489322 0 0 0 254971 1262 0 0 20 0 1 0 373173831 10139865088 2467907 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2475553 2467907 3411 4212 0 2464530 0
+Current children cumulated CPU time: 2562.33 s
+Current children cumulated vsize: 9902212 KiB
+Current children cumulated memory: 9871628 KiB
+
+[startup+2622.3 s]
+/proc/loadavg: 1.01 1.03 1.05 2/903 18686
+/proc/meminfo: memFree=99494648/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10062328 memory=10031736 CPUtime=2622.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2529443 0 0 0 260946 1287 0 0 20 0 1 0 373173831 10303823872 2507934 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2515582 2507934 3411 4212 0 2504559 0
+Current children cumulated CPU time: 2622.33 s
+Current children cumulated vsize: 10062328 KiB
+Current children cumulated memory: 10031736 KiB
+
+[startup+2682.3 s]
+/proc/loadavg: 1.16 1.07 1.06 2/903 19428
+/proc/meminfo: memFree=99383856/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10170436 memory=10139816 CPUtime=2682.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2556794 0 0 0 266922 1311 0 0 20 0 1 0 373173831 10414526464 2534954 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2542609 2534954 3411 4212 0 2531586 0
+Current children cumulated CPU time: 2682.33 s
+Current children cumulated vsize: 10170436 KiB
+Current children cumulated memory: 10139816 KiB
+
+[startup+2742.3 s]
+/proc/loadavg: 1.11 1.07 1.06 2/901 20169
+/proc/meminfo: memFree=99305888/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10248844 memory=10218388 CPUtime=2742.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2576619 0 0 0 272902 1331 0 0 20 0 1 0 373173831 10494816256 2554597 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2562211 2554597 3411 4212 0 2551188 0
+Current children cumulated CPU time: 2742.33 s
+Current children cumulated vsize: 10248844 KiB
+Current children cumulated memory: 10218388 KiB
+
+[startup+2802.3 s]
+/proc/loadavg: 1.04 1.05 1.06 2/900 20903
+/proc/meminfo: memFree=99242596/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10314316 memory=10283640 CPUtime=2802.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2593106 0 0 0 278880 1353 0 0 20 0 1 0 373173831 10561859584 2570910 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2578579 2570910 3411 4212 0 2567556 0
+Current children cumulated CPU time: 2802.33 s
+Current children cumulated vsize: 10314316 KiB
+Current children cumulated memory: 10283640 KiB
+
+[startup+2862.3 s]
+/proc/loadavg: 1.01 1.04 1.05 2/902 21653
+/proc/meminfo: memFree=99174656/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10381900 memory=10351340 CPUtime=2862.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2610430 0 0 0 284858 1375 0 0 20 0 1 0 373173831 10631065600 2587835 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2595475 2587835 3411 4212 0 2584452 0
+Current children cumulated CPU time: 2862.33 s
+Current children cumulated vsize: 10381900 KiB
+Current children cumulated memory: 10351340 KiB
+
+[startup+2922.3 s]
+/proc/loadavg: 1.35 1.12 1.08 2/902 22414
+/proc/meminfo: memFree=99080376/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10473376 memory=10442884 CPUtime=2922.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2633642 0 0 0 290833 1400 0 0 20 0 1 0 373173831 10724737024 2610721 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2618344 2610721 3411 4212 0 2607321 0
+Current children cumulated CPU time: 2922.33 s
+Current children cumulated vsize: 10473376 KiB
+Current children cumulated memory: 10442884 KiB
+
+[startup+2982.3 s]
+/proc/loadavg: 1.32 1.14 1.09 2/903 23148
+/proc/meminfo: memFree=99023364/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10530268 memory=10499696 CPUtime=2982.33 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2648121 0 0 0 296810 1423 0 0 20 0 1 0 373173831 10782994432 2624924 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2632567 2624924 3411 4212 0 2621544 0
+Current children cumulated CPU time: 2982.33 s
+Current children cumulated vsize: 10530268 KiB
+Current children cumulated memory: 10499696 KiB
+
+[startup+3042.3 s]
+/proc/loadavg: 1.11 1.11 1.08 2/901 23932
+/proc/meminfo: memFree=98964784/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10590724 memory=10560228 CPUtime=3042.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2663810 0 0 0 302792 1442 0 0 20 0 1 0 373173831 10844901376 2640057 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2647681 2640057 3411 4212 0 2636658 0
+Current children cumulated CPU time: 3042.34 s
+Current children cumulated vsize: 10590724 KiB
+Current children cumulated memory: 10560228 KiB
+
+[startup+3102.3 s]
+/proc/loadavg: 1.04 1.09 1.08 2/901 24673
+/proc/meminfo: memFree=98866760/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10688668 memory=10658120 CPUtime=3102.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2688448 0 0 0 308772 1462 0 0 20 0 1 0 373173831 10945196032 2664530 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2672167 2664530 3411 4212 0 2661144 0
+Current children cumulated CPU time: 3102.34 s
+Current children cumulated vsize: 10688668 KiB
+Current children cumulated memory: 10658120 KiB
+
+[startup+3162.3 s]
+/proc/loadavg: 1.05 1.08 1.08 2/903 25425
+/proc/meminfo: memFree=98734600/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10820404 memory=10789972 CPUtime=3162.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2721480 0 0 0 314747 1487 0 0 20 0 1 0 373173831 11080093696 2697493 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2705101 2697493 3411 4212 0 2694078 0
+Current children cumulated CPU time: 3162.34 s
+Current children cumulated vsize: 10820404 KiB
+Current children cumulated memory: 10789972 KiB
+
+[startup+3222.3 s]
+/proc/loadavg: 1.07 1.08 1.08 2/903 26150
+/proc/meminfo: memFree=98647744/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10907392 memory=10876660 CPUtime=3222.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2743712 0 0 0 320726 1508 0 0 20 0 1 0 373173831 11169169408 2719165 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2726848 2719165 3411 4212 0 2715825 0
+Current children cumulated CPU time: 3222.34 s
+Current children cumulated vsize: 10907392 KiB
+Current children cumulated memory: 10876660 KiB
+
+[startup+3282.3 s]
+/proc/loadavg: 1.03 1.07 1.07 2/899 26894
+/proc/meminfo: memFree=98562580/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=10993720 memory=10962988 CPUtime=3282.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2765629 0 0 0 326705 1529 0 0 20 0 1 0 373173831 11257569280 2740747 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2748430 2740747 3411 4212 0 2737407 0
+Current children cumulated CPU time: 3282.34 s
+Current children cumulated vsize: 10993720 KiB
+Current children cumulated memory: 10962988 KiB
+
+[startup+3342.3 s]
+/proc/loadavg: 1.05 1.06 1.07 2/901 27647
+/proc/meminfo: memFree=98496692/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=11057608 memory=11027132 CPUtime=3342.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2781759 0 0 0 332685 1549 0 0 20 0 1 0 373173831 11322990592 2756783 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2764402 2756783 3411 4212 0 2753379 0
+Current children cumulated CPU time: 3342.34 s
+Current children cumulated vsize: 11057608 KiB
+Current children cumulated memory: 11027132 KiB
+
+[startup+3402.3 s]
+/proc/loadavg: 1.02 1.05 1.06 2/901 28408
+/proc/meminfo: memFree=98445200/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=11107900 memory=11077288 CPUtime=3402.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2794382 0 0 0 338667 1567 0 0 20 0 1 0 373173831 11374489600 2769322 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2776975 2769322 3411 4212 0 2765952 0
+Current children cumulated CPU time: 3402.34 s
+Current children cumulated vsize: 11107900 KiB
+Current children cumulated memory: 11077288 KiB
+
+[startup+3462.3 s]
+/proc/loadavg: 1.00 1.04 1.06 2/901 29150
+/proc/meminfo: memFree=98372484/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=11179180 memory=11148680 CPUtime=3462.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2812694 0 0 0 344646 1588 0 0 20 0 1 0 373173831 11447480320 2787170 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2794795 2787170 3411 4212 0 2783772 0
+Current children cumulated CPU time: 3462.34 s
+Current children cumulated vsize: 11179180 KiB
+Current children cumulated memory: 11148680 KiB
+
+[startup+3522.3 s]
+/proc/loadavg: 1.00 1.03 1.05 2/901 29893
+/proc/meminfo: memFree=98331348/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=11222080 memory=11191588 CPUtime=3522.35 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2824127 0 0 0 350627 1608 0 0 20 0 1 0 373173831 11491409920 2797897 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2805520 2797897 3411 4212 0 2794497 0
+Current children cumulated CPU time: 3522.35 s
+Current children cumulated vsize: 11222080 KiB
+Current children cumulated memory: 11191588 KiB
+
+[startup+3582.3 s]
+/proc/loadavg: 1.00 1.02 1.05 2/902 30686
+/proc/meminfo: memFree=98284540/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=11273428 memory=11242952 CPUtime=3582.34 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2836984 0 0 0 356607 1627 0 0 20 0 1 0 373173831 11543990272 2810738 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2818357 2810738 3411 4212 0 2807334 0
+Current children cumulated CPU time: 3582.34 s
+Current children cumulated vsize: 11273428 KiB
+Current children cumulated memory: 11242952 KiB
+
+
+
+Maximum wall clock time exceeded: sending SIGTERM then SIGKILL
+
+[startup+3600 s]*
+/proc/loadavg: 1.00 1.02 1.04 2/904 30906
+/proc/meminfo: memFree=98229896/131989204 swapFree=244096144/244398076
+[pid=26171] ppid=26170 vsize=11325304 memory=11294668 CPUtime=3600.07 cores=10
+/proc/26171/stat : 26171 (seapp) R 26170 26171 20134 34834 25294 4194304 2849971 0 0 0 358373 1634 0 0 20 0 1 0 373173831 11597111296 2823667 18446744073709551615 4194304 21443392 140730221444544 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 38223872 140730221449912 140730221450267 140730221450267 140730221453244 0
+/proc/26171/statm: 2831326 2823667 3411 4212 0 2820303 0
+Current children cumulated CPU time: 3600.07 s
+Current children cumulated vsize: 11325304 KiB
+Current children cumulated memory: 11294668 KiB
+
+Sending SIGTERM to process tree (bottom up)
+Sleeping 2 seconds
+
+[startup+3600.35 s]
+# the end of solver process 26171 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=3583.73 s, system=16.6803 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+[startup+3600.22 s]
+/proc/loadavg: 1.00 1.02 1.04 2/904 30906
+/proc/meminfo: memFree=101070332/131989204 swapFree=244096144/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+[startup+3600.3 s]
+/proc/loadavg: 1.00 1.02 1.04 2/904 30906
+/proc/meminfo: memFree=101070332/131989204 swapFree=244096144/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+Child ended because it received signal 15 (SIGTERM)
+Real time (s): 3600.35
+CPU time (s): 3600.41
+CPU user time (s): 3583.73
+CPU system time (s): 16.6803
+CPU usage (%): 100.002
+Max. virtual memory (cumulated for all children) (KiB): 11325304
+Max. memory (cumulated for all children) (KiB): 11294668
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 3583.73
+system time used= 16.6803
+maximum resident set size= 11294896
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 2849972
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 16
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 1
+involuntary context switches= 4417
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 26171
+#   total CPU time (s): 3600.41
+#   total CPU user time (s): 3583.73
+#   total CPU system time (s): 16.6803
+
+??? end of timestamper thread
+runsolver used 34.6165 second user time and 49.1138 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 3600438
+BRUNCH_STAT ORIGINAL_BITCODE_NAME llvm-as.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 38400
+BRUNCH_STAT FINAL_BITCODE_NAME llvm-as.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 14012
+BRUNCH_STAT EXPERIMENT_TIME 19/02/21-20:03:50

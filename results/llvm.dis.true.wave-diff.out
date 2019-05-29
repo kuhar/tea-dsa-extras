@@ -1,0 +1,947 @@
+llvm-dis.bc true wave-diff
+BITCODE:llvm-dis.bc
+SEAHORN_DIR=/home/jkudersk/projects/build-seahorn/release/run/bin
+PWD=/home/jkudersk/projects/points-to-bitcode/5.0/clang
+PTA=wave-diff
+
+
+/home/jkudersk/projects/build-seahorn/release/run/bin/seaopt llvm-dis.bc -O1 -o ./temps/llvm-dis.n.bc
+
+File already exists, skipping seaopt invocation
+/home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/llvm-dis.n.bc -o ./temps/llvm-dis.n.pp.bc --lower-invoke --devirt-functions --unfold-loops-for-dsa=false --simplify-pointer-loops --horn-inline-constructors --horn-inline-allocators --log=extern.off --kill-vaarg=true --externalize-addr-taken-funcs=true --promote-bool-loads=true --lower-switch=false --externalize-function=.*AFA6string.*,_ZN3AFAplERKNS_6stringES2_,_ZN3AFAplEPKcRKNS_6stringE,_ZN3AFAplERKNS_6stringEPKc,_Z18to_standard_stringN3AFA6stringE,.*AFA3map.*,.*MDL_Tree.*,_Z14Initialize_Mapv,_ZN6google8protobuf*,_ZN5boost4asio6detail1*,_ZN5beast* --promote-assumptions=false --instnamer --strip-debug --verify-after-all=true --sea-verifier-noop --log=debug-verifier
+
+File exists, skipping seapp invocation
+
+runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/llvm-dis.n.pp.bc -o ./temps/llvm-dis.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off
+
+runsolver version 3.4.0 (svn: 3018) Copyright (C) 2010-2013 Olivier ROUSSEL
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+NUMA information:
+  number of nodes: 2
+  memory of node 0: 64409 MiB (52900 MiB free)
+  memory of node 1: 64486 MiB (54235 MiB free)
+  node distances:
+     10  21
+     21  10
+
+command line: runsolver --rss-swap-limit 64000 -W 3600 taskset -c 10 /home/jkudersk/projects/build-seahorn/release/run/bin/seapp ./temps/llvm-dis.n.pp.bc -o ./temps/llvm-dis.n.pp.smc.bc --smc --sea-dsa-type-aware=true --smc-analyze-only --smc-check-threshold=400 --sea-dsa=butd-cs --smc-pta=wave-diff --print-smc-summary --log=brunch --log=brunch-progress --log=dsa-progress.off --log=smc.off --log=dsa.off --log=alloc-sites.off 
+
+running on 36 cores: 0-9,20-29,10-19,30-31,36-39
+
+Enforcing wall clock limit (soft limit, will send SIGTERM then SIGKILL): 3600 seconds
+Enforcing RSS+Swap limit (soft limit, will send SIGTERM then SIGKILL): 65536000 KiB
+Linux 4.15.0-43-generic
+Current StackSize limit: 8192 KiB
+
+solver pid=941, runsolver pid=940
+
+[startup+0.10007 s]*
+/proc/loadavg: 1.26 1.09 1.07 2/901 942
+/proc/meminfo: memFree=109677228/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=91616 memory=51364 CPUtime=0.1 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 10929 0 0 0 8 2 0 0 20 0 1 0 374263150 93814784 12841 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 22904 12841 3932 4212 0 9073 0
+Current children cumulated CPU time: 0.1 s
+Current children cumulated vsize: 91616 KiB
+Current children cumulated memory: 51364 KiB
+
+[startup+0.222148 s]*
+/proc/loadavg: 1.26 1.09 1.07 2/903 953
+/proc/meminfo: memFree=109638428/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=130364 memory=92848 CPUtime=0.22 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 22762 0 0 0 19 3 0 0 20 0 1 0 374263150 133492736 23212 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 32591 23212 4572 4212 0 18760 0
+Current children cumulated CPU time: 0.22 s
+Current children cumulated vsize: 130364 KiB
+Current children cumulated memory: 92848 KiB
+
+[startup+0.323497 s]*
+/proc/loadavg: 1.32 1.10 1.07 2/901 954
+/proc/meminfo: memFree=109613380/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=154556 memory=119232 CPUtime=0.33 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 28844 0 0 0 28 5 0 0 20 0 1 0 374263150 158265344 29808 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 38639 29808 5132 4212 0 24808 0
+Current children cumulated CPU time: 0.33 s
+Current children cumulated vsize: 154556 KiB
+Current children cumulated memory: 119232 KiB
+
+[startup+0.700348 s]
+/proc/loadavg: 1.32 1.10 1.07 2/901 954
+/proc/meminfo: memFree=109601192/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=171440 memory=140156 CPUtime=0.69 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 36524 0 0 0 64 5 0 0 20 0 1 0 374263150 175554560 35039 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 42860 35039 3300 4212 0 31837 0
+Current children cumulated CPU time: 0.69 s
+Current children cumulated vsize: 171440 KiB
+Current children cumulated memory: 140156 KiB
+Sea Allocators:
+	Znaj
+	ZnajRKSt9nothrow_t
+	Znam
+	ZnamRKSt9nothrow_t
+	Znwj
+	ZnwjRKSt9nothrow_t
+	Znwm
+	ZnwmRKSt9nothrow_t
+	_ZL9getMemoryj
+	_ZN12_GLOBAL__N_123CreateDefaultTimerGroup4callEv.stub
+	_ZN4llvm11raw_ostream10resetColorEv.stub
+	_ZN4llvm11raw_ostream11changeColorENS0_6ColorsEbb.stub
+	_ZN4llvm11raw_ostream12reverseColorEv.stub
+	_ZN4llvm12safe_reallocEPvm
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_112Name2PairMapEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_117CommandLineParserEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_118ErrorErrorCategoryEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_120FilesToRemoveCleanupEE4callEv
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_120FilesToRemoveCleanupEE4callEv.stub
+	_ZN4llvm14object_creatorIN12_GLOBAL__N_124BitcodeErrorCategoryTypeEE4callEv.stub
+	_ZN4llvm14object_creatorINS_12PassRegistryEE4callEv.stub
+	_ZN4llvm14object_creatorINS_12_GLOBAL__N_16legacy14PassTimingInfoEE4callEv.stub
+	_ZN4llvm14object_creatorINS_2cl10SubCommandEE4callEv.stub
+	_ZN4llvm14object_creatorINS_3sys10SmartMutexILb0EEEE4callEv.stub
+	_ZN4llvm14object_creatorINS_3sys10SmartMutexILb1EEEE4callEv.stub
+	_ZN4llvm14object_creatorINS_9OptBisectEE4callEv.stub
+	_ZN4llvm14object_creatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE4callEv.stub
+	_ZN4llvm14object_creatorISt6vectorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS7_EEE4callEv.stub
+	_ZN4llvm14raw_fd_ostream10resetColorEv.stub
+	_ZN4llvm14raw_fd_ostream11changeColorENS_11raw_ostream6ColorsEbb.stub
+	_ZN4llvm14raw_fd_ostream12reverseColorEv.stub
+	_ZN4llvm15CatchSwitchInst14handler_helperEPKNS_5ValueE.stub
+	_ZN4llvm15CatchSwitchInst14handler_helperEPNS_5ValueE.stub
+	_ZN4llvm21formatted_raw_ostream10resetColorEv.stub
+	_ZN4llvm21formatted_raw_ostream11changeColorENS_11raw_ostream6ColorsEbb.stub
+	_ZN4llvm21formatted_raw_ostream12reverseColorEv.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsENS_9StringRefE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEPKc.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEPKv.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_12SMDiagnosticE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_5TwineE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_5ValueE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNS_6ModuleE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsERKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEa.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEc.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEd.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEh.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEi.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEj.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEl.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEm.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEx.stub
+	_ZN4llvm27DiagnosticPrinterRawOStreamlsEy.stub
+	_ZN9__gnu_cxx13new_allocatorIN4llvm10TimerGroup11PrintRecordEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm12UseListOrderEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm13AttributeListEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm13BitcodeModuleEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm14WeakTrackingVHEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm15FunctionSummary10ConstVCallEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm15FunctionSummary7VFuncIdEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm15ReplacementItemEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm17OperandBundleDefTIPNS1_5ValueEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm18BitstreamBlockInfo9BlockInfoEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm28DistinctMDOperandPlaceholderEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm8ArgumentEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm9StringRefEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIN4llvm9ValueInfoEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPKN4llvm6ComdatEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPKcE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm10BasicBlockEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm10StructTypeEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm15DomTreeNodeBaseINS1_10BasicBlockEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm28DistinctMDOperandPlaceholderEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm4TypeEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm5ValueEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm6ComdatEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm6MDNodeEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm6detail14format_adapterEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm8ConstantEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPN4llvm8FunctionEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIPPN4llvm8FunctionEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt10shared_ptrIN4llvm13BitCodeAbbrevEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt10unique_ptrIN4llvm13ErrorInfoBaseESt14default_deleteIS3_EEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt10unique_ptrIN4llvm18GlobalValueSummaryESt14default_deleteIS3_EEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES8_EEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKSt6vectorImSaImEEN4llvm28WholeProgramDevirtResolution5ByArgEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKjN4llvm13AttributeListEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKmN4llvm22GlobalValueSummaryInfoEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKmN4llvm28WholeProgramDevirtResolutionEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKmN4llvm9StringRefEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKmS2_INSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN4llvm13TypeIdSummaryEEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt13_Rb_tree_nodeISt4pairIKmmEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt23_Sp_counted_ptr_inplaceIN4llvm13BitCodeAbbrevESaIS3_ELNS_12_Lock_policyE2EEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIN4llvm12AttributeSetEjEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIN4llvm9ValueInfoENS2_10CalleeInfoEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt5arrayIjLm5EEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIPN4llvm11InstructionES4_EE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIPN4llvm13DICompileUnitEPNS2_8MetadataEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIPN4llvm14GlobalVariableEjEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIPN4llvm20GlobalIndirectSymbolEjEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIPN4llvm8ConstantEjEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIPN4llvm8FunctionEjEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorISt4pairIjNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIjE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorIlE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorImE8allocateEmPKv
+	_ZN9__gnu_cxx13new_allocatorItE8allocateEmPKv
+	_ZNK12_GLOBAL__N_118ErrorErrorCategory4nameEv.stub
+	_ZNK12_GLOBAL__N_124BitcodeErrorCategoryType4nameEv.stub
+	_ZNK4llvm9ErrorInfoINS_11StringErrorENS_13ErrorInfoBaseEE14dynamicClassIDEv.stub
+	_ZNK4llvm9ErrorInfoINS_7ECErrorENS_13ErrorInfoBaseEE14dynamicClassIDEv.stub
+	_ZNK4llvm9ErrorInfoINS_9ErrorListENS_13ErrorInfoBaseEE14dynamicClassIDEv.stub
+	_ZNSt11_Deque_baseIN4llvm28DistinctMDOperandPlaceholderESaIS1_EE15_M_allocate_mapEm
+	_ZNSt11_Deque_baseIN4llvm28DistinctMDOperandPlaceholderESaIS1_EE16_M_allocate_nodeEv
+	_ZNSt11_Deque_baseIPN4llvm8FunctionESaIS2_EE15_M_allocate_mapEm
+	_ZNSt11_Deque_baseIPN4llvm8FunctionESaIS2_EE16_M_allocate_nodeEv
+	_ZNSt12_Vector_baseIN4llvm10TimerGroup11PrintRecordESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm12UseListOrderESaIS1_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm13AttributeListESaIS1_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm13BitcodeModuleESaIS1_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm14WeakTrackingVHESaIS1_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm15FunctionSummary10ConstVCallESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm15FunctionSummary7VFuncIdESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm15ReplacementItemESaIS1_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm17OperandBundleDefTIPNS0_5ValueEEESaIS4_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm18BitstreamBlockInfo9BlockInfoESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm9StringRefESaIS1_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIN4llvm9ValueInfoESaIS1_EE11_M_allocateEm
+	_ZNSt12_Vector_baseINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESaIS5_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPKN4llvm6ComdatESaIS3_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPKcSaIS1_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm10BasicBlockESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm10StructTypeESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm15DomTreeNodeBaseINS0_10BasicBlockEEESaIS4_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm4TypeESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm5ValueESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm6ComdatESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm6MDNodeESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm6detail14format_adapterESaIS3_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm8ConstantESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIPN4llvm8FunctionESaIS2_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt10shared_ptrIN4llvm13BitCodeAbbrevEESaIS3_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt10unique_ptrIN4llvm13ErrorInfoBaseESt14default_deleteIS2_EESaIS5_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt10unique_ptrIN4llvm18GlobalValueSummaryESt14default_deleteIS2_EESaIS5_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIN4llvm12AttributeSetEjESaIS3_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIN4llvm9ValueInfoENS1_10CalleeInfoEESaIS4_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt5arrayIjLm5EEESaIS9_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIPN4llvm11InstructionES3_ESaIS4_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIPN4llvm13DICompileUnitEPNS1_8MetadataEESaIS6_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIPN4llvm14GlobalVariableEjESaIS4_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIPN4llvm20GlobalIndirectSymbolEjESaIS4_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIPN4llvm8ConstantEjESaIS4_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIPN4llvm8FunctionEjESaIS4_EE11_M_allocateEm
+	_ZNSt12_Vector_baseISt4pairIjNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEESaIS7_EE11_M_allocateEm
+	_ZNSt12_Vector_baseIjSaIjEE11_M_allocateEm
+	_ZNSt12_Vector_baseIlSaIlEE11_M_allocateEm
+	_ZNSt12_Vector_baseImSaImEE11_M_allocateEm
+	_ZNSt12_Vector_baseItSaItEE11_M_allocateEm
+	_ZNSt16allocator_traitsISaIN4llvm10TimerGroup11PrintRecordEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIN4llvm12UseListOrderEEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaIN4llvm13AttributeListEEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaIN4llvm13BitcodeModuleEEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaIN4llvm14WeakTrackingVHEEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaIN4llvm15FunctionSummary10ConstVCallEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIN4llvm15FunctionSummary7VFuncIdEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIN4llvm15ReplacementItemEEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaIN4llvm17OperandBundleDefTIPNS0_5ValueEEEEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaIN4llvm18BitstreamBlockInfo9BlockInfoEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIN4llvm28DistinctMDOperandPlaceholderEEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaIN4llvm9StringRefEEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaIN4llvm9ValueInfoEEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEE8allocateERS6_m
+	_ZNSt16allocator_traitsISaIPKN4llvm6ComdatEEE8allocateERS4_m
+	_ZNSt16allocator_traitsISaIPKcEE8allocateERS2_m
+	_ZNSt16allocator_traitsISaIPN4llvm10BasicBlockEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPN4llvm10StructTypeEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPN4llvm15DomTreeNodeBaseINS0_10BasicBlockEEEEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaIPN4llvm28DistinctMDOperandPlaceholderEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPN4llvm4TypeEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPN4llvm5ValueEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPN4llvm6ComdatEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPN4llvm6MDNodeEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPN4llvm6detail14format_adapterEEE8allocateERS4_m
+	_ZNSt16allocator_traitsISaIPN4llvm8ConstantEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPN4llvm8FunctionEEE8allocateERS3_m
+	_ZNSt16allocator_traitsISaIPPN4llvm8FunctionEEE8allocateERS4_m
+	_ZNSt16allocator_traitsISaISt10shared_ptrIN4llvm13BitCodeAbbrevEEEE8allocateERS4_m
+	_ZNSt16allocator_traitsISaISt10unique_ptrIN4llvm13ErrorInfoBaseESt14default_deleteIS2_EEEE8allocateERS6_m
+	_ZNSt16allocator_traitsISaISt10unique_ptrIN4llvm18GlobalValueSummaryESt14default_deleteIS2_EEEE8allocateERS6_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEE8allocateERS8_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeISt4pairIKNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES7_EEEE8allocateERSB_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeISt4pairIKSt6vectorImSaImEEN4llvm28WholeProgramDevirtResolution5ByArgEEEEE8allocateERSB_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeISt4pairIKjN4llvm13AttributeListEEEEE8allocateERS7_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeISt4pairIKmN4llvm22GlobalValueSummaryInfoEEEEE8allocateERS7_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeISt4pairIKmN4llvm28WholeProgramDevirtResolutionEEEEE8allocateERS7_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeISt4pairIKmN4llvm9StringRefEEEEE8allocateERS7_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeISt4pairIKmS1_INSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN4llvm13TypeIdSummaryEEEEEE8allocateERSE_m
+	_ZNSt16allocator_traitsISaISt13_Rb_tree_nodeISt4pairIKmmEEEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaISt23_Sp_counted_ptr_inplaceIN4llvm13BitCodeAbbrevESaIS2_ELN9__gnu_cxx12_Lock_policyE2EEEE8allocateERS7_m
+	_ZNSt16allocator_traitsISaISt4pairIN4llvm12AttributeSetEjEEE8allocateERS4_m
+	_ZNSt16allocator_traitsISaISt4pairIN4llvm9ValueInfoENS1_10CalleeInfoEEEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaISt4pairINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt5arrayIjLm5EEEEE8allocateERSA_m
+	_ZNSt16allocator_traitsISaISt4pairIPN4llvm11InstructionES3_EEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaISt4pairIPN4llvm13DICompileUnitEPNS1_8MetadataEEEE8allocateERS7_m
+	_ZNSt16allocator_traitsISaISt4pairIPN4llvm14GlobalVariableEjEEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaISt4pairIPN4llvm20GlobalIndirectSymbolEjEEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaISt4pairIPN4llvm8ConstantEjEEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaISt4pairIPN4llvm8FunctionEjEEE8allocateERS5_m
+	_ZNSt16allocator_traitsISaISt4pairIjNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEEEE8allocateERS8_m
+	_ZNSt16allocator_traitsISaIjEE8allocateERS0_m
+	_ZNSt16allocator_traitsISaIlEE8allocateERS0_m
+	_ZNSt16allocator_traitsISaImEE8allocateERS0_m
+	_ZNSt16allocator_traitsISaItEE8allocateERS0_m
+	_ZNSt17_Function_handlerIFPN4llvm4TypeEjEZN12_GLOBAL__N_113BitcodeReader16parseBitcodeIntoEPNS0_6ModuleEbbE3$_2E9_M_invokeERKSt9_Any_dataOj.stub
+	_ZNSt23_Sp_counted_ptr_inplaceIN4llvm13BitCodeAbbrevESaIS1_ELN9__gnu_cxx12_Lock_policyE2EE14_M_get_deleterERKSt9type_info.stub
+	_ZNSt3_V215system_categoryEv
+	_ZNSt3_V216generic_categoryEv
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE10_M_replaceEmmPKcm
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_appendEPKcm
+	_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERmm
+	_ZNSt8_Rb_treeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEES5_St9_IdentityIS5_ESt4lessIS5_ESaIS5_EE11_M_get_nodeEv
+	_ZNSt8_Rb_treeINSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEESt4pairIKS5_S5_ESt10_Select1stIS8_ESt4lessIS5_ESaIS8_EE11_M_get_nodeEv
+	_ZNSt8_Rb_treeISt6vectorImSaImEESt4pairIKS2_N4llvm28WholeProgramDevirtResolution5ByArgEESt10_Select1stIS8_ESt4lessIS2_ESaIS8_EE11_M_get_nodeEv
+	_ZNSt8_Rb_treeIjSt4pairIKjN4llvm13AttributeListEESt10_Select1stIS4_ESt4lessIjESaIS4_EE11_M_get_nodeEv
+	_ZNSt8_Rb_treeImSt4pairIKmN4llvm22GlobalValueSummaryInfoEESt10_Select1stIS4_ESt4lessImESaIS4_EE11_M_get_nodeEv
+	_ZNSt8_Rb_treeImSt4pairIKmN4llvm28WholeProgramDevirtResolutionEESt10_Select1stIS4_ESt4lessImESaIS4_EE11_M_get_nodeEv
+	_ZNSt8_Rb_treeImSt4pairIKmN4llvm9StringRefEESt10_Select1stIS4_ESt4lessImESaIS4_EE11_M_get_nodeEv
+	_ZNSt8_Rb_treeImSt4pairIKmS0_INSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEEN4llvm13TypeIdSummaryEEESt10_Select1stISB_ESt4lessImESaISB_EE11_M_get_nodeEv
+	_ZNSt8_Rb_treeImSt4pairIKmmESt10_Select1stIS2_ESt4lessImESaIS2_EE11_M_get_nodeEv
+	_ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base
+	_ZSt18_Rb_tree_incrementPKSt18_Rb_tree_node_base
+	_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base
+	_Znam
+	_Znwm
+	_ZnwmRKSt9nothrow_t
+	__ctype_b_loc
+	__ctype_tolower_loc
+	__ctype_toupper_loc
+	__errno_location
+	calloc
+	getcwd
+	getenv
+	llvm.invariant.start.p0i8
+	malloc
+	memchr
+	mmap
+	realloc
+	realpath
+	strchr
+	strdup
+	strerror_r
+	strsep
+	strsignal
+	verifier.nondet.151
+	verifier.nondet.23
+	verifier.nondet.29
+	verifier.nondet.32
+	verifier.nondet.57
+	verifier.nondet.6
+	verifier.nondet.68
+Warning: Running SVF PTA!
+BRUNCH_STAT PTA_KIND SVF_Andersen_Diff_Wave_Type
+
+[startup+1.50037 s]
+/proc/loadavg: 1.32 1.10 1.07 2/901 954
+/proc/meminfo: memFree=109438628/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=954216 memory=923232 CPUtime=1.49 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 234291 0 0 0 115 34 0 0 20 0 1 0 374263150 977117184 230808 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 238587 230808 3334 4212 0 227564 0
+Current children cumulated CPU time: 1.49 s
+Current children cumulated vsize: 954216 KiB
+Current children cumulated memory: 923232 KiB
+
+[startup+3.12223 s]
+/proc/loadavg: 1.32 1.10 1.07 2/901 976
+/proc/meminfo: memFree=107725972/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=2022908 memory=1991904 CPUtime=3.11 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 501458 0 0 0 240 71 0 0 20 0 1 0 374263150 2071457792 497976 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 505727 497976 3334 4212 0 494704 0
+Current children cumulated CPU time: 3.11 s
+Current children cumulated vsize: 2022908 KiB
+Current children cumulated memory: 1991904 KiB
+
+[startup+6.30019 s]
+/proc/loadavg: 1.29 1.10 1.07 2/901 1014
+/proc/meminfo: memFree=107649256/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=2103956 memory=2072952 CPUtime=6.29 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 521712 0 0 0 548 81 0 0 20 0 1 0 374263150 2154450944 518238 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 525989 518238 3334 4212 0 514966 0
+Current children cumulated CPU time: 6.29 s
+Current children cumulated vsize: 2103956 KiB
+Current children cumulated memory: 2072952 KiB
+
+[startup+12.7003 s]
+/proc/loadavg: 1.27 1.10 1.07 2/901 1087
+/proc/meminfo: memFree=106910520/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=2902176 memory=2871416 CPUtime=12.69 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 721275 0 0 0 1125 144 0 0 20 0 1 0 374263150 2971828224 717854 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 725544 717854 3398 4212 0 714521 0
+Current children cumulated CPU time: 12.69 s
+Current children cumulated vsize: 2902176 KiB
+Current children cumulated memory: 2871416 KiB
+
+[startup+25.5003 s]
+/proc/loadavg: 1.23 1.09 1.07 2/901 1254
+/proc/meminfo: memFree=106395460/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=3351536 memory=3320980 CPUtime=25.49 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 833858 0 0 0 2355 194 0 0 20 0 1 0 374263150 3431972864 830245 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 837884 830245 3398 4212 0 826861 0
+Current children cumulated CPU time: 25.49 s
+Current children cumulated vsize: 3351536 KiB
+Current children cumulated memory: 3320980 KiB
+
+[startup+51.1219 s]
+/proc/loadavg: 1.14 1.08 1.07 2/901 1600
+/proc/meminfo: memFree=105996064/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=3749552 memory=3718824 CPUtime=51.11 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 933339 0 0 0 4864 247 0 0 20 0 1 0 374263150 3839541248 929706 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 937388 929706 3398 4212 0 926365 0
+Current children cumulated CPU time: 51.11 s
+Current children cumulated vsize: 3749552 KiB
+Current children cumulated memory: 3718824 KiB
+
+[startup+102.3 s]
+/proc/loadavg: 1.06 1.07 1.06 2/904 2251
+/proc/meminfo: memFree=105448632/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=4294812 memory=4263992 CPUtime=102.29 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1069725 0 0 0 9934 295 0 0 20 0 1 0 374263150 4397887488 1065998 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1073703 1065998 3398 4212 0 1062680 0
+Current children cumulated CPU time: 102.29 s
+Current children cumulated vsize: 4294812 KiB
+Current children cumulated memory: 4263992 KiB
+
+[startup+162.3 s]
+/proc/loadavg: 1.02 1.05 1.06 2/901 3219
+/proc/meminfo: memFree=105298488/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=4445028 memory=4414208 CPUtime=162.29 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1107286 0 0 0 15917 312 0 0 20 0 1 0 374263150 4551708672 1103552 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1111257 1103552 3398 4212 0 1100234 0
+Current children cumulated CPU time: 162.29 s
+Current children cumulated vsize: 4445028 KiB
+Current children cumulated memory: 4414208 KiB
+
+[startup+222.3 s]
+/proc/loadavg: 1.12 1.07 1.06 2/901 3954
+/proc/meminfo: memFree=105129452/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=4613592 memory=4582904 CPUtime=222.29 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1149432 0 0 0 21902 327 0 0 20 0 1 0 374263150 4724318208 1145726 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1153398 1145726 3398 4212 0 1142375 0
+Current children cumulated CPU time: 222.29 s
+Current children cumulated vsize: 4613592 KiB
+Current children cumulated memory: 4582904 KiB
+
+[startup+282.3 s]
+/proc/loadavg: 1.07 1.07 1.06 2/901 4703
+/proc/meminfo: memFree=105020016/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=4722624 memory=4691936 CPUtime=282.3 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1176676 0 0 0 27888 342 0 0 20 0 1 0 374263150 4835966976 1172984 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1180656 1172984 3398 4212 0 1169633 0
+Current children cumulated CPU time: 282.3 s
+Current children cumulated vsize: 4722624 KiB
+Current children cumulated memory: 4691936 KiB
+
+[startup+342.3 s]
+/proc/loadavg: 1.15 1.09 1.07 2/905 5459
+/proc/meminfo: memFree=104819296/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=4924584 memory=4894068 CPUtime=342.29 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1227413 0 0 0 33874 355 0 0 20 0 1 0 374263150 5042774016 1223451 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1231179 1223517 3398 4212 0 1220156 0
+Current children cumulated CPU time: 342.29 s
+Current children cumulated vsize: 4924584 KiB
+Current children cumulated memory: 4894068 KiB
+
+[startup+402.3 s]
+/proc/loadavg: 1.06 1.07 1.06 2/904 6204
+/proc/meminfo: memFree=104590740/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=5150040 memory=5119228 CPUtime=402.3 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1283773 0 0 0 39859 371 0 0 20 0 1 0 374263150 5273640960 1279807 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1287510 1279807 3398 4212 0 1276487 0
+Current children cumulated CPU time: 402.3 s
+Current children cumulated vsize: 5150040 KiB
+Current children cumulated memory: 5119228 KiB
+
+[startup+462.3 s]
+/proc/loadavg: 1.02 1.05 1.06 2/902 6999
+/proc/meminfo: memFree=104371824/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=5367180 memory=5336500 CPUtime=462.3 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1338044 0 0 0 45841 389 0 0 20 0 1 0 374263150 5495992320 1334125 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1341795 1334125 3398 4212 0 1330772 0
+Current children cumulated CPU time: 462.3 s
+Current children cumulated vsize: 5367180 KiB
+Current children cumulated memory: 5336500 KiB
+
+[startup+522.3 s]
+/proc/loadavg: 1.00 1.04 1.05 2/906 7778
+/proc/meminfo: memFree=104196360/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=5543004 memory=5512316 CPUtime=522.3 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1382000 0 0 0 51823 407 0 0 20 0 1 0 374263150 5676036096 1378079 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1385751 1378079 3398 4212 0 1374728 0
+Current children cumulated CPU time: 522.3 s
+Current children cumulated vsize: 5543004 KiB
+Current children cumulated memory: 5512316 KiB
+
+[startup+582.3 s]
+/proc/loadavg: 1.04 1.05 1.05 2/906 8522
+/proc/meminfo: memFree=104041604/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=5692692 memory=5662076 CPUtime=582.3 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1419822 0 0 0 57803 427 0 0 20 0 1 0 374263150 5829316608 1415519 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1423173 1415519 3398 4212 0 1412150 0
+Current children cumulated CPU time: 582.3 s
+Current children cumulated vsize: 5692692 KiB
+Current children cumulated memory: 5662076 KiB
+
+[startup+642.3 s]
+/proc/loadavg: 1.25 1.10 1.07 2/901 9275
+/proc/meminfo: memFree=103889160/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=5852940 memory=5822280 CPUtime=642.3 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1459945 0 0 0 63782 448 0 0 20 0 1 0 374263150 5993410560 1455570 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1463235 1455570 3398 4212 0 1452212 0
+Current children cumulated CPU time: 642.3 s
+Current children cumulated vsize: 5852940 KiB
+Current children cumulated memory: 5822280 KiB
+
+[startup+702.3 s]
+/proc/loadavg: 1.15 1.10 1.07 2/904 10024
+/proc/meminfo: memFree=103752820/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=5988636 memory=5958096 CPUtime=702.31 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1493923 0 0 0 69761 470 0 0 20 0 1 0 374263150 6132363264 1489524 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1497159 1489524 3398 4212 0 1486136 0
+Current children cumulated CPU time: 702.31 s
+Current children cumulated vsize: 5988636 KiB
+Current children cumulated memory: 5958096 KiB
+
+[startup+762.3 s]
+/proc/loadavg: 1.05 1.08 1.06 2/902 10766
+/proc/meminfo: memFree=103620272/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=6118656 memory=6087904 CPUtime=762.31 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1526495 0 0 0 75742 489 0 0 20 0 1 0 374263150 6265503744 1521976 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1529664 1521976 3398 4212 0 1518641 0
+Current children cumulated CPU time: 762.31 s
+Current children cumulated vsize: 6118656 KiB
+Current children cumulated memory: 6087904 KiB
+
+[startup+822.3 s]
+/proc/loadavg: 1.02 1.06 1.06 2/903 11512
+/proc/meminfo: memFree=103498088/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=6239964 memory=6209280 CPUtime=822.3 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1556835 0 0 0 81718 512 0 0 20 0 1 0 374263150 6389723136 1552320 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1559991 1552320 3398 4212 0 1548968 0
+Current children cumulated CPU time: 822.3 s
+Current children cumulated vsize: 6239964 KiB
+Current children cumulated memory: 6209280 KiB
+
+[startup+882.3 s]
+/proc/loadavg: 1.10 1.08 1.06 2/907 12288
+/proc/meminfo: memFree=103360516/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=6376320 memory=6345724 CPUtime=882.31 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1591608 0 0 0 87701 530 0 0 20 0 1 0 374263150 6529351680 1586431 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1594080 1586431 3398 4212 0 1583057 0
+Current children cumulated CPU time: 882.31 s
+Current children cumulated vsize: 6376320 KiB
+Current children cumulated memory: 6345724 KiB
+
+[startup+942.3 s]
+/proc/loadavg: 1.11 1.08 1.06 4/905 13113
+/proc/meminfo: memFree=103222012/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=6499476 memory=6468944 CPUtime=942.31 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1622600 0 0 0 93685 546 0 0 20 0 1 0 374263150 6655463424 1617236 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1624869 1617236 3398 4212 0 1613846 0
+Current children cumulated CPU time: 942.31 s
+Current children cumulated vsize: 6499476 KiB
+Current children cumulated memory: 6468944 KiB
+
+[startup+1002.3 s]
+/proc/loadavg: 1.04 1.06 1.06 2/900 13853
+/proc/meminfo: memFree=103124408/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=6613392 memory=6582644 CPUtime=1002.31 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1651116 0 0 0 99666 565 0 0 20 0 1 0 374263150 6772113408 1645661 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1653348 1645661 3398 4212 0 1642325 0
+Current children cumulated CPU time: 1002.31 s
+Current children cumulated vsize: 6613392 KiB
+Current children cumulated memory: 6582644 KiB
+
+[startup+1062.3 s]
+/proc/loadavg: 1.20 1.12 1.08 2/905 14610
+/proc/meminfo: memFree=102984980/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=6750672 memory=6720080 CPUtime=1062.3 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1685654 0 0 0 105648 582 0 0 20 0 1 0 374263150 6912688128 1680020 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1687668 1680020 3398 4212 0 1676645 0
+Current children cumulated CPU time: 1062.3 s
+Current children cumulated vsize: 6750672 KiB
+Current children cumulated memory: 6720080 KiB
+
+[startup+1122.3 s]
+/proc/loadavg: 1.20 1.13 1.09 2/905 15361
+/proc/meminfo: memFree=102817720/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=6916332 memory=6885508 CPUtime=1122.31 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1727359 0 0 0 111627 604 0 0 20 0 1 0 374263150 7082323968 1721377 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1729083 1721377 3398 4212 0 1718060 0
+Current children cumulated CPU time: 1122.31 s
+Current children cumulated vsize: 6916332 KiB
+Current children cumulated memory: 6885508 KiB
+
+[startup+1182.3 s]
+/proc/loadavg: 1.07 1.10 1.08 2/903 16104
+/proc/meminfo: memFree=102721800/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=7011372 memory=6980632 CPUtime=1182.31 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1752298 0 0 0 117610 621 0 0 20 0 1 0 374263150 7179644928 1745158 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1752843 1745158 3398 4212 0 1741820 0
+Current children cumulated CPU time: 1182.31 s
+Current children cumulated vsize: 7011372 KiB
+Current children cumulated memory: 6980632 KiB
+
+[startup+1242.3 s]
+/proc/loadavg: 1.02 1.08 1.07 2/901 16839
+/proc/meminfo: memFree=102639492/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=7098380 memory=7067864 CPUtime=1242.32 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1781134 0 0 0 123564 668 0 0 20 0 1 0 374263150 7268741120 1766966 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1774595 1766966 3398 4212 0 1763572 0
+Current children cumulated CPU time: 1242.32 s
+Current children cumulated vsize: 7098380 KiB
+Current children cumulated memory: 7067864 KiB
+
+[startup+1302.3 s]
+/proc/loadavg: 1.12 1.11 1.09 2/904 17594
+/proc/meminfo: memFree=102638920/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=7098380 memory=7067864 CPUtime=1302.32 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1783139 0 0 0 129550 682 0 0 20 0 1 0 374263150 7268741120 1766966 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1774595 1766966 3398 4212 0 1763572 0
+Current children cumulated CPU time: 1302.32 s
+Current children cumulated vsize: 7098380 KiB
+Current children cumulated memory: 7067864 KiB
+
+[startup+1362.3 s]
+/proc/loadavg: 1.04 1.08 1.08 2/904 18344
+/proc/meminfo: memFree=102633496/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=7098512 memory=7067940 CPUtime=1362.31 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1783980 0 0 0 135500 731 0 0 20 0 1 0 374263150 7268876288 1766985 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1774628 1766985 3398 4212 0 1763605 0
+Current children cumulated CPU time: 1362.31 s
+Current children cumulated vsize: 7098512 KiB
+Current children cumulated memory: 7067940 KiB
+
+****CallGraph SCC Stat****
+################ (program : temps/llvm-dis)###############
+-------------------------------------------------------
+CalRetPairInCycle   1033
+MaxNodeInCycle      220
+NodeInCycle         400
+TotalCycle          95
+TotalEdge           129102
+TotalNode           21198
+#######################################################
+
+****Andersen Pointer Analysis Statistics****
+################ (program : temps/llvm-dis)###############
+TotalObjects        34902
+TotalFieldObjects   23379
+TotalPointers       483120
+HeapObjs            452
+FunctionObjs        21198
+GlobalObjs          124
+StackObjs           13126
+IndCallSites        67
+TotalPAGEdges       16537770
+LocalVarInRecur     888
+BitCastNumber       25492
+CopysNum            45616
+AddrsNum            44849
+GepsNum             74024
+ReturnsNum          32170
+CallsNum            93565
+StoresNum           23793
+LoadsNum            20829
+FSObjNum            33467
+FIObjNum            1433
+ConstArrayObj       9
+VarArrayObj         160
+ConstStructObj      61
+VarStructObj        8373
+NonPtrObj           23910
+MaxStructSize       446
+TotalCallSite       128939
+BBWith3Succ         415
+BBWith2Succ         20732
+-------------------------------------------------------
+AvgPtsSetSize       152.029
+AvgTopLvlPtsSize    302.287
+SCCDetectTime       9.112
+CopyGepTime         1264.93
+TotalTime           1377.02
+CollapseTime        100.295
+LoadStoreTime       94.576
+SCCMergeTime        2.682
+UpdateCGTime        0.005
+TotalStoreInst      32939
+TotalLoadInst       31948
+NumOfSCCDetect      7
+MemObjects          34902
+TotalObjects        58281
+DYFieldPtrs         1969
+TotalPointers       483120
+Pointers            481151
+Iterations          7
+DYFieldObjs         23379
+IndCallSites        67
+NodesInCycles       30834
+TotalPAGEdges       305362
+PointsToConstPtr    0
+PointsToBlkPtr      5151
+NullPointer         948
+CopysNum            190536
+AddrsNum            42251
+GepsNum             71287
+StoresNum           23458
+LoadsNum            20081
+TotalCycleNum       1660
+TotalPWCCycleNum    59
+CGNodeNum           529409
+MaxPtsSetSize       2627
+IndEdgeSolved       230
+CopyProcessed       399770
+AddrProcessed       44849
+GepProcessed        348924
+StoreProcessed      1002308
+LoadProcessed       3162611
+MaxNodesInSCC       21794
+#######################################################
+BRUNCH_STAT SEA_TIME_PTA_MS 1379153
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+Warning: SMC: 	Applied negative offsets, overriding offset as 0
+BRUNCH_STAT SEA_TIME_SMC_ANALYSIS_MS 1411
+
+=========== Start of Simple Memory Check Stats ===========
+Format:	All instructions (Heap/Stack/Global)
+
+Discovered memory instructions	64838
+Discovered allocation sites	11108	(350/10680/78)
+Interesting allocation sites	746	(41/672/33)
+Other allocation sites		4092	(252/3801/39)
+Total Simple AS to instrument	857114
+Interesting <Barrier, AllocSite> pairs	218581
+Total <Barrier, AllocSite> pairs	3938994
+BRUNCH_STAT SMC_ALL_AS 11108
+BRUNCH_STAT SMC_AS_BARRIER_INTERESTING 218581
+BRUNCH_STAT SMC_AS_BARRIER_CHECKS 3938994
+BRUNCH_STAT SMC_AS_BARRIER_TOTAL 4592684
+
+
+Warning: SMC: exiting without instrumenting (--smc-analyze-only)
+BRUNCH_STAT PTA_RSS_KB 9392072
+
+[startup+1397.41 s]
+# the end of solver process 941 was just reported to runsolver
+# cumulated CPU time of all completed processes:  user=1388.52 s, system=8.91214 s
+
+Solver just ended.
+??? end of watcher thread
+Dumping a history of the last processes samples
+
+[startup+1382.4 s]
+/proc/loadavg: 1.03 1.08 1.08 2/904 18589
+/proc/meminfo: memFree=102634216/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=7098512 memory=7067940 CPUtime=1382.42 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 1784069 0 0 0 137481 761 0 0 20 0 1 0 374263150 7268876288 1766985 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 1774628 1766985 3398 4212 0 1763605 0
+Current children cumulated CPU time: 1382.42 s
+Current children cumulated vsize: 7098512 KiB
+Current children cumulated memory: 7067940 KiB
+
+[startup+1388.8 s]
+/proc/loadavg: 1.03 1.08 1.08 2/904 18662
+/proc/meminfo: memFree=100808532/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=8975152 memory=8942992 CPUtime=1388.81 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 2266414 0 0 0 138039 842 0 0 20 0 1 0 374263150 9190555648 2235748 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 2243788 2235748 3494 4212 0 2232765 0
+Current children cumulated CPU time: 1388.81 s
+Current children cumulated vsize: 8975152 KiB
+Current children cumulated memory: 8942992 KiB
+
+[startup+1392 s]*
+/proc/loadavg: 1.02 1.08 1.08 2/904 18713
+/proc/meminfo: memFree=100665548/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=9053196 memory=9022760 CPUtime=1392.02 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 2411495 0 0 0 138338 864 0 0 20 0 1 0 374263150 9270472704 2255690 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 2263299 2255690 3542 4212 0 2252276 0
+Current children cumulated CPU time: 1392.02 s
+Current children cumulated vsize: 9053196 KiB
+Current children cumulated memory: 9022760 KiB
+
+[startup+1395.2 s]
+/proc/loadavg: 1.02 1.08 1.08 2/904 18747
+/proc/meminfo: memFree=100735676/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=8981504 memory=8951188 CPUtime=1395.21 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 2411546 0 0 0 138657 864 0 0 20 0 1 0 374263150 9197060096 2237797 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 2245376 2237797 3558 4212 0 2234353 0
+Current children cumulated CPU time: 1395.21 s
+Current children cumulated vsize: 8981504 KiB
+Current children cumulated memory: 8951188 KiB
+
+[startup+1396.8 s]
+/proc/loadavg: 1.02 1.08 1.08 2/904 18757
+/proc/meminfo: memFree=100735612/131989204 swapFree=244096144/244398076
+[pid=941] ppid=940 vsize=8981504 memory=8951188 CPUtime=1396.82 cores=10
+/proc/941/stat : 941 (seapp) R 940 941 20134 34834 25294 4194304 2411588 0 0 0 138816 866 0 0 20 0 1 0 374263150 9197060096 2237797 18446744073709551615 4194304 21443392 140729967997808 0 0 0 0 0 1098931967 0 0 0 17 10 0 0 0 0 0 21451008 21699880 35061760 140729968001709 140729968002069 140729968002069 140729968005052 0
+/proc/941/statm: 2245376 2237797 3558 4212 0 2234353 0
+Current children cumulated CPU time: 1396.82 s
+Current children cumulated vsize: 8981504 KiB
+Current children cumulated memory: 8951188 KiB
+
+[startup+1397.2 s]*
+/proc/loadavg: 1.02 1.07 1.08 2/904 18775
+/proc/meminfo: memFree=101957552/131989204 swapFree=244096144/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+[startup+1397.4 s]
+/proc/loadavg: 1.02 1.07 1.08 2/904 18775
+/proc/meminfo: memFree=101957552/131989204 swapFree=244096144/244398076
+Current children cumulated CPU time: 0 s
+Current children cumulated vsize: 0 KiB
+Current children cumulated memory: 0 KiB
+
+Child status: 0
+Real time (s): 1397.41
+CPU time (s): 1397.43
+CPU user time (s): 1388.52
+CPU system time (s): 8.91214
+CPU usage (%): 100.002
+Max. virtual memory (cumulated for all children) (KiB): 9423064
+Max. memory (cumulated for all children) (KiB): 9392072
+
+getrusage(RUSAGE_CHILDREN,...) data:
+user time used= 1388.52
+system time used= 8.91214
+maximum resident set size= 9392072
+integral shared memory size= 0
+integral unshared data size= 0
+integral unshared stack size= 0
+page reclaims= 2411596
+page faults= 0
+swaps= 0
+block input operations= 0
+block output operations= 22472
+messages sent= 0
+messages received= 0
+signals received= 0
+voluntary context switches= 1
+involuntary context switches= 1595
+
+
+# summary of solver processes directly reported to runsolver:
+#   pid: 941
+#   total CPU time (s): 1397.43
+#   total CPU user time (s): 1388.52
+#   total CPU system time (s): 8.91214
+
+??? end of timestamper thread
+runsolver used 14.1182 second user time and 19.2113 second system time
+
+The end
+BRUNCH_STAT TOTAL_TIME_SMC_MS 1397538
+BRUNCH_STAT ORIGINAL_BITCODE_NAME llvm-dis.bc
+BRUNCH_STAT ORIGINAL_BITCODE_SIZE_KB 18672
+BRUNCH_STAT FINAL_BITCODE_NAME llvm-dis.n.pp.bc
+BRUNCH_STAT FINAL_BITCODE_SIZE_KB 11232
+BRUNCH_STAT EXPERIMENT_TIME 19/02/21-23:05:24
