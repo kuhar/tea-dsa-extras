@@ -13,6 +13,7 @@ The field overflow checker can be found at: https://github.com/seahorn/seahorn/b
 * SVF: cloned automatically during SeaHorn compilation. Customized version avaialable at: https://github.com/kuhar/SVF.
 * gllvm: available at: https://github.com/SRI-CSL/gllvm.
 * runsolver: available at: https://www.cril.univ-artois.fr/~roussel/runsolver/.
+* brunch: available at: https://github.com/agurfinkel/brunch
 
 ## Respository structure
 
